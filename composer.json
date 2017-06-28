@@ -1,0 +1,17 @@
+{
+  "name": "semstorm/semstorm-php-sdk",
+  "description": "Semstorm PHP SDK",
+  "keywords": ["semstorm", "api", "php", "sdk"],
+  "type": "library",
+  "homepage": "https://github.com/semstorm/semstorm-php-sdk",
+  "license": "GPL-3.0",
+  "require": {
+    "php": "^5.4|^7.0",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SemstormApi\\": "src/SemstormApi/"
+    }
+  }
+}
