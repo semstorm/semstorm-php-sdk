@@ -34,17 +34,17 @@ $explorerOrganic = new ExplorerOrganic();
 
 //Domains are required.
 $params = [];
-$params['domains'] = ['mbank.pl'];
+$params['domains'] = ['example.com'];
 //Set keyword filter on 'lost'.
 $params['keyword_filter'] = 'lost';
 
 //API call.
 $response = $explorerOrganic->keywords($params);
 
-printf( "Keyword '%s' have %s montly search volume!\nSite mbank.pl was visible on this keyword on %s posistion, and now its gone.\n",
+printf( "Keyword '%s' have %s montly search volume!\nSite example.com was visible on this keyword on %s posistion, and now its gone.\n",
   $response->results[0]->keyword,
   $response->results[0]->volume,
-  $response->results[0]->position->{'mbank.pl'}
+  $response->results[0]->position->{'example.com'}
 );
 
 

@@ -17,7 +17,7 @@ $explorerOrganic = new ExplorerOrganic();
 $filters = new ExplorerFilters();
 
 /**
- * Retrieve keywords on which domains mbank.pl and bzwbk.pl are visible,
+ * Retrieve keywords on which domains example.com and another-example.com are visible,
  * and only keywords with word 'kredyt' in it.
  */
 // Only keywords which contains word 'kredyt'.
@@ -26,8 +26,8 @@ $filters -> addFilter( 'keyword', 'kredyt', 'contains' );
 // Parameters array.
 $params = [ ];
 $params['domains'] = [
-  'mbank.pl',
-  'bzwbk.pl'
+  'example.com',
+  'another-example.com'
 ];
 // Put set of filters into parameters.
 $params['filters'] = $filters -> getFilters();
@@ -39,14 +39,14 @@ $response = $explorerOrganic -> keywords( $params );
 print_r( $response );
 
 /**
- * Retrieve keywords on which domain mbank.pl have rose up in SERP,
- * and only keywords which points to mbank.pl sites with word 'forum' in its url.
+ * Retrieve keywords on which domain example.com have rose up in SERP,
+ * and only keywords which points to example.com sites with word 'forum' in its url.
  */
 //Reset filters.
 $filters -> removeFilters();
 
 // Domain filters.
-$domain = 'mbank.pl';
+$domain = 'example.com';
 // Only keywords with posistion change 1 or more (equals to "up") for given domain.
 $filters -> addFilter( 'position_change', 1, 'more', $domain );
 //Only urls which contain 'forum'.
@@ -55,8 +55,8 @@ $filters->addFilter('url','forum','contains', $domain);
 // Parameters array.
 $params = [ ];
 $params['domains'] = [
-  'mbank.pl',
-  'bzwbk.pl'
+  'example.com',
+  'another-example.com'
 ];
 // Put set of filters into parameters.
 $params['filters'] = $filters -> getFilters();

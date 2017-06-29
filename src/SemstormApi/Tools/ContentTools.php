@@ -2,11 +2,11 @@
 /**
  * Copyright 2017, SEMSTORM International sp. z o.o. All Rights Reserved.
  *
- * Licensed under the GNU General Public License v3.0 (the "License");
+ * Licensed under the Apache License Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     https://choosealicense.com/licenses/gpl-3.0/
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,8 +36,10 @@ class ContentTools extends Semstorm{
    * Use Text statistics tool via API.
    * 
    * @param array $data Data for tool.
-   * @array['language'] string language.
-   * @array['text'] string text to analyse.
+   * 
+   * @param array of parameters for tool
+   * @param array['language'] string language.
+   * @param array['text'] string text to analyse.
    */
   public function textStatistics($data) {
     $response = $this -> httpClient -> post("tools/content-tools/text-statistics.json", [
@@ -50,8 +52,10 @@ class ContentTools extends Semstorm{
    * Use Text analysis tool via API.
    * 
    * @param array $data Data for tool.
-   * @array['language'] string language.
-   * @array['text'] string text to analyse.
+   * 
+   * @param array of parameters for tool
+   * @param array['language'] string language.
+   * @param array['text'] string text to analyse.
    */
   public function textAnalysis($data) {
     $response = $this -> httpClient -> post("tools/content-tools/text-analysis.json", [

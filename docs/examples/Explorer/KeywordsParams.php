@@ -59,7 +59,7 @@ $explorerOrganic = new ExplorerOrganic();
 
 //Domains are required.
 $params = [];
-$params['domains'] = ['mbank.pl', 'allegro.pl'];
+$params['domains'] = ['example.com', 'another-example.com'];
 
 //API call.
 $response = $explorerOrganic->keywords($params);
