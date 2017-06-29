@@ -23,16 +23,6 @@ class ContentTools extends Semstorm{
   
     
   /**
-   * Retrieve info about tools.
-   * 
-   * @param string $variable Unused.
-   */
-  public function retrieve($variable) {
-    $response = $this -> httpClient -> get("tools/content-tools/{$variable}.json", []);
-    return json_decode($response -> getBody());
-  }
-    
-  /**
    * Use Text statistics tool via API.
    * 
    * @param array $data Data for tool.
