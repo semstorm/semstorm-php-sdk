@@ -2,3 +2,4 @@ vendor/
 files/
 test.php
 ApiGenerator.php
+generate.php
