@@ -44,7 +44,7 @@ print_r($monitoringCampaign->retrieve(12345));
 
 For more examples see docs/examples directory, where are many samples with exhaustive comment.
 
-#SEMSTORM API
+# SEMSTORM API
 
 ## Access
 ### Access token
