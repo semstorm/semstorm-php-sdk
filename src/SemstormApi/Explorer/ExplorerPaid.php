@@ -41,7 +41,7 @@ class ExplorerPaid extends Semstorm{
    * ]
    */
   public function keywords($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-paid/keywords.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-paid/keywords.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());
@@ -56,7 +56,7 @@ class ExplorerPaid extends Semstorm{
    * ]
    */
   public function domainsGlobal($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-paid/domains-global.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-paid/domains-global.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());
@@ -80,7 +80,7 @@ class ExplorerPaid extends Semstorm{
    * ]
    */
   public function urls($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-paid/urls.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-paid/urls.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());
@@ -104,7 +104,7 @@ class ExplorerPaid extends Semstorm{
    * ]
    */
   public function competitors($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-paid/competitors.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-paid/competitors.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());

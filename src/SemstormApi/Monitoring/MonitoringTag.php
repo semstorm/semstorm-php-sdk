@@ -28,7 +28,7 @@ class MonitoringTag extends Semstorm{
    * @param array $data The data object
    */
   public function create($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-tag.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-tag.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -40,7 +40,7 @@ class MonitoringTag extends Semstorm{
    * @param string $tid Tag id.
    */
   public function retrieve($tid) {
-    $response = $this -> httpClient -> get("api-v2/monitoring/monitoring-tag/{$tid}.json", []);
+    $response = $this -> httpClient -> get("monitoring/monitoring-tag/{$tid}.json", []);
     return json_decode($response -> getBody());
   }
     
@@ -51,7 +51,7 @@ class MonitoringTag extends Semstorm{
    * @param array $data Tag data to update.
    */
   public function update($tid, $data) {
-    $response = $this -> httpClient -> put("api-v2/monitoring/monitoring-tag/{$tid}.json", [
+    $response = $this -> httpClient -> put("monitoring/monitoring-tag/{$tid}.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -63,7 +63,7 @@ class MonitoringTag extends Semstorm{
    * @param string $tid Tag id.
    */
   public function delete($tid) {
-    $response = $this -> httpClient -> delete("api-v2/monitoring/monitoring-tag/{$tid}.json", []);
+    $response = $this -> httpClient -> delete("monitoring/monitoring-tag/{$tid}.json", []);
     return json_decode($response -> getBody());
   }
     
@@ -73,7 +73,7 @@ class MonitoringTag extends Semstorm{
    * @param array $data Data.
    */
   public function addKeywords($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-tag/add-keywords.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-tag/add-keywords.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -85,7 +85,7 @@ class MonitoringTag extends Semstorm{
    * @param array $data Data.
    */
   public function removeKeywords($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-tag/remove-keywords.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-tag/remove-keywords.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -97,7 +97,7 @@ class MonitoringTag extends Semstorm{
    * @param array $data Campaign id and pager settings.
    */
   public function all($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-tag/all.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-tag/all.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());

@@ -41,7 +41,7 @@ class ExplorerOrganic extends Semstorm{
    * ]
    */
   public function keywords($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-organic/keywords.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-organic/keywords.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());
@@ -56,7 +56,7 @@ class ExplorerOrganic extends Semstorm{
    * ]
    */
   public function domainsGlobal($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-organic/domains-global.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-organic/domains-global.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());
@@ -80,7 +80,7 @@ class ExplorerOrganic extends Semstorm{
    * ]
    */
   public function urls($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-organic/urls.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-organic/urls.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());
@@ -104,7 +104,7 @@ class ExplorerOrganic extends Semstorm{
    * ]
    */
   public function competitors($params) {
-    $response = $this -> httpClient -> post("api-v2/explorer/explorer-organic/competitors.json", [
+    $response = $this -> httpClient -> post("explorer/explorer-organic/competitors.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());

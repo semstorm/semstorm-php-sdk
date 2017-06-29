@@ -28,7 +28,7 @@ class MonitoringGroup extends Semstorm{
    * @param array $data The data object
    */
   public function create($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -40,7 +40,7 @@ class MonitoringGroup extends Semstorm{
    * @param string $gid Group id.
    */
   public function retrieve($gid) {
-    $response = $this -> httpClient -> get("api-v2/monitoring/monitoring-group/{$gid}.json", []);
+    $response = $this -> httpClient -> get("monitoring/monitoring-group/{$gid}.json", []);
     return json_decode($response -> getBody());
   }
     
@@ -51,7 +51,7 @@ class MonitoringGroup extends Semstorm{
    * @param array $data Group data to update.
    */
   public function update($gid, $data) {
-    $response = $this -> httpClient -> put("api-v2/monitoring/monitoring-group/{$gid}.json", [
+    $response = $this -> httpClient -> put("monitoring/monitoring-group/{$gid}.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -63,7 +63,7 @@ class MonitoringGroup extends Semstorm{
    * @param int $id Group id.
    */
   public function start($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/start.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/start.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -75,7 +75,7 @@ class MonitoringGroup extends Semstorm{
    * @param int $id Group id.
    */
   public function stop($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/stop.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/stop.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -87,7 +87,7 @@ class MonitoringGroup extends Semstorm{
    * @param int $id Group id.
    */
   public function delete($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/delete.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/delete.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -99,7 +99,7 @@ class MonitoringGroup extends Semstorm{
    * @param int $id Group id.
    */
   public function restore($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/restore.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/restore.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -111,7 +111,7 @@ class MonitoringGroup extends Semstorm{
    * @param array $data Group resources to add.
    */
   public function addFields($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/add-fields.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/add-fields.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -123,7 +123,7 @@ class MonitoringGroup extends Semstorm{
    * @param array $data Group resources to remove.
    */
   public function removeFields($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/remove-fields.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/remove-fields.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -135,7 +135,7 @@ class MonitoringGroup extends Semstorm{
    * @param array $data Campaign id and pager settings.
    */
   public function all($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-group/all.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/all.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());

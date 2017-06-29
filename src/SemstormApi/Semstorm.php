@@ -1,19 +1,19 @@
 <?php
 /**
  * Copyright 2017, SEMSTORM International sp. z o.o. All Rights Reserved.
- *
- * Licensed under the GNU General Public License v3.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://choosealicense.com/licenses/gpl-3.0/
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+*
+* Licensed under the GNU General Public License v3.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     https://choosealicense.com/licenses/gpl-3.0/
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 namespace SemstormApi;
 
 use GuzzleHttp\Client;
@@ -24,10 +24,11 @@ use GuzzleHttp\RequestOptions;
 use SemstormApi\SemstormException;
 
 class Semstorm{
-  
+
   protected $httpClient;
   protected static $token;
-  
+  protected static $base_uri;
+
   /**
    * Constructor.
    *
@@ -44,7 +45,7 @@ class Semstorm{
     }
     if ($httpClient === null) {
       $this -> httpClient = new Client([
-        'base_uri' => 'http://api.semstorm.com/',
+        'base_uri' => self::$base_uri,
         'query' => ['services_token' => $_token],
         'headers' => ['Content-Type' => 'application/json','Accept'=>'application/json'],
         'debug' => false]);
@@ -53,14 +54,20 @@ class Semstorm{
       $this -> httpClient = $httpClient;
     }
   }
-  
+
   /**
    * Initialize API for future use by settings access token.
    *
    * @param string $token
    */
-  static function init($token){
+  static function init($token, $base_uri = null){
     self::$token = $token;
+    if($base_uri){
+      self::$base_uri = $base_uri;
+    }
+    else{
+      self::$base_uri = 'http://api.semstorm.com/api-v2/';
+    }
   }
-  
+
 }

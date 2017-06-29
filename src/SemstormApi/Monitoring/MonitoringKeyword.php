@@ -28,7 +28,7 @@ class MonitoringKeyword extends Semstorm{
    * @param array $data The data object
    */
   public function create($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -40,7 +40,7 @@ class MonitoringKeyword extends Semstorm{
    * @param string $tid Keyword id.
    */
   public function retrieve($tid) {
-    $response = $this -> httpClient -> get("api-v2/monitoring/monitoring-keyword/{$tid}.json", []);
+    $response = $this -> httpClient -> get("monitoring/monitoring-keyword/{$tid}.json", []);
     return json_decode($response -> getBody());
   }
     
@@ -50,7 +50,7 @@ class MonitoringKeyword extends Semstorm{
    * @param int $id Keyword id.
    */
   public function start($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/start.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/start.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -62,7 +62,7 @@ class MonitoringKeyword extends Semstorm{
    * @param int $id Keyword id.
    */
   public function stop($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/stop.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/stop.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -74,7 +74,7 @@ class MonitoringKeyword extends Semstorm{
    * @param int $id Keyword id.
    */
   public function delete($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/delete.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/delete.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -86,7 +86,7 @@ class MonitoringKeyword extends Semstorm{
    * @param int $id Keyword id.
    */
   public function restore($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/restore.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/restore.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -98,7 +98,7 @@ class MonitoringKeyword extends Semstorm{
    * @param array $data Data.
    */
   public function addTags($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/add-tags.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/add-tags.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -110,7 +110,7 @@ class MonitoringKeyword extends Semstorm{
    * @param array $data Data.
    */
   public function removeTags($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/remove-tags.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/remove-tags.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -122,7 +122,7 @@ class MonitoringKeyword extends Semstorm{
    * @param array $data Data.
    */
   public function getData($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-keyword/get-data.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-data.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());

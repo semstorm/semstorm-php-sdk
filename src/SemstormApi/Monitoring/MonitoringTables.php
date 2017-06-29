@@ -28,7 +28,7 @@ class MonitoringTables extends Semstorm{
    * @param string $arr_name Array to return.
    */
   public function retrieve($arr_name) {
-    $response = $this -> httpClient -> get("api-v2/monitoring/monitoring-tables/{$arr_name}.json", []);
+    $response = $this -> httpClient -> get("monitoring/monitoring-tables/{$arr_name}.json", []);
     return json_decode($response -> getBody());
   }
   

@@ -28,7 +28,7 @@ class MonitoringCampaign extends Semstorm{
    * @param array $data The data object
    */
   public function create($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -40,7 +40,7 @@ class MonitoringCampaign extends Semstorm{
    * @param string $cid Campaign id.
    */
   public function retrieve($cid) {
-    $response = $this -> httpClient -> get("api-v2/monitoring/monitoring-campaign/{$cid}.json", []);
+    $response = $this -> httpClient -> get("monitoring/monitoring-campaign/{$cid}.json", []);
     return json_decode($response -> getBody());
   }
     
@@ -51,7 +51,7 @@ class MonitoringCampaign extends Semstorm{
    * @param array $data Campaign data to update.
    */
   public function update($cid, $data) {
-    $response = $this -> httpClient -> put("api-v2/monitoring/monitoring-campaign/{$cid}.json", [
+    $response = $this -> httpClient -> put("monitoring/monitoring-campaign/{$cid}.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
@@ -63,7 +63,7 @@ class MonitoringCampaign extends Semstorm{
    * @param int $id Campaign id.
    */
   public function start($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign/start.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/start.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -75,7 +75,7 @@ class MonitoringCampaign extends Semstorm{
    * @param int $id Campaign id.
    */
   public function stop($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign/stop.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/stop.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -87,7 +87,7 @@ class MonitoringCampaign extends Semstorm{
    * @param int $id Campaign id.
    */
   public function delete($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign/delete.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/delete.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -99,7 +99,7 @@ class MonitoringCampaign extends Semstorm{
    * @param int $id Campaign id.
    */
   public function restore($id) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign/restore.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/restore.json", [
               'json' => $id, 
     ]);
     return json_decode($response -> getBody());
@@ -111,7 +111,7 @@ class MonitoringCampaign extends Semstorm{
    * @param array $settings Pager settings.
    */
   public function all($settings) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign/all.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/all.json", [
               'json' => $settings, 
     ]);
     return json_decode($response -> getBody());
@@ -123,7 +123,7 @@ class MonitoringCampaign extends Semstorm{
    * @param array $data Data.
    */
   public function getData($data) {
-    $response = $this -> httpClient -> post("api-v2/monitoring/monitoring-campaign/get-data.json", [
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-data.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
