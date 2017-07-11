@@ -2,7 +2,7 @@
 /**
  * Example: Keywords parameters.
  * 
- * Parameters are set by function setParams(), where is passed one associative array for all params.
+ * Parameters are passed while calling API request function.
  * All parameters that are not set will be taken by it's default value.
  * 
  * Parameters are passed as associative array with structure (values in brackets are default):
@@ -22,7 +22,7 @@
  *   "filters" = [ ]
  * ]
  * 
- * The "domains" array is only required parameter, it should contain 1 to 5 domains.
+ * The "domains" array is only required parameter, it should contain from 1 to 5 domains.
  * 
  * The "pager" is associative array which allows to iterate through all set of results.
  *   Defines offset and limit of results (eg 3rd page with 50 rows per page equals results from 101 to 150).
@@ -52,18 +52,18 @@
  */
 
 use SemstormApi\Semstorm;
-use SemstormApi\Explorer\ExplorerOrganic;
+use SemstormApi\Explorer\ExplorerKeywords;
 Semstorm::init( __ACCESS_TOKEN__ );
 
-$explorerOrganic = new ExplorerOrganic();
+$explorerKeywords = new ExplorerKeywords();
 
 //Domains are required.
 $params = [];
 $params['domains'] = ['example.com', 'another-example.com'];
 
 //API call.
-$response = $explorerOrganic->keywords($params);
-$responseParams = $response->explorer_params;
+$response = $explorerKeywords->list($params);
+$responseParams = $response->params;
 $keywordsCount = $response->results_count;
 
 //Print call params.

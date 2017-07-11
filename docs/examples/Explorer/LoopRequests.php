@@ -6,10 +6,10 @@
  */
 
 use SemstormApi\Semstorm;
-use SemstormApi\Explorer\ExplorerOrganic;
+use SemstormApi\Explorer\ExplorerKeywords;
 Semstorm::init( __ACCESS_TOKEN__ );
 
-$explorerOrganic = new ExplorerOrganic();
+$explorerKeywords = new ExplorerKeywords();
 
 //Domains are required.
 $params = [];
@@ -20,7 +20,7 @@ $params['keyword_filter'] = 'lost';
 $params['get_row_count'] = true;
 
 //API call.
-$response = $explorerOrganic->keywords($params);
+$response = $explorerKeywords->list($params);
 $count = $response->results_count;
 
 //Now prepare variables to get through all results.
@@ -30,7 +30,7 @@ $params['pager']['items_per_page'] = 250;
 
 while($params['pager']['page'] * $params['pager']['items_per_page'] < $count){
   sleep(2);
-  $response = $explorerOrganic->keywords($params);
+  $response = $explorerKeywords->list($params);
   
   printf( "Keyword '%s' have %s montly search volume!\nSite example.com was visible on this keyword on %s posistion, and now its gone.\n",
     $response->results[0]->keyword,
@@ -40,21 +40,5 @@ while($params['pager']['page'] * $params['pager']['items_per_page'] < $count){
   
   $params['pager']['page']++;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

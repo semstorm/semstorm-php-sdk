@@ -27,10 +27,10 @@
  */
 
 use SemstormApi\Semstorm;
-use SemstormApi\Explorer\ExplorerOrganic;
+use SemstormApi\Explorer\ExplorerKeywords;
 Semstorm::init( __ACCESS_TOKEN__ );
 
-$explorerOrganic = new ExplorerOrganic();
+$explorerKeywords = new ExplorerKeywords();
 
 //Domains are required.
 $params = [];
@@ -39,27 +39,12 @@ $params['domains'] = ['example.com'];
 $params['keyword_filter'] = 'lost';
 
 //API call.
-$response = $explorerOrganic->keywords($params);
+$response = $explorerKeywords->list($params);
 
 printf( "Keyword '%s' have %s montly search volume!\nSite example.com was visible on this keyword on %s posistion, and now its gone.\n",
   $response->results[0]->keyword,
   $response->results[0]->volume,
   $response->results[0]->position->{'example.com'}
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -9,11 +9,11 @@
  */
 
 use SemstormApi\Semstorm;
-use SemstormApi\Explorer\ExplorerOrganic;
+use SemstormApi\Explorer\ExplorerKeywords;
 use SemstormApi\Explorer\ExplorerFilters;
 Semstorm::init( __ACCESS_TOKEN__ );
 
-$explorerOrganic = new ExplorerOrganic();
+$explorerKeywords = new ExplorerKeywords();
 $filters = new ExplorerFilters();
 
 /**
@@ -33,7 +33,7 @@ $params['domains'] = [
 $params['filters'] = $filters -> getFilters();
 
 // Make API call with filters appended.
-$response = $explorerOrganic -> keywords( $params );
+$response = $explorerKeywords -> list( $params );
 
 //See whole response.
 print_r( $response );
@@ -62,12 +62,8 @@ $params['domains'] = [
 $params['filters'] = $filters -> getFilters();
 
 // Make API call with filters appended.
-$response = $explorerOrganic -> keywords( $params );
+$response = $explorerKeywords -> list( $params );
 
 //See whole response.
 print_r( $response );
-
-
-
-
 

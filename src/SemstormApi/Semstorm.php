@@ -28,6 +28,7 @@ class Semstorm{
   protected $httpClient;
   protected static $token;
   protected static $base_uri;
+  protected static $debug;
 
   /**
    * Constructor.
@@ -43,12 +44,18 @@ class Semstorm{
       }
       $_token = self::$token;
     }
+
     if ($httpClient === null) {
-      $this -> httpClient = new Client([
+      $options = [
         'base_uri' => self::$base_uri,
         'query' => ['services_token' => $_token],
         'headers' => ['Content-Type' => 'application/json','Accept'=>'application/json'],
-        'debug' => false]);
+        'debug' => self::$debug
+      ];
+      if(isset($this->requestOptions)){
+        $options = array_merge($options, $this->requestOptions);
+      }
+      $this -> httpClient = new Client($options);
     }
     else {
       $this -> httpClient = $httpClient;
@@ -60,13 +67,14 @@ class Semstorm{
    *
    * @param string $token
    */
-  static function init($token, $base_uri = null){
+  static function init($token, $base_uri = null, $debug = false){
     self::$token = $token;
+    self::$debug = $debug;
     if($base_uri){
       self::$base_uri = $base_uri;
     }
     else{
-      self::$base_uri = 'http://api.semstorm.com/api-v2/';
+      self::$base_uri = 'http://api.semstorm.com/api-v3/';
     }
   }
 
