@@ -50,7 +50,7 @@ For more examples see docs/examples directory, where are many samples with exhau
 ### Access token
 
 In order to use SEMSTORM API, it is required to have valid access token. Access tokens are granted only to registered users in [SEMSTORM](https://app.semstorm.com/).
-If you are registered user, log in to SEMSTORM panel, go to your profile page and find "Services token" tab. There you can generate or refresh your access token.
+If you are registered user, log in to SEMSTORM panel, and go to [access token page](https://app.semstorm.com/user/api/token) in profile. There you can generate or refresh your access token.
 When you have your access token you are ready to use SEMSTORM API.
 
 ## API
