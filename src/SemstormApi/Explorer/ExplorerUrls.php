@@ -63,13 +63,8 @@ class ExplorerUrls extends Semstorm{
    * 
    * @param array $params settings for api call, only 'domains' is required = [
    *   'domains' = [ strings ]
-   *   'date' = [
-   *     'min' = string, date start in format Ymd
-   *     'max' = string, date end in format Ymd
-   *   ]
    *   'section' = 0 / 1 / 2 nesting level
    *   'sections' = [ strings ] array with parent elements
-   *   'gap' = ('monthly') / 'weekly' / 'daily'
    *   'filters' = []
    * ]
    */

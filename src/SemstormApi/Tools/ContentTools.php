@@ -25,11 +25,9 @@ class ContentTools extends Semstorm{
   /**
    * Use Text statistics tool via API.
    * 
-   * @param array $data Data for tool.
-   * 
-   * @param array of parameters for tool
-   * @param array['language'] string language.
-   * @param array['text'] string text to analyse.
+   * @param array $data parameters for tool.
+   * @param array $data['language'] string language.
+   * @param array $data['text'] string text to analyse.
    */
   public function textStatistics($data) {
     $response = $this -> httpClient -> post("tools/content-tools/text-statistics.json", [
@@ -41,11 +39,9 @@ class ContentTools extends Semstorm{
   /**
    * Use Text analysis tool via API.
    * 
-   * @param array $data Data for tool.
-   * 
-   * @param array of parameters for tool
-   * @param array['language'] string language.
-   * @param array['text'] string text to analyse.
+   * @param array $data parameters for tool.
+   * @param array $data['language'] string language.
+   * @param array $data['text'] string text to analyse.
    */
   public function textAnalysis($data) {
     $response = $this -> httpClient -> post("tools/content-tools/text-analysis.json", [

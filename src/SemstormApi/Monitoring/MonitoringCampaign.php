@@ -25,7 +25,8 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Create new campaign
    * 
-   * @param array $data The data object
+   * @param array $data campaign data to create.
+   * @param array $data['domain'] string campaign domain.
    */
   public function create($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign.json", [
@@ -37,7 +38,7 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Retrieve one campaign data
    * 
-   * @param string $cid Campaign id.
+   * @param string $cid campaign id.
    */
   public function retrieve($cid) {
     $response = $this -> httpClient -> get("monitoring/monitoring-campaign/{$cid}.json", []);
@@ -47,8 +48,10 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Update campaign data
    * 
-   * @param string $cid Campaign id.
-   * @param array $data Campaign data to update.
+   * @param string $cid campaign id.
+
+   * @param array $data campaign data to update.
+   * @param array $data['domain'] string campaign domain.
    */
   public function update($cid, $data) {
     $response = $this -> httpClient -> put("monitoring/monitoring-campaign/{$cid}.json", [
@@ -60,7 +63,7 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Start stopped campaign.
    * 
-   * @param int $id Campaign id.
+   * @param int $id campaign id.
    */
   public function start($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign/start.json", [
@@ -72,7 +75,7 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Stop campaign.
    * 
-   * @param int $id Campaign id.
+   * @param int $id campaign id.
    */
   public function stop($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign/stop.json", [
@@ -84,7 +87,7 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Delete existing campaign.
    * 
-   * @param int $id Campaign id.
+   * @param int $id campaign id.
    */
   public function delete($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign/delete.json", [
@@ -96,7 +99,7 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Restore deleted campaign.
    * 
-   * @param int $id Campaign id.
+   * @param int $id campaign id.
    */
   public function restore($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign/restore.json", [
@@ -108,7 +111,9 @@ class MonitoringCampaign extends Semstorm{
   /**
    * Gets list of all campaigns.
    * 
-   * @param array $settings Pager settings.
+   * @param array $settings pager settings.
+   * @param array $settings['items_per_page'] number of items per page
+   * @param array $settings['page'] page number (starting from 0)
    */
   public function all($settings) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign/all.json", [
@@ -118,9 +123,13 @@ class MonitoringCampaign extends Semstorm{
   }
     
   /**
-   * Get data using monitoring_page_keywords_pivot_get_data().
+   * Get detals about campaign.
    * 
-   * @param array $data Data.
+   * @param array $data 
+   * @param array $data['id'] string campaign id
+   * @param array $data['domains'] mixed array of domains or string with one domain or nothing then domain from campaign will be taken
+   * @param array $data['params'] assocc array with additional params
+   * @param array $data['params']['filters'] array with filters
    */
   public function getData($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-data.json", [

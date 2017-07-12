@@ -25,7 +25,12 @@ class MonitoringGroup extends Semstorm{
   /**
    * Create new group
    * 
-   * @param array $data The data object
+   * @param array $data 
+   * @param array $data['campaign_id'] int campaign id in which create group
+   * @param array $data['title'] string group title
+   * @param array $data['engines'] array (optional) engines
+   * @param array $data['locations'] array (optional) locations
+   * @param array $data['devices'] array (optional) devices
    */
   public function create($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group.json", [
@@ -37,7 +42,7 @@ class MonitoringGroup extends Semstorm{
   /**
    * Retrieve one group data
    * 
-   * @param string $gid Group id.
+   * @param string $gid group id.
    */
   public function retrieve($gid) {
     $response = $this -> httpClient -> get("monitoring/monitoring-group/{$gid}.json", []);
@@ -47,8 +52,10 @@ class MonitoringGroup extends Semstorm{
   /**
    * Update group data
    * 
-   * @param string $gid Group id.
-   * @param array $data Group data to update.
+   * @param string $gid group id.
+
+   * @param array $data group data to update.
+   * @param array $data['title'] string group title
    */
   public function update($gid, $data) {
     $response = $this -> httpClient -> put("monitoring/monitoring-group/{$gid}.json", [
@@ -60,7 +67,7 @@ class MonitoringGroup extends Semstorm{
   /**
    * Start stopped group.
    * 
-   * @param int $id Group id.
+   * @param int $id group id.
    */
   public function start($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/start.json", [
@@ -72,7 +79,7 @@ class MonitoringGroup extends Semstorm{
   /**
    * Stop group.
    * 
-   * @param int $id Group id.
+   * @param int $id group id.
    */
   public function stop($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/stop.json", [
@@ -84,7 +91,7 @@ class MonitoringGroup extends Semstorm{
   /**
    * Delete existing group.
    * 
-   * @param int $id Group id.
+   * @param int $id group id.
    */
   public function delete($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/delete.json", [
@@ -96,7 +103,7 @@ class MonitoringGroup extends Semstorm{
   /**
    * Restore deleted group.
    * 
-   * @param int $id Group id.
+   * @param int $id group id.
    */
   public function restore($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/restore.json", [
@@ -108,7 +115,10 @@ class MonitoringGroup extends Semstorm{
   /**
    * Add fields to group.
    * 
-   * @param array $data Group resources to add.
+   * @param array $data group resources to add.
+   * @param array $data['engines'] array of engines to add.
+   * @param array $data['locations'] array of locations to add.
+   * @param array $data['devices'] array of devices to add.
    */
   public function addFields($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/add-fields.json", [
@@ -120,7 +130,10 @@ class MonitoringGroup extends Semstorm{
   /**
    * Remove fields from group.
    * 
-   * @param array $data Group resources to remove.
+   * @param array $data group resources to remove.
+   * @param array $data['engines'] array of engines to remove.
+   * @param array $data['locations'] array of locations to remove.
+   * @param array $data['devices'] array of devices to remove.
    */
   public function removeFields($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/remove-fields.json", [
@@ -132,7 +145,10 @@ class MonitoringGroup extends Semstorm{
   /**
    * Gets list of all groups.
    * 
-   * @param array $data Campaign id and pager settings.
+   * @param array $data campaign id and pager settings.
+   * @params array $data['campaign_id'] campaign id.
+   * @param array $data['items_per_page'] number of items per page.
+   * @params array $data['page'] page number (starting from 0).
    */
   public function all($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-group/all.json", [

@@ -23,9 +23,9 @@ class MonitoringTables extends Semstorm{
   
     
   /**
-   * Retrieve one group data
+   * Retrieve table with possible values.
    * 
-   * @param string $arr_name Array to return.
+   * @param string $arr_name name of array to return, possible values are "engines" and "devices".
    */
   public function retrieve($arr_name) {
     $response = $this -> httpClient -> get("monitoring/monitoring-tables/{$arr_name}.json", []);

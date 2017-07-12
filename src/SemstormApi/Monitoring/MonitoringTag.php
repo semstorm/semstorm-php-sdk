@@ -25,7 +25,11 @@ class MonitoringTag extends Semstorm{
   /**
    * Create new tag
    * 
-   * @param array $data The data object
+   * @param array $data 
+   * @param array $data['campaign_id'] string campaign id.
+   * @param array $data['title'] string title.
+   * @param array $data['color'] string color in #HHHHHH format.
+   *
    */
   public function create($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-tag.json", [
@@ -37,7 +41,7 @@ class MonitoringTag extends Semstorm{
   /**
    * Retrieve one tag data
    * 
-   * @param string $tid Tag id.
+   * @param string $tid tag id.
    */
   public function retrieve($tid) {
     $response = $this -> httpClient -> get("monitoring/monitoring-tag/{$tid}.json", []);
@@ -47,8 +51,13 @@ class MonitoringTag extends Semstorm{
   /**
    * Update tag data
    * 
-   * @param string $tid Group id.
-   * @param array $data Tag data to update.
+   * @param string $tid tag id.
+
+   * @param array $data 
+   * @param array $data['campaign_id'] string campaign id.
+   * @param array $data['title'] string title.
+   * @param array $data['color'] string color in #HHHHHH format.
+   *
    */
   public function update($tid, $data) {
     $response = $this -> httpClient -> put("monitoring/monitoring-tag/{$tid}.json", [
@@ -60,7 +69,7 @@ class MonitoringTag extends Semstorm{
   /**
    * Delete tag
    * 
-   * @param string $tid Tag id.
+   * @param string $tid tag id.
    */
   public function delete($tid) {
     $response = $this -> httpClient -> delete("monitoring/monitoring-tag/{$tid}.json", []);
@@ -70,7 +79,9 @@ class MonitoringTag extends Semstorm{
   /**
    * Add keywords to tag.
    * 
-   * @param array $data Data.
+   * @param array $data 
+   * @param array $data['id'] string tag id.
+   * @param array $data['keywords'] array of keywords id.
    */
   public function addKeywords($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-tag/add-keywords.json", [
@@ -82,7 +93,9 @@ class MonitoringTag extends Semstorm{
   /**
    * Stop group.
    * 
-   * @param array $data Data.
+   * @param array $data 
+   * @param array $data['id'] string tag id.
+   * @param array $data['keywords'] array of keywords id.
    */
   public function removeKeywords($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-tag/remove-keywords.json", [
