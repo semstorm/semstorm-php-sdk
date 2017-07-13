@@ -109,11 +109,16 @@ class MonitoringCampaign extends Semstorm{
   }
     
   /**
+   * Gets list of all campaigns.
    * 
-   * 
+   * @param array $settings pager settings.
+   * @param array $settings['items_per_page'] number of items per page
+   * @param array $settings['page'] page number (starting from 0)
    */
-  public function all() {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/all.json", []);
+  public function list($settings) {
+    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/list.json", [
+              'json' => $settings, 
+    ]);
     return json_decode($response -> getBody());
   }
     

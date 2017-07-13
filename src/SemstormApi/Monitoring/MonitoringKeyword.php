@@ -130,7 +130,7 @@ class MonitoringKeyword extends Semstorm{
    * @param array $data 
    * @param array $data['id'] string keyword id
    * @param array $data['domain'] string optional; competitor if not set it will take domain from campaign
-   * @param array $data['params'] - optional; assocc array with additional params
+   * @param array $data['params'] array optional  with additional params
    * 
    * @return array of data
    */

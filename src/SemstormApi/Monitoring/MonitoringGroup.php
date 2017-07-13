@@ -145,11 +145,17 @@ class MonitoringGroup extends Semstorm{
   }
     
   /**
+   * Gets list of all campaign groups.
    * 
-   * 
+   * @param array $data campaign id and pager settings.
+   * @param array $data['campaign_id'] campaign id.
+   * @param array $data['items_per_page'] number of items per page.
+   * @param array $data['page'] page number (starting from 0).
    */
-  public function all() {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/all.json", []);
+  public function list($data) {
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/list.json", [
+              'json' => $data, 
+    ]);
     return json_decode($response -> getBody());
   }
   
