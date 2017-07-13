@@ -116,6 +116,7 @@ class MonitoringGroup extends Semstorm{
    * Add fields to group.
    * 
    * @param array $data group resources to add.
+   * @param array $data['id'] string group id.
    * @param array $data['engines'] array of engines to add.
    * @param array $data['locations'] array of locations to add.
    * @param array $data['devices'] array of devices to add.
@@ -131,6 +132,7 @@ class MonitoringGroup extends Semstorm{
    * Remove fields from group.
    * 
    * @param array $data group resources to remove.
+   * @param array $data['id'] string group id.
    * @param array $data['engines'] array of engines to remove.
    * @param array $data['locations'] array of locations to remove.
    * @param array $data['devices'] array of devices to remove.
@@ -143,17 +145,11 @@ class MonitoringGroup extends Semstorm{
   }
     
   /**
-   * Gets list of all groups.
    * 
-   * @param array $data campaign id and pager settings.
-   * @params array $data['campaign_id'] campaign id.
-   * @param array $data['items_per_page'] number of items per page.
-   * @params array $data['page'] page number (starting from 0).
+   * 
    */
-  public function all($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/all.json", [
-              'json' => $data, 
-    ]);
+  public function all() {
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/all.json", []);
     return json_decode($response -> getBody());
   }
   

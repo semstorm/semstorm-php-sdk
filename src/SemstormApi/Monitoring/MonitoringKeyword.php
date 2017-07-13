@@ -25,7 +25,11 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Create new keywords in group
    * 
-   * @param array $data The data object
+   * @param array $data 
+   * @param array $data['group_id'] string group id
+   * @param array $data['keywords'] array of strings - keywords
+   * 
+   * @return $ids[] - array of ids of new keywords
    */
   public function create($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword.json", [
@@ -37,17 +41,17 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Retrieve one keyword data
    * 
-   * @param string $tid Keyword id.
+   * @param string $kid keyword id.
    */
-  public function retrieve($tid) {
-    $response = $this -> httpClient -> get("monitoring/monitoring-keyword/{$tid}.json", []);
+  public function retrieve($kid) {
+    $response = $this -> httpClient -> get("monitoring/monitoring-keyword/{$kid}.json", []);
     return json_decode($response -> getBody());
   }
     
   /**
    * Start stopped keyword.
    * 
-   * @param int $id Keyword id.
+   * @param int $id keyword id.
    */
   public function start($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/start.json", [
@@ -59,7 +63,7 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Stop group.
    * 
-   * @param int $id Keyword id.
+   * @param int $id keyword id.
    */
   public function stop($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/stop.json", [
@@ -71,7 +75,7 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Delete existing keyword.
    * 
-   * @param int $id Keyword id.
+   * @param int $id keyword id.
    */
   public function delete($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/delete.json", [
@@ -83,7 +87,7 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Restore deleted keyword.
    * 
-   * @param int $id Keyword id.
+   * @param int $id keyword id.
    */
   public function restore($id) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/restore.json", [
@@ -95,7 +99,9 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Add tags to keyword.
    * 
-   * @param array $data Data.
+   * @param array $data 
+   * @param array $data['id'] string keyword id
+   * @param array $data['tags'] array of tags ids
    */
   public function addTags($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/add-tags.json", [
@@ -107,7 +113,9 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Remove tags from keyword.
    * 
-   * @param array $data Data.
+   * @param array $data 
+   * @param array $data['id'] string keyword id
+   * @param array $data['tags'] array of tags ids
    */
   public function removeTags($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/remove-tags.json", [
@@ -119,7 +127,12 @@ class MonitoringKeyword extends Semstorm{
   /**
    * Get keyword data using monitoring_page_keywords_pivot_get_data().
    * 
-   * @param array $data Data.
+   * @param array $data 
+   * @param array $data['id'] string keyword id
+   * @param array $data['domain'] string optional; competitor if not set it will take domain from campaign
+   * @param array $data['params'] - optional; assocc array with additional params
+   * 
+   * @return array of data
    */
   public function getData($data) {
     $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-data.json", [
