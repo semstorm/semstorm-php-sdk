@@ -109,8 +109,8 @@ class MonitoringTag extends Semstorm{
    * 
    * @param array $data Campaign id and pager settings.
    */
-  public function list($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-tag/list.json", [
+  public function get($data) {
+    $response = $this -> httpClient -> post("monitoring/monitoring-tag/get.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());
