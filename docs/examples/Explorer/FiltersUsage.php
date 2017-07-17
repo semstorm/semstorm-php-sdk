@@ -33,7 +33,7 @@ $params['domains'] = [
 $params['filters'] = $filters -> getFilters();
 
 // Make API call with filters appended.
-$response = $explorerKeywords -> list( $params );
+$response = $explorerKeywords -> getData( $params );
 
 //See whole response.
 print_r( $response );
@@ -62,7 +62,7 @@ $params['domains'] = [
 $params['filters'] = $filters -> getFilters();
 
 // Make API call with filters appended.
-$response = $explorerKeywords -> list( $params );
+$response = $explorerKeywords -> getData( $params );
 
 //See whole response.
 print_r( $response );

@@ -39,7 +39,7 @@ $params['domains'] = ['example.com'];
 $params['keyword_filter'] = 'lost';
 
 //API call.
-$response = $explorerKeywords->list($params);
+$response = $explorerKeywords->getData($params);
 
 printf( "Keyword '%s' have %s montly search volume!\nSite example.com was visible on this keyword on %s posistion, and now its gone.\n",
   $response->results[0]->keyword,

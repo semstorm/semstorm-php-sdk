@@ -7,6 +7,7 @@
 
 use SemstormApi\Semstorm;
 use SemstormApi\Monitoring\MonitoringCampaign;
+
 Semstorm::init( __ACCESS_TOKEN__);
 
 $monitoringCampaign = new MonitoringCampaign();

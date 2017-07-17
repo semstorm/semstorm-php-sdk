@@ -16,7 +16,7 @@ $pager = [];
 $pager['items_per_page'] = 50;
 $pager['page'] = 0;
 printf("First 50 campaigns ids:\n");
-print_r($monitoringCampaign->all($pager));
+print_r($monitoringCampaign->getList($pager));
 
 printf("Campaign with id 7189:\n");
 print_r($monitoringCampaign->retrieve(7189));
@@ -27,7 +27,7 @@ $params['items_per_page'] = 50;
 $params['page'] = 0;
 $params['campaign_id'] = 7189;
 printf("First 50 groups ids for campaign with id 7189:\n");
-print_r($monitoringGroup->all($params));
+print_r($monitoringGroup->getList($params));
 
 printf("Group with id 7190:\n");
 print_r($monitoringGroup->retrieve(7190));
@@ -42,7 +42,7 @@ $params['items_per_page'] = 50;
 $params['page'] = 0;
 $params['campaign_id'] = 7189;
 printf("First 50 tags ids for campaign with id 7189:\n");
-print_r($monitoringTag->all($params));
+print_r($monitoringTag->getList($params));
 
 
 

@@ -13,6 +13,7 @@
  * Below are listed some of possible filters which can be created using ExplorerFilters.
  */
 
+use SemstormApi\Semstorm;
 use SemstormApi\Explorer\ExplorerFilters;
 Semstorm::init( __ACCESS_TOKEN__ );
 

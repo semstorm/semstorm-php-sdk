@@ -29,7 +29,11 @@
  * 
  */
 
+use SemstormApi\Semstorm;
 use SemstormApi\Explorer\ExplorerDomains;
+
+Semstorm::init( __ACCESS_TOKEN__ );
+
 $explorerDomains = new ExplorerDomains();
 
 $params = [];

@@ -152,8 +152,8 @@ class MonitoringGroup extends Semstorm{
    * @param array $data['items_per_page'] number of items per page.
    * @param array $data['page'] page number (starting from 0).
    */
-  public function get($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/get.json", [
+  public function getList($data) {
+    $response = $this -> httpClient -> post("monitoring/monitoring-group/get-list.json", [
               'json' => $data, 
     ]);
     return json_decode($response -> getBody());

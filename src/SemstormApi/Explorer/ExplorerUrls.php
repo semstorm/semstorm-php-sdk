@@ -51,8 +51,8 @@ class ExplorerUrls extends Semstorm{
    *   'filters' = []
    * ]
    */
-  public function get($params) {
-    $response = $this -> httpClient -> post("explorer/explorer-urls/get.json", [
+  public function getData($params) {
+    $response = $this -> httpClient -> post("explorer/explorer-urls/get-data.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());

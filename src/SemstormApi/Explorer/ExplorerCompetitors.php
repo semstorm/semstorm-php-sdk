@@ -39,8 +39,8 @@ class ExplorerCompetitors extends Semstorm{
    *   'filters' = []
    * ]
    */
-  public function get($params) {
-    $response = $this -> httpClient -> post("explorer/explorer-competitors/get.json", [
+  public function getData($params) {
+    $response = $this -> httpClient -> post("explorer/explorer-competitors/get-data.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());

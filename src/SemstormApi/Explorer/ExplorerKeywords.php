@@ -40,8 +40,8 @@ class ExplorerKeywords extends Semstorm{
    *   'filters' = []
    * ]
    */
-  public function get($params) {
-    $response = $this -> httpClient -> post("explorer/explorer-keywords/get.json", [
+  public function getData($params) {
+    $response = $this -> httpClient -> post("explorer/explorer-keywords/get-data.json", [
               'json' => $params, 
     ]);
     return json_decode($response -> getBody());

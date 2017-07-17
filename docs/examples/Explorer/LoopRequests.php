@@ -20,7 +20,7 @@ $params['keyword_filter'] = 'lost';
 $params['get_row_count'] = true;
 
 //API call.
-$response = $explorerKeywords->list($params);
+$response = $explorerKeywords->getData($params);
 $count = $response->results_count;
 
 //Now prepare variables to get through all results.
@@ -30,7 +30,7 @@ $params['pager']['items_per_page'] = 250;
 
 while($params['pager']['page'] * $params['pager']['items_per_page'] < $count){
   sleep(2);
-  $response = $explorerKeywords->list($params);
+  $response = $explorerKeywords->getData($params);
   
   printf( "Keyword '%s' have %s montly search volume!\nSite example.com was visible on this keyword on %s posistion, and now its gone.\n",
     $response->results[0]->keyword,

@@ -62,7 +62,7 @@ $params = [];
 $params['domains'] = ['example.com', 'another-example.com'];
 
 //API call.
-$response = $explorerKeywords->list($params);
+$response = $explorerKeywords->getData($params);
 $responseParams = $response->params;
 $keywordsCount = $response->results_count;
 

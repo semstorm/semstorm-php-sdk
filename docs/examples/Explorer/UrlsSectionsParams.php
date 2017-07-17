@@ -25,7 +25,7 @@
  * 
  */
 use SemstormApi\Semstorm;
-Semstorm::init( __ACCESS_TOKEN__, 'http://qazwsx.semstorm.com:91/api-v3/' );
+Semstorm::init( __ACCESS_TOKEN__ );
 
 use SemstormApi\Explorer\ExplorerUrls;
 $explorerUrls = new ExplorerUrls();
