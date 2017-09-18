@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Monitoring;
 
-use SemstormApi\Semstorm;
 
-
-class MonitoringTag extends Semstorm{
+class MonitoringTag extends \SemstormApi\Semstorm{
   
     
   /**

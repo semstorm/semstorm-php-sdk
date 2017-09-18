@@ -16,13 +16,6 @@
  */
 namespace SemstormApi;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\RequestOptions;
-use SemstormApi\SemstormException;
-
 class Semstorm{
 
   protected $httpClient;
@@ -37,10 +30,10 @@ class Semstorm{
    *
    * @param string endpoint url
    */
-  public function __construct($_token = null, Client $httpClient = null) {
+  public function __construct($_token = null, \GuzzleHttp\Client $httpClient = null) {
     if($_token == null){
       if(empty(self::$token)){
-        throw new SemstormException('No access token provided.', 401 );
+        throw new \SemstormApi\SemstormException('No access token provided.', 401 );
       }
       $_token = self::$token;
     }
@@ -55,7 +48,7 @@ class Semstorm{
       if(isset($this->requestOptions)){
         $options = array_merge($options, $this->requestOptions);
       }
-      $this -> httpClient = new Client($options);
+      $this -> httpClient = new \GuzzleHttp\Client($options);
     }
     else {
       $this -> httpClient = $httpClient;

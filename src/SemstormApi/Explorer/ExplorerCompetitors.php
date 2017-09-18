@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Explorer;
 
-use SemstormApi\Semstorm;
 
-
-class ExplorerCompetitors extends Semstorm{
+class ExplorerCompetitors extends \SemstormApi\Semstorm{
   
     
   /**

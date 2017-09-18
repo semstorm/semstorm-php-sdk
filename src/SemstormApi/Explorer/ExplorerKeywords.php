@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Explorer;
 
-use SemstormApi\Semstorm;
 
-
-class ExplorerKeywords extends Semstorm{
+class ExplorerKeywords extends \SemstormApi\Semstorm{
   
     
   /**

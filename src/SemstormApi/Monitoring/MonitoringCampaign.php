@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Monitoring;
 
-use SemstormApi\Semstorm;
 
-
-class MonitoringCampaign extends Semstorm{
+class MonitoringCampaign extends \SemstormApi\Semstorm{
   
     
   /**

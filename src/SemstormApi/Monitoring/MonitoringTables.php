@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Monitoring;
 
-use SemstormApi\Semstorm;
 
-
-class MonitoringTables extends Semstorm{
+class MonitoringTables extends \SemstormApi\Semstorm{
   
     
   /**

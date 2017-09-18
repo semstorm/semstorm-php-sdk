@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Monitoring;
 
-use SemstormApi\Semstorm;
 
-
-class MonitoringKeyword extends Semstorm{
+class MonitoringKeyword extends \SemstormApi\Semstorm{
   
     
   /**

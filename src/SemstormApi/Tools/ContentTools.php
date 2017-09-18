@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Tools;
 
-use SemstormApi\Semstorm;
 
-
-class ContentTools extends Semstorm{
+class ContentTools extends \SemstormApi\Semstorm{
   
     
   /**

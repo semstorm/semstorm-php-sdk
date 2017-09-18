@@ -16,10 +16,8 @@
  */
 namespace SemstormApi\Explorer;
 
-use SemstormApi\Semstorm;
 
-
-class ExplorerUrls extends Semstorm{
+class ExplorerUrls extends \SemstormApi\Semstorm{
   
     
   /**
