@@ -1,7 +1,11 @@
 # CHANGELOG
 
 ## 0.x
-
+- 0.0.3 (2017-12-05)
+  - Add bulk operations for status changes for Monitoring entites (Campaign, Group, Keyword).
+  - Groups now can have only one engine-country pair, and one location, for higher clearness.
+  - Remove 'tags' functionallity from Monitoring.
+  - Complete examples for Monitoring functions.
 - 0.0.2 (2017-07-17)
   - Composer autoload fix.
   - Upgrade examples.
