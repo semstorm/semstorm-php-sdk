@@ -28,7 +28,7 @@ define('__KEYWORD_2_ID__', '789124');
 ## Script:
 #######
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../../../../autoload.php';
 
 use SemstormApi\Semstorm;
 Semstorm::init( __ACCESS_TOKEN__ );

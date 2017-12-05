@@ -3,8 +3,7 @@
  * Example: Authorization error, when access token is invalid.
  */
 
-//If you are not using MonitoringExamples.php script line below.
-//use SemstormApi\Semstorm;
+use SemstormApi\Semstorm;
 
 //Put INVALID access token.
 Semstorm::init( 'non-valid-access-token' );
