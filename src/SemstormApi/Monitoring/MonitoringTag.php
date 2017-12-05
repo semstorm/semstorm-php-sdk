@@ -21,97 +21,122 @@ class MonitoringTag extends \SemstormApi\Semstorm{
   
     
   /**
-   * Create new tag
    * 
-   * @param array $data 
-   * @param array $data['campaign_id'] string campaign id.
-   * @param array $data['title'] string title.
-   * @param array $data['color'] string color in #HHHHHH format.
-   *
+   * 
    */
-  public function create($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-tag.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function create() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-tag.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Retrieve one tag data
    * 
-   * @param string $tid tag id.
+   * 
    */
-  public function retrieve($tid) {
-    $response = $this -> httpClient -> get("monitoring/monitoring-tag/{$tid}.json", []);
-    return json_decode($response -> getBody());
+  public function retrieve() {
+    try{
+      $response = $this -> httpClient -> get("monitoring/monitoring-tag.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Update tag data
    * 
-   * @param string $tid tag id.
-
-   * @param array $data 
-   * @param array $data['campaign_id'] string campaign id.
-   * @param array $data['title'] string title.
-   * @param array $data['color'] string color in #HHHHHH format.
-   *
+   * 
    */
-  public function update($tid, $data) {
-    $response = $this -> httpClient -> put("monitoring/monitoring-tag/{$tid}.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function update() {
+    try{
+      $response = $this -> httpClient -> put("monitoring/monitoring-tag.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Delete tag
    * 
-   * @param string $tid tag id.
+   * 
    */
-  public function delete($tid) {
-    $response = $this -> httpClient -> delete("monitoring/monitoring-tag/{$tid}.json", []);
-    return json_decode($response -> getBody());
+  public function delete() {
+    try{
+      $response = $this -> httpClient -> delete("monitoring/monitoring-tag.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Add keywords to tag.
    * 
-   * @param array $data 
-   * @param array $data['id'] string tag id.
-   * @param array $data['keywords'] array of keywords id.
+   * 
    */
-  public function addKeywords($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-tag/add-keywords.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function addKeywords() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-tag/add-keywords.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Stop group.
    * 
-   * @param array $data 
-   * @param array $data['id'] string tag id.
-   * @param array $data['keywords'] array of keywords id.
+   * 
    */
-  public function removeKeywords($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-tag/remove-keywords.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function removeKeywords() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-tag/remove-keywords.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Gets list of all campaign tags.
    * 
-   * @param array $data Campaign id and pager settings.
+   * 
    */
-  public function getList($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-tag/get-list.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function getList() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-tag/get-list.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }

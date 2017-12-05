@@ -34,10 +34,18 @@ class ExplorerDomains extends \SemstormApi\Semstorm{
    * ]
    */
   public function visibility($params) {
-    $response = $this -> httpClient -> post("explorer/explorer-domains/visibility.json", [
+    try{
+      $response = $this -> httpClient -> post("explorer/explorer-domains/visibility.json", [
               'json' => $params, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }

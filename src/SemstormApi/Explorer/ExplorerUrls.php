@@ -50,10 +50,18 @@ class ExplorerUrls extends \SemstormApi\Semstorm{
    * ]
    */
   public function getData($params) {
-    $response = $this -> httpClient -> post("explorer/explorer-urls/get-data.json", [
+    try{
+      $response = $this -> httpClient -> post("explorer/explorer-urls/get-data.json", [
               'json' => $params, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -67,10 +75,18 @@ class ExplorerUrls extends \SemstormApi\Semstorm{
    * ]
    */
   public function sections($params) {
-    $response = $this -> httpClient -> post("explorer/explorer-urls/sections.json", [
+    try{
+      $response = $this -> httpClient -> post("explorer/explorer-urls/sections.json", [
               'json' => $params, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }

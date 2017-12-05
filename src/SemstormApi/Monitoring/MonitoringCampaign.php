@@ -27,10 +27,18 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
    * @param array $data['domain'] string campaign domain.
    */
   public function create($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -39,8 +47,16 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
    * @param string $cid campaign id.
    */
   public function retrieve($cid) {
-    $response = $this -> httpClient -> get("monitoring/monitoring-campaign/{$cid}.json", []);
-    return json_decode($response -> getBody());
+    try{
+      $response = $this -> httpClient -> get("monitoring/monitoring-campaign/{$cid}.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -52,58 +68,98 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
    * @param array $data['domain'] string campaign domain.
    */
   public function update($cid, $data) {
-    $response = $this -> httpClient -> put("monitoring/monitoring-campaign/{$cid}.json", [
+    try{
+      $response = $this -> httpClient -> put("monitoring/monitoring-campaign/{$cid}.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Start stopped campaign.
    * 
-   * @param int $id campaign id.
+   * @param int/array $id campaign id or array of ids.
    */
   public function start($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/start.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/start.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Stop campaign.
    * 
-   * @param int $id campaign id.
+   * @param int/array $id campaign id or array of ids.
    */
   public function stop($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/stop.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/stop.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Delete existing campaign.
    * 
-   * @param int $id campaign id.
+   * @param int/array $id campaign id or array of ids.
    */
   public function delete($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/delete.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/delete.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Restore deleted campaign.
    * 
-   * @param int $id campaign id.
+   * @param int/array $id campaign id or array of ids.
    */
   public function restore($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/restore.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/restore.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -114,10 +170,18 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
    * @param array $settings['page'] page number (starting from 0)
    */
   public function getList($settings) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-list.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-list.json", [
               'json' => $settings, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -130,10 +194,18 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
    * @param array $data['params']['filters'] array with filters
    */
   public function getData($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-data.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-data.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }

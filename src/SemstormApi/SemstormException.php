@@ -27,7 +27,7 @@ class SemstormException extends \Exception {
   
   // custom string representation of object
   public function __toString() {
-    return __CLASS__ . " SEMSTORM API: [{\$this->code}]: {\$this->message}\\n";
+    return __CLASS__ . " SEMSTORM API: [{$this->code}]: {$this->message}\\n";
   }
 }
 

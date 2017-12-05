@@ -26,15 +26,24 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
    * @param array $data 
    * @param array $data['campaign_id'] int campaign id in which create group
    * @param array $data['title'] string group title
-   * @param array $data['engines'] array (optional) engines
-   * @param array $data['locations'] array (optional) locations
-   * @param array $data['devices'] array (optional) devices
+   * @param array $data['engine'] string engine id, check monitoring-tables to see possible variants with country.
+   * @param array $data['country'] country id, check monitoring-tables to see possible variants with engine.
+   * @param array $data['location'] string (optional) location.
+   * @param array $data['devices'] array devices
    */
   public function create($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -43,8 +52,16 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
    * @param string $gid group id.
    */
   public function retrieve($gid) {
-    $response = $this -> httpClient -> get("monitoring/monitoring-group/{$gid}.json", []);
-    return json_decode($response -> getBody());
+    try{
+      $response = $this -> httpClient -> get("monitoring/monitoring-group/{$gid}.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -54,92 +71,138 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
 
    * @param array $data group data to update.
    * @param array $data['title'] string group title
+   * @param array $data['engine'] string with engine id, check monitoring-tables to see possible variants with country.
+   * @param array $data['country'] as country id to set, check monitoring-tables to see possible variants with engine.
+   * @param array $data['location'] string of location to set.
+   * @param array $data['devices'] array of devices to set
    */
   public function update($gid, $data) {
-    $response = $this -> httpClient -> put("monitoring/monitoring-group/{$gid}.json", [
+    try{
+      $response = $this -> httpClient -> put("monitoring/monitoring-group/{$gid}.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Start stopped group.
    * 
-   * @param int $id group id.
+   * @param int/array $id group id or array of ids.
    */
   public function start($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/start.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/start.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Stop group.
    * 
-   * @param int $id group id.
+   * @param int/array $id group id or array of ids.
    */
   public function stop($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/stop.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/stop.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Delete existing group.
    * 
-   * @param int $id group id.
+   * @param int/array $id group id or array of ids.
    */
   public function delete($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/delete.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/delete.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
    * Restore deleted group.
    * 
-   * @param int $id group id.
+   * @param int/array $id group id or array of ids.
    */
   public function restore($id) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/restore.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/restore.json", [
               'json' => $id, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Add fields to group.
    * 
-   * @param array $data group resources to add.
-   * @param array $data['id'] string group id.
-   * @param array $data['engines'] array of engines to add.
-   * @param array $data['locations'] array of locations to add.
-   * @param array $data['devices'] array of devices to add.
+   * 
    */
-  public function addFields($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/add-fields.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function addFields() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/add-fields.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
-   * Remove fields from group.
    * 
-   * @param array $data group resources to remove.
-   * @param array $data['id'] string group id.
-   * @param array $data['engines'] array of engines to remove.
-   * @param array $data['locations'] array of locations to remove.
-   * @param array $data['devices'] array of devices to remove.
+   * 
    */
-  public function removeFields($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/remove-fields.json", [
-              'json' => $data, 
-    ]);
-    return json_decode($response -> getBody());
+  public function removeFields() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/remove-fields.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -151,10 +214,18 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
    * @param array $data['page'] page number (starting from 0).
    */
   public function getList($data) {
-    $response = $this -> httpClient -> post("monitoring/monitoring-group/get-list.json", [
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/get-list.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }

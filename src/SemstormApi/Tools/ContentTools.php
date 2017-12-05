@@ -28,10 +28,18 @@ class ContentTools extends \SemstormApi\Semstorm{
    * @param array $data['text'] string text to analyse.
    */
   public function textStatistics($data) {
-    $response = $this -> httpClient -> post("tools/content-tools/text-statistics.json", [
+    try{
+      $response = $this -> httpClient -> post("tools/content-tools/text-statistics.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
     
   /**
@@ -42,10 +50,18 @@ class ContentTools extends \SemstormApi\Semstorm{
    * @param array $data['text'] string text to analyse.
    */
   public function textAnalysis($data) {
-    $response = $this -> httpClient -> post("tools/content-tools/text-analysis.json", [
+    try{
+      $response = $this -> httpClient -> post("tools/content-tools/text-analysis.json", [
               'json' => $data, 
     ]);
-    return json_decode($response -> getBody());
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }

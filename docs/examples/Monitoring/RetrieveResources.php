@@ -9,7 +9,7 @@ use SemstormApi\Monitoring\MonitoringCampaign;
 use SemstormApi\Monitoring\MonitoringGroup;
 use SemstormApi\Monitoring\MonitoringKeyword;
 use SemstormApi\Monitoring\MonitoringTag;
-Semstorm::init( __ACCESS_TOKEN__ );
+//Semstorm::init( __ACCESS_TOKEN__ );
 
 $monitoringCampaign = new MonitoringCampaign();
 $pager = [];

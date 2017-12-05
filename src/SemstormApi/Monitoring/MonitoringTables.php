@@ -26,8 +26,16 @@ class MonitoringTables extends \SemstormApi\Semstorm{
    * @param string $arr_name name of array to return, possible values are "engines" and "devices".
    */
   public function retrieve($arr_name) {
-    $response = $this -> httpClient -> get("monitoring/monitoring-tables/{$arr_name}.json", []);
-    return json_decode($response -> getBody());
+    try{
+      $response = $this -> httpClient -> get("monitoring/monitoring-tables/{$arr_name}.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      $errorString = $e->getResponse()->getBody()->getContents();
+      if($error = json_decode($errorString)){
+        return $error;
+      }
+      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+    }
   }
   
 }
