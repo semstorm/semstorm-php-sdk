@@ -40,6 +40,13 @@ $monitoringCampaign = new MonitoringCampaign();
 print_r($monitoringCampaign->retrieve(12345));
 ```
 
+### Monitoring examples
+
+In docs/examples/Monitoring directory you can find examples with description and possible output.
+
+Furthermore you can use MonitoringExamples.php file which will run multiple scripts and return its results. Just open `docs/examples/MonitoringExamples.php` file, fill config data and run script to see how API works.
+
+
 ### More examples
 
 For more examples see docs/examples directory, where are many samples with exhaustive comment.
@@ -60,4 +67,4 @@ Official API endpoint is `http://api.semstorm.com/api-v3/`. All requests goes th
 
 ### Throttling
 
-API have request limits. They are refreshed in short time frames (up to one minute). If you make too many requests in short time you might get error stating '503 Service Temporarily Unavailable. You are requesting too fast,(...)', this means you have to optimize your script to prevent further blocking.
+API have request limits. They are refreshed in short time frames (up to one minute). If you make too many requests at once you might get error stating '503 Service Temporarily Unavailable. You are requesting too fast,(...)', this means you have to optimize your script to prevent further blocking.

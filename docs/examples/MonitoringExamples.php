@@ -28,7 +28,7 @@ define('__KEYWORD_2_ID__', '789124');
 ## Script:
 #######
 
-require __DIR__ . '/../../../../../autoload.php';
+require __DIR__ . '/../../../../autoload.php';
 
 use SemstormApi\Semstorm;
 Semstorm::init( __ACCESS_TOKEN__ );
@@ -69,7 +69,7 @@ $scripts = [
 
 foreach ($scripts as $scriptName){
   printf("Running script %s:\n", $scriptName);
-  include_once __DIR__ . '/' . $scriptName;
+  include_once __DIR__ . '/Monitoring/' . $scriptName;
   printf("\n\n");
 }
 
