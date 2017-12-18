@@ -32,9 +32,9 @@ print_r($monitoringCampaign->getData( $params ));
 Example output
 
 Campaign data:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [cid] => _ID_
             [domains] => Array
@@ -49,36 +49,36 @@ stdClass Object
             [gap] => monthly
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
-            [_GROUP_ID_] => stdClass Object
+            [_GROUP_ID_] => Array
                 (
-                    [example.com] => stdClass Object
+                    [example.com] => Array
                         (
-                            [_KEYWORD_ID_] => stdClass Object
+                            [_KEYWORD_ID_] => Array
                                 (
-                                    [keyword] => stdClass Object
+                                    [keyword] => Array
                                         (
                                             [title] => keyword
                                             [volume] => 9999
                                             [cpc] => 9
                                         )
 
-                                    [data] => stdClass Object
+                                    [data] => Array
                                         (
-                                            [2017-09-01] => stdClass Object
+                                            [2017-09-01] => Array
                                                 (
-                                                    [google] => stdClass Object
+                                                    [google] => Array
                                                         (
-                                                            [desktop] => stdClass Object
+                                                            [desktop] => Array
                                                                 (
-                                                                    [warszawa] => stdClass Object
+                                                                    [warszawa] => Array
                                                                         (
                                                                             [pos] => 9
                                                                             [url] => example.com/keyword-this
                                                                         )
 
-                                                                    [łódź] => stdClass Object
+                                                                    [łódź] => Array
                                                                         (
                                                                             [pos] => 9
                                                                             [url] => example.com/keyword-that
@@ -94,12 +94,12 @@ stdClass Object
 
                                                 )
 
-                                            [2017-10-01] => stdClass Object
+                                            [2017-10-01] => Array
                                                 (
                                                     (...)
                                                 )
 
-                                            [2017-11-01] => stdClass Object
+                                            [2017-11-01] => Array
                                                 (
                                                     (...)
                                                 )
@@ -108,7 +108,7 @@ stdClass Object
 
                                 )
 
-                            [_KEYWORD_ID_] => stdClass Object
+                            [_KEYWORD_ID_] => Array
                                 (
                                                     (...)
                                 )

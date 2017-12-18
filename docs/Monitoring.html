@@ -131,12 +131,12 @@
             
             <div class="col-md-12">
               <h4 id=results-structure class="text-center" style="margin:20px;">API results structure</h4>
-              <p><strong>Results have uniform structure.</strong> After calling API (in any way) client will receive response, if call was made using SEMSTORM PHP SDK API it will be php object, if calling directly by curl with .json prefix it will be encoded JSON string, eventhou every response will have structure which allows it's easy itnerpretation and data retrieve. Response object/array may contain:</p>
-              <p><strong>"params":</strong> variable (object/assoc array) containing request aprameters - it will be params set by client and send to server, or -if optional- added by server automatically.</p>
-              <p><strong>"result":</strong> variable (object/assoc array) containing request result(s) if no error occured.</p>
-              <p><strong>"error":</strong> variable (object/assoc array) containing request info about any errors which occured, it dont exist if request was succesful. It have "message" field which holds information about reason of failure.</p>
-              <p><strong>"_credits":</strong> variable (string/int) appears for most of results, showing how much request costs, it can be zero.</p>
-              <p><strong>"_credits_left":</strong> variable (string/int) appears for most of results, showing how many credits left for current account.</p>
+              <p><strong>Results have uniform structure.</strong> After calling API (in any way) client will receive response, if call was made using SEMSTORM PHP SDK API it will be php array, if calling directly by curl with .json prefix it will be encoded JSON string, eventhou every response will have structure which allows it's easy itnerpretation and data retrieve. Response array may contain:</p>
+              <p><strong>"params":</strong> variable (array/assoc array) containing request aprameters - it will be params set by client and send to server, or -if optional- added by server automatically.</p>
+              <p><strong>"result":</strong> variable (array/assoc array) containing request result(s) if no error occured.</p>
+              <p><strong>"error":</strong> variable (array/assoc array) containing request info about any errors which occured, it dont exist if request was succesful. It have "message" field which holds information about reason of failure.</p>
+              <p><strong>"_credits":</strong> variable (int) appears for most of results, showing how much request costs, it can be zero.</p>
+              <p><strong>"_credits_left":</strong> variable (int) appears for most of results, showing how many credits left for current account.</p>
             </div>
             
             <div class="col-md-12">
@@ -208,7 +208,7 @@
                     Can create only "seo" type campaigns.
                   </p>
                   <p>
-                    <strong>Output: </strong> object ["id"] string campaign id
+                    <strong>Output: </strong> array ["id"] string campaign id
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -240,15 +240,15 @@
                     <strong>Description: </strong> Get data about campaign.
                   </p>
                   <p>
-                    <strong>Output: </strong> object ["id"] string campaign id<br>
-                    object ["title"] string campaign title<br>
-                    object ["domain"] string campaign domain<br>
-                    object ["status"] string campaign status<br>
-                    object ["access_type"] string campaign access type for current user<br>
-                    object ["created_time"] string campaign create timestamp<br>
-                    object ["changed_time"] string campaign last modification timestamp<br>
-                    object ["tags"] array campaign tags ids<br>
-                    object ["groups"] array campaign groups ids
+                    <strong>Output: </strong> array ["id"] string campaign id<br>
+                    array ["title"] string campaign title<br>
+                    array ["domain"] string campaign domain<br>
+                    array ["status"] string campaign status<br>
+                    array ["access_type"] string campaign access type for current user<br>
+                    array ["created_time"] string campaign create timestamp<br>
+                    array ["changed_time"] string campaign last modification timestamp<br>
+                    array ["tags"] array campaign tags ids<br>
+                    array ["groups"] array campaign groups ids
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -463,27 +463,27 @@
                   </p>
                   <p>
                     <strong>Output: </strong><br>
-                    object["result"] array with query results divided by groups.<br>
-                    object["result"][_GROUP_ID_] object with group data divided by domains.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_] object with domain data divided by keywords.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_] object with keyword data.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"] object with keyword info.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["title"] string keyword name.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["volume"] int keyword search volume.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["cpc"] int keyword CPC value.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"] object with keyword data split by date (date format depends on date gap).<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_] object with keyword data split by date.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_] object with keyword data split by date.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_][_DEVICE_] object with keyword data split by date.<br>
-                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_][_DEVICE_] object with keyword data split by date.<br>
+                    array["result"] array with query results divided by groups.<br>
+                    array["result"][_GROUP_ID_] array with group data divided by domains.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_] array with domain data divided by keywords.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_] array with keyword data.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"] array with keyword info.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["title"] string keyword name.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["volume"] int keyword search volume.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["cpc"] int keyword CPC value.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"] array with keyword data split by date (date format depends on date gap).<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_] array with keyword data split by date.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_] array with keyword data split by date.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_][_DEVICE_] array with keyword data split by date.<br>
+                    array["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_][_DEVICE_] array with keyword data split by date.<br>
                     
-                    object["params"] object with used params.<br>
-                    object["params"]["cid"] string campaign id.<br>
-                    object["params"]["domains"] array with domains.<br>
-                    object["params"]["datemin"] string start date (Ymd format).<br>
-                    object["params"]["datemax"] string end date (Ymd format).<br>
-                    object["params"]["gap"] string date gap, one of "daily", "weekly" or "monthly".<br>
-                    object["params"]["filters"] array with used filters.
+                    array["params"] array with used params.<br>
+                    array["params"]["cid"] string campaign id.<br>
+                    array["params"]["domains"] array with domains.<br>
+                    array["params"]["datemin"] string start date (Ymd format).<br>
+                    array["params"]["datemax"] string end date (Ymd format).<br>
+                    array["params"]["gap"] string date gap, one of "daily", "weekly" or "monthly".<br>
+                    array["params"]["filters"] array with used filters.
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -515,9 +515,9 @@
                     "readonly" - account with that permission can only see campaign and its statistics, and cannot do any changes.
                   </p>
                   <p>
-                    <strong>Output: </strong> object [__CAMPAIGN_ID__] object with "access" where is your access level, and "owner" where is owner e-mail<br>
-                    object [__CAMPAIGN_ID__]["access"] string your access level<br>
-                    object [__CAMPAIGN_ID__]["owner"] string owner e-mail
+                    <strong>Output: </strong> array [__CAMPAIGN_ID__] array with "access" where is your access level, and "owner" where is owner e-mail<br>
+                    array [__CAMPAIGN_ID__]["access"] string your access level<br>
+                    array [__CAMPAIGN_ID__]["owner"] string owner e-mail
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -554,8 +554,8 @@
                   </p>
                   <p>
                     <strong>Output: </strong><br>
-                    object [__CAMPAIGN_ID__]["set"][__USER_MAIL__] bool true if change was successful<br>
-                    object [__CAMPAIGN_ID__]["remove"][__USER_MAIL__] bool true if removal was successful
+                    array [__CAMPAIGN_ID__]["set"][__USER_MAIL__] bool true if change was successful<br>
+                    array [__CAMPAIGN_ID__]["remove"][__USER_MAIL__] bool true if removal was successful
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -592,7 +592,7 @@
                     <strong>Description: </strong> Create new group in specified campaign.
                   </p>
                   <p>
-                    <strong>Output: </strong> object ["id"] string group id
+                    <strong>Output: </strong> array ["id"] string group id
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -619,15 +619,15 @@
                     <strong>Description: </strong> Get data about group.
                   </p>
                   <p>
-                    <strong>Output: </strong> object["id"] string group id<br>
-                    object["title"] string group name<br>
-                    object["status"] string group status<br>
-                    object["created_time"] string group created timestamp<br>
-                    object["changed_time"] string group last change timestamp<br>
-                    object["keywords"] array with keywords ids<br>
-                    object["engines"] array with engine id keyed by "engine", and country id keyed by "country"
-                    object["locations"] array with string containing location
-                    object["devices"] array with devices as strings
+                    <strong>Output: </strong> array["id"] string group id<br>
+                    array["title"] string group name<br>
+                    array["status"] string group status<br>
+                    array["created_time"] string group created timestamp<br>
+                    array["changed_time"] string group last change timestamp<br>
+                    array["keywords"] array with keywords ids<br>
+                    array["engines"] array with engine id keyed by "engine", and country id keyed by "country"
+                    array["locations"] array with string containing location
+                    array["devices"] array with devices as strings
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -825,7 +825,7 @@
                   <p>
                     <strong>Input: </strong><br>
                     array ['campaign_id'] int campaign id in which create groups<br>
-                    array ['groups'] array/object with groups data<br>
+                    array ['groups'] array/array with groups data<br>
                     array ['groups'][]['title'] string group title<br>
                     array ['groups'][]['engine'] string engine id, check monitoring-tables to see possible variants with country.<br>
                     array ['groups'][]['country'] country id, check monitoring-tables to see possible variants with engine.<br>
@@ -834,11 +834,11 @@
                   </p>
                   <p>
                     <strong>Description: </strong> Create multiple groups in campaign. Its behavior is very similar to creating one group, except it takes array with groups params to create multiple groups.<br>
-                    "Groups" variable can be object/assoc array, instead of normal array - in that case returning information about each group creation will preserve keys so you can easily determine which output is for which group.
+                    "Groups" variable can be assoc array, instead of normal array - in that case returning information about each group creation will preserve keys so you can easily determine which output is for which group.
                   </p>
                   <p>
                     <strong>Output: </strong><br>
-                    array["id"] array/object with information about creating each group, indexed same way as input.<br>
+                    array["id"] array with information about creating each group, indexed same way as input.<br>
                     array["id"][] mixed true if there was no errors, otherwise there will be error message.
                   </p>
                   <p>
@@ -861,7 +861,7 @@
                   </p>
                   <p>
                     <strong>Input: </strong><br>
-                    array ['groups'] assocc array/object with groups data<br>
+                    array ['groups'] assocc array with groups data<br>
                     array ['groups'][__GROUP_ID__]['title'] string group title<br>
                     array ['groups'][__GROUP_ID__]['engine'] string engine id, check monitoring-tables to see possible variants with country.<br>
                     array ['groups'][__GROUP_ID__]['country'] country id, check monitoring-tables to see possible variants with engine.<br>
@@ -873,7 +873,7 @@
                   </p>
                   <p>
                     <strong>Output: </strong><br>
-                    array["id"] array/object with information about creating each group, indexed same way as input.<br>
+                    array["id"] array with information about creating each group, indexed same way as input.<br>
                     array["id"][__GROUP_ID__] mixed true if there was no errors, otherwise there will be error message.
                   </p>
                   <p>
@@ -932,11 +932,11 @@
                     <strong>Description: </strong> Get data about keyword.
                   </p>
                   <p>
-                    <strong>Output: </strong> object["id"] string keyword id<br>
-                    object["title"] string keyword name<br>
-                    object["status"] string keyword status<br>
-                    object["group_id"] string group id<br>
-                    object["tags"] array of tags marking this keyword (unsupported, this functionallity is obsolete)
+                    <strong>Output: </strong> array["id"] string keyword id<br>
+                    array["title"] string keyword name<br>
+                    array["status"] string keyword status<br>
+                    array["group_id"] string group id<br>
+                    array["tags"] array of tags marking this keyword (unsupported, this functionallity is obsolete)
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -1186,10 +1186,10 @@
                   </p>
                   <p>
                     <strong>Output: </strong><br>
-                    object[__KEYWORD_ID__] object keyed by keyword id, contains nested objects.<br>
-                    object[__KEYWORD_ID__][__DEVICE__] object keyed by device name, contains nested objects.<br>
-                    object[__KEYWORD_ID__][__DEVICE__][__DOMAIN__] object keyed by domain name, contains nested objects.<br>
-                    object[__KEYWORD_ID__][__DEVICE__][__DOMAIN__][__DATE__] mixed desired data keyed by date.
+                    array[__KEYWORD_ID__] array keyed by keyword id, contains nested arrays.<br>
+                    array[__KEYWORD_ID__][__DEVICE__] array keyed by device name, contains nested arrays.<br>
+                    array[__KEYWORD_ID__][__DEVICE__][__DOMAIN__] array keyed by domain name, contains nested arrays.<br>
+                    array[__KEYWORD_ID__][__DEVICE__][__DOMAIN__][__DATE__] mixed desired data keyed by date.
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -1219,12 +1219,12 @@
                     <strong>Description: </strong> Return table containing all possible engines and countries variations
                   </p>
                   <p>
-                    <strong>Output: </strong> object[engines] array of objects - engines.<br>
-                    object[engines][]["name"] string engine name.<br>
-                    object[engines][]["id"] string engine id.<br>
-                    object[engines][]["countries"] array of objects - countries for given engine.<br>
-                    object[engines][]["countries"][]["name"] string country name.<br>
-                    object[engines][]["countries"][]["id"] string country id.
+                    <strong>Output: </strong> array[engines] array of arrays - engines.<br>
+                    array[engines][]["name"] string engine name.<br>
+                    array[engines][]["id"] string engine id.<br>
+                    array[engines][]["countries"] array of arrays - countries for given engine.<br>
+                    array[engines][]["countries"][]["name"] string country name.<br>
+                    array[engines][]["countries"][]["id"] string country id.
                   </p>
                   <p>
                     <strong>Error: </strong><br>
@@ -1251,7 +1251,7 @@
                     <strong>Description: </strong> Return table containing proper devices names.
                   </p>
                   <p>
-                    <strong>Output: </strong> object[devices] array of strings - devices names.
+                    <strong>Output: </strong> array[devices] array of strings - devices names.
                   </p>
                   <p>
                     <strong>Error: </strong><br>

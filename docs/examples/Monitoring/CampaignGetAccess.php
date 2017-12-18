@@ -20,18 +20,18 @@ print_r($monitoringCampaign->getAccess());
 Example output
 
 
-stdClass Object
+Array
 (
     [params] => []
-    [result] => stdClass Object
+    [result] => Array
         (
-            [1234] => stdClass Object
+            [1234] => Array
                 (
                     [access] => owner
                     [owner] => person@domain.com
                 )
 
-            [1235] => stdClass Object
+            [1235] => Array
                 (
                     [access] => owner
                     [owner] => person@domain.com

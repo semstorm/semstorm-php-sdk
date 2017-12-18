@@ -28,9 +28,9 @@ print_r($monitoringGroup->update(__GROUP_1_ID__, $data));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [title] => New name
             [location] => warsaw

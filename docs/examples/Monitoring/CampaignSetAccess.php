@@ -27,15 +27,15 @@ print_r($monitoringCampaign->setAccess( $data ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
-            [__CAMPAIGN_1_ID__] => stdClass Object
+            [__CAMPAIGN_1_ID__] => Array
                 (
                     [set] => Array
                         (
-                            [0] => stdClass Object
+                            [0] => Array
                                 (
                                     [mail] => __USER_1_MAIL__
                                     [permission] => readonly
@@ -45,7 +45,7 @@ stdClass Object
 
                     [remove] => Array
                         (
-                            [0] => stdClass Object
+                            [0] => Array
                                 (
                                     [mail] => __USER_2_MAIL__
                                 )
@@ -56,16 +56,16 @@ stdClass Object
 
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
-            [__CAMPAIGN_1_ID__] => stdClass Object
+            [__CAMPAIGN_1_ID__] => Array
                 (
-                    [set] => stdClass Object
+                    [set] => Array
                         (
                             [__USER_1_MAIL__] => 1
                         )
 
-                    [remove] => stdClass Object
+                    [remove] => Array
                         (
                             [__USER_1_MAIL__] => 1
                         )

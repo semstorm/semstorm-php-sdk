@@ -26,9 +26,9 @@ Example output
 
 
 New keywords created:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [group_id] => __GROUP_1_ID__
             [keywords] => Array
@@ -39,7 +39,7 @@ stdClass Object
 
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [id] => Array
                 (

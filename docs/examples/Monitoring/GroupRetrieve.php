@@ -22,14 +22,14 @@ Example output
 
 
 Group with id '__GROUP_1_ID__':
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [id] => __GROUP_1_ID__
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [id] => __GROUP_1_ID__
             [title] => Group title
@@ -54,7 +54,7 @@ stdClass Object
         
             [engines] => Array
                 (
-                    [0] => stdClass Object
+                    [0] => Array
                         (
                             [engine] => 2
                             [country] => 168

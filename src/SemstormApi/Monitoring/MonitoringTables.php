@@ -28,7 +28,7 @@ class MonitoringTables extends \SemstormApi\Semstorm{
   public function retrieve($arr_name) {
     try{
       $response = $this -> httpClient -> get("monitoring/monitoring-tables/{$arr_name}.json", []);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }

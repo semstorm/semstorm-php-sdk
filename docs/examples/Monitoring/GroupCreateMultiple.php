@@ -36,14 +36,14 @@ print_r($monitoringGroup->createMultiple( $data ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [campaign_id] => __CAMPAIGN_1_ID__
-            [groups] => stdClass Object
+            [groups] => Array
                 (
-                    [group 1] => stdClass Object
+                    [group 1] => Array
                         (
                             [title] => new group 1
                             [engine] => 2
@@ -56,7 +56,7 @@ stdClass Object
 
                         )
 
-                    [group 2] => stdClass Object
+                    [group 2] => Array
                         (
                             [title] => new group 2
                             [engine] => 2
@@ -72,9 +72,9 @@ stdClass Object
 
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
-            [id] => stdClass Object
+            [id] => Array
                 (
                     [group 1] => 123456
                     [group 2] => 123457

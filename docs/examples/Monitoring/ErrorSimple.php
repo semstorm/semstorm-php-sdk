@@ -22,9 +22,9 @@ Example output
 
 
 Campaign with id '12453':
-stdClass Object
+Array
 (
-    [error] => stdClass Object
+    [error] => Array
         (
             [message] => (404) No entry for given id.
         )

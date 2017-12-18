@@ -22,30 +22,30 @@ Example output
 
 
 Engines:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [table] => engines
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [engines] => Array
                 (
-                    [0] => stdClass Object
+                    [0] => Array
                         (
                             [name] => Bing
                             [id] => 272
                             [countries] => Array
                                 (
-                                    [0] => stdClass Object
+                                    [0] => Array
                                         (
                                             [name] => Arabia Saudyjska
                                             [id] => 302
                                         )
         
-                                    [1] => stdClass Object
+                                    [1] => Array
                                         (
                                             [name] => Argentyna
                                             [id] => 274
@@ -53,7 +53,7 @@ stdClass Object
                                         
                                         (...)
                                         
-                                    [34] => stdClass Object
+                                    [34] => Array
                                         (
                                             [name] => Włochy
                                             [id] => 291
@@ -63,19 +63,19 @@ stdClass Object
         
                         )
         
-                    [1] => stdClass Object
+                    [1] => Array
                         (
                             [name] => Google
                             [id] => 2
                             [countries] => Array
                                 (
-                                    [0] => stdClass Object
+                                    [0] => Array
                                         (
                                             [name] => Afghanistan
                                             [id] => 3
                                         )
         
-                                    [1] => stdClass Object
+                                    [1] => Array
                                         (
                                             [name] => Albania
                                             [id] => 4
@@ -83,7 +83,7 @@ stdClass Object
                                         
                                         (...)
                                         
-                                    [186] => stdClass Object
+                                    [186] => Array
                                         (
                                             [name] => Zimbabwe
                                             [id] => 235

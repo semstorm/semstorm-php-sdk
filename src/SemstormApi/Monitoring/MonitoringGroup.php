@@ -36,7 +36,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -50,7 +50,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
   public function retrieve($gid) {
     try{
       $response = $this -> httpClient -> get("monitoring/monitoring-group/{$gid}.json", []);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -73,7 +73,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> put("monitoring/monitoring-group/{$gid}.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -89,7 +89,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/start.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -105,7 +105,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/stop.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -121,7 +121,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/delete.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -137,7 +137,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/restore.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -156,7 +156,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/get-list.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -179,7 +179,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/create-multiple.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -201,7 +201,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/update-multiple.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }

@@ -22,14 +22,14 @@ Example output
 
 
 Devices:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [table] => devices
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [devices] => Array
                 (

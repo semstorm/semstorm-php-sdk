@@ -32,16 +32,16 @@ Example output
 
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [kid] => Array
                 (
                     [0] => __KEYWORD_1_ID__
                 )
 
-            [params] => stdClass Object
+            [params] => Array
                 (
                     [datemin] => 20170914
                     [datemax] => 20171127
@@ -49,9 +49,9 @@ stdClass Object
                     [type] => competitors
                 )
 
-            [keywords] => stdClass Object
+            [keywords] => Array
                 (
-                    [__KEYWORD_1_ID__] => stdClass Object
+                    [__KEYWORD_1_ID__] => Array
                         (
                             [title] => keyword title
                             [status] => active
@@ -61,13 +61,13 @@ stdClass Object
 
         )
 
-    [results] => stdClass Object
+    [results] => Array
         (
-            [__KEYWORD_1_ID__] => stdClass Object
+            [__KEYWORD_1_ID__] => Array
                 (
-                    [desktop] => stdClass Object
+                    [desktop] => Array
                         (
-                            [example.com] => stdClass Object
+                            [example.com] => Array
                                 (
                                     [2017-09-01] => 9.76
                                     [2017-10-01] => 12.52

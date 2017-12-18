@@ -20,7 +20,7 @@ print_r($monitoringCampaign->delete( [__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__] ));
 Example output
 
 
-stdClass Object
+Array
 (
     [params] => Array
         (
@@ -28,7 +28,7 @@ stdClass Object
             [1] => __CAMPAIGN_2_ID__
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [__CAMPAIGN_1_ID__] => 1
             [__CAMPAIGN_2_ID__] => 1

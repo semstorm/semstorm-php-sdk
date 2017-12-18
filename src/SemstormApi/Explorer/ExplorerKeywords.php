@@ -43,7 +43,7 @@ class ExplorerKeywords extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("explorer/explorer-keywords/get-data.json", [
               'json' => $params, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }

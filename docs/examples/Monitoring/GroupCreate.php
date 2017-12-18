@@ -31,9 +31,9 @@ Example output
 
 
 Create new group:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [campaign_id] => __CAMPAIGN_1_ID__
             [title] => New group
@@ -48,7 +48,7 @@ stdClass Object
 
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [id] => 12345
         )

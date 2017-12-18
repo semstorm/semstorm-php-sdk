@@ -31,7 +31,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -45,7 +45,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
   public function retrieve($cid) {
     try{
       $response = $this -> httpClient -> get("monitoring/monitoring-campaign/{$cid}.json", []);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -64,7 +64,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> put("monitoring/monitoring-campaign/{$cid}.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -80,7 +80,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/start.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -96,7 +96,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/stop.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -112,7 +112,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/delete.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -128,7 +128,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/restore.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -146,7 +146,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-list.json", [
               'json' => $settings, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -166,7 +166,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-data.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -179,7 +179,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
   public function getAccess() {
     try{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-access.json", []);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -201,7 +201,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/set-access.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }

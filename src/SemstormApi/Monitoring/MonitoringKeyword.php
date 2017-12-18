@@ -34,7 +34,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -48,7 +48,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
   public function retrieve($kid) {
     try{
       $response = $this -> httpClient -> get("monitoring/monitoring-keyword/{$kid}.json", []);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -64,7 +64,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/start.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -80,7 +80,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/stop.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -96,7 +96,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/delete.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -112,7 +112,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/restore.json", [
               'json' => $id, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -129,7 +129,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/change-group.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -148,7 +148,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-list.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -169,7 +169,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-data.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -178,14 +178,19 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
   /**
    * Get keyword details data.
    * 
-   * @param array $data nieznany
+   * @param array $data 
+   * @param array $data['kid'] array/int keyword id or array of keyword ids
+   * @param array $data['params']['datemin'] string start date in format Ymd
+   * @param array $data['params']['datemax'] string end date in format Ymd
+   * @param array $data['params']['gap'] string date gap, possible values are: "daily" / "weekly" / "monthly"
+   * @param array $data['params']['type'] string details type, possible values are: "heatmap" / "competitors" / "top50"
    */
   public function getDetails($data) {
     try{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-details.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }

@@ -22,14 +22,14 @@ print_r($monitoringCampaign->create($data));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [domain] => example.com
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [id] => 123456
         )

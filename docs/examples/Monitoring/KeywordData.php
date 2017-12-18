@@ -30,9 +30,9 @@ Example output
 
 
 Keyword data:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [id] => __KEYWORD_1_ID__
             [domains] => Array
@@ -45,28 +45,28 @@ stdClass Object
             [gap] => monthly
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
-            [example.com] => stdClass Object
+            [example.com] => Array
                 (
-                    [__KEYWORD_1_ID__] => stdClass Object
+                    [__KEYWORD_1_ID__] => Array
                         (
-                            [keyword] => stdClass Object
+                            [keyword] => Array
                                 (
                                     [title] => keyword title
                                     [volume] => 1234500
                                     [cpc] => 1
                                 )
 
-                            [data] => stdClass Object
+                            [data] => Array
                                 (
-                                    [2017-09-01] => stdClass Object
+                                    [2017-09-01] => Array
                                         (
-                                            [google] => stdClass Object
+                                            [google] => Array
                                                 (
-                                                    [desktop] => stdClass Object
+                                                    [desktop] => Array
                                                         (
-                                                            [warsaw] => stdClass Object
+                                                            [warsaw] => Array
                                                                 (
                                                                     [pos] => 3.8823529411765
                                                                     [url] => example.com/site

@@ -28,11 +28,11 @@ print_r($monitoringGroup->stop( $ids ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [error] => stdClass Object
+    [error] => Array
         (
-            [statuses] => stdClass Object
+            [statuses] => Array
                 (
                     [__GROUP_1_ID__] => 1
                     [54320] => 

@@ -29,26 +29,26 @@ Example output
 
 
 List seo campaigns with Google engine from 26 to 50:
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [type] => seo
-            [pager] => stdClass Object
+            [pager] => Array
                 (
                     [items_per_page] => 25
                     [page] => 1
                     
                 )
                 
-            [filters] => stdClass Object
+            [filters] => Array
                 (
                     [engine] => 2
                     
                 )
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [count] => 76
             [campaigns] => Array

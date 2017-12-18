@@ -22,14 +22,14 @@ Example output
 
 
 Campaign with id '__CAMPAIGN_1_ID__':
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [id] => __CAMPAIGN_1_ID__
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [id] => __CAMPAIGN_1_ID__
             [title] => example.com

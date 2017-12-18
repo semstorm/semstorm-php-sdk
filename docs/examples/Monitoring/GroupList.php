@@ -26,19 +26,19 @@ print_r($monitoringGroup->getList( $params ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [campaign_id] => __CAMPAIGN_1_ID__
-            [pager] => stdClass Object
+            [pager] => Array
                 (
                     [items_per_page] => 25
                     [page] => 0
                 )
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [count] => 72
             [groups] => Array

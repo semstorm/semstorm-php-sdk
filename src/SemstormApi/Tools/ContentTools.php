@@ -32,7 +32,7 @@ class ContentTools extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("tools/content-tools/text-statistics.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }
@@ -50,7 +50,7 @@ class ContentTools extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> post("tools/content-tools/text-analysis.json", [
               'json' => $data, 
     ]);
-      return json_decode($response -> getBody());
+      return json_decode($response -> getBody(), true);
     }catch( \Exception $e){
       return $this->handleRequestException($e);
     }

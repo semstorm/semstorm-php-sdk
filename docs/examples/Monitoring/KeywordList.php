@@ -26,24 +26,24 @@ print_r($monitoringKeyword->getList( $params ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [campaign_id] => __CAMPAIGN_1_ID__
-            [pager] => stdClass Object
+            [pager] => Array
                 (
                     [items_per_page] => 25
                     [page] => 0
                 )
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [count] => 56
             [keywords] => Array
                 (
-                    [0] => stdClass Object
+                    [0] => Array
                         (
                             [id] => 123456
                             [title] => keyword 1
@@ -51,7 +51,7 @@ stdClass Object
                             [group_status] => active
                         )
 
-                    [1] => stdClass Object
+                    [1] => Array
                         (
                             [id] => 123457
                             [title] => keyword 2

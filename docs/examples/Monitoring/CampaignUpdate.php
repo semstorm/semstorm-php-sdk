@@ -24,9 +24,9 @@ print_r($monitoringCampaign->update( __CAMPAIGN_1_ID__, $data ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [domain] => example2.com
             [id] => __CAMPAIGN_1_ID__

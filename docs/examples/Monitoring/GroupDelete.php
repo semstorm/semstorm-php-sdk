@@ -20,7 +20,7 @@ print_r($monitoringGroup->delete( [__GROUP_1_ID__, __GROUP_2_ID__] ));
 Example output
 
 
-stdClass Object
+Array
 (
     [params] => Array
         (
@@ -28,7 +28,7 @@ stdClass Object
             [1] => __GROUP_2_ID__
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [__GROUP_1_ID__] => 1
             [__GROUP_2_ID__] => 1

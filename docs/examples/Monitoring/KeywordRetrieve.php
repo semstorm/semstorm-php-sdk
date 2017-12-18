@@ -22,14 +22,14 @@ Example output
 
 
 Keyword with id '__KEYWORD_1_ID__':
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
             [id] => __KEYWORD_1_ID__
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
             [id] => __KEYWORD_1_ID__
             [title] => Keyword name

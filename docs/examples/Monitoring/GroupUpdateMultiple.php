@@ -33,13 +33,13 @@ print_r($monitoringGroup->updateMultiple( $data ));
 Example output
 
 
-stdClass Object
+Array
 (
-    [params] => stdClass Object
+    [params] => Array
         (
-            [groups] => stdClass Object
+            [groups] => Array
                 (
-                    [__GROUP_1_ID__] => stdClass Object
+                    [__GROUP_1_ID__] => Array
                         (
                             [engine] => 2
                             [country] => 162
@@ -51,7 +51,7 @@ stdClass Object
 
                         )
 
-                    [__GROUP_2_ID__] => stdClass Object
+                    [__GROUP_2_ID__] => Array
                         (
                             [title] => new group 2
                             [engine] => 2
@@ -62,9 +62,9 @@ stdClass Object
 
         )
 
-    [result] => stdClass Object
+    [result] => Array
         (
-            [id] => stdClass Object
+            [id] => Array
                 (
                     [__GROUP_1_ID__] => 1
                     [__GROUP_2_ID__] => 1
