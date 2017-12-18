@@ -12,27 +12,40 @@ use SemstormApi\Monitoring\MonitoringCampaign;
 //New monitoring campaign object to manage campaigns.
 $monitoringCampaign = new MonitoringCampaign();
 
-//Set pager params.
-$params = [];
-$params['items_per_page'] = 10;
-$params['page'] = 1;
+//Set params.
+$data = [];
+$data['type'] = "seo";
+$data['pager']['items_per_page'] = 25;
+$data['pager']['page'] = 1;
+$data['filters']['engine'] = 2;
 
 //List campaigns.
-printf("List campaigns ids from 11 to 20:\n");
-print_r($monitoringCampaign->getList( $params ));
+printf("List seo campaigns with Google engine from 26 to 50:\n");
+print_r($monitoringCampaign->getList( $data ));
 
 
 /*
 Example output
 
 
-List campaigns ids from 11 to 20:
+List seo campaigns with Google engine from 26 to 50:
 stdClass Object
 (
     [params] => stdClass Object
         (
-            [items_per_page] => 10
-            [page] => 1
+            [type] => seo
+            [pager] => stdClass Object
+                (
+                    [items_per_page] => 25
+                    [page] => 1
+                    
+                )
+                
+            [filters] => stdClass Object
+                (
+                    [engine] => 2
+                    
+                )
         )
 
     [result] => stdClass Object
@@ -50,6 +63,7 @@ stdClass Object
                     [7] => 1241
                     [8] => 1242
                     [9] => 1243
+                    (...)
                 )
 
         )

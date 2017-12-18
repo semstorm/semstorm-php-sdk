@@ -70,5 +70,24 @@ class Semstorm{
       self::$base_uri = 'http://api.semstorm.com/api-v3/';
     }
   }
+  
+  /**
+   * Handle request exceptions.
+   * 
+   * Those can be native, guzzlehttp or other libraries exceptions.
+   */
+  protected function handleRequestException($e){
+    $errorString = $e->getResponse()->getBody()->getContents();
+    if(!$error = json_decode($errorString, true)){
+      if(!$error = $e->getResponse()->getReasonPhrase()){
+        $error = [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      }
+      else{
+        $error = [ 'error' => [ 'message' => $error ] ];
+      }
+    }
+    $error['error']['code'] = $e->getCode();
+    return $error;
+  }
 
 }

@@ -36,11 +36,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -54,11 +50,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> get("monitoring/monitoring-keyword/{$kid}.json", []);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -74,11 +66,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -94,11 +82,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -114,11 +98,7 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -134,50 +114,48 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
   /**
+   * Move keywords to other group.
    * 
-   * 
+   * @param array $data @param array $data['group_id'] int group id to which switch selected keywords.
+   * @param array $data['id'] array of keywords ids.
    */
-  public function addTags() {
+  public function changeGroup($data) {
     try{
-      $response = $this -> httpClient -> post("monitoring/monitoring-keyword/add-tags.json", []);
+      $response = $this -> httpClient -> post("monitoring/monitoring-keyword/change-group.json", [
+              'json' => $data, 
+    ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
   /**
+   * Gets list of campaign keywords.
    * 
-   * 
+   * @param array $data campaign id and pager settings.
+   * @param array $data['campaign_id'] campaign id.
+   * @param array $data['pager']['items_per_page'] number of items per page.
+   * @param array $data['pager']['page'] page number (starting from 0).
    */
-  public function removeTags() {
+  public function getList($data) {
     try{
-      $response = $this -> httpClient -> post("monitoring/monitoring-keyword/remove-tags.json", []);
+      $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-list.json", [
+              'json' => $data, 
+    ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
   /**
-   * Get keyword data using monitoring_page_keywords_pivot_get_data().
+   * Get keyword data.
    * 
    * @param array $data 
    * @param array $data['id'] string keyword id
@@ -193,11 +171,23 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
+   * Get keyword details data.
+   * 
+   * @param array $data nieznany
+   */
+  public function getDetails($data) {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-details.json", [
+              'json' => $data, 
+    ]);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
     }
   }
   

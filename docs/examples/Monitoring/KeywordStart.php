@@ -24,11 +24,16 @@ stdClass Object
 (
     [params] => Array
         (
-            [0] => __KEYWORD_1_ID__
-            [1] => __KEYWORD_2_ID__
+            [0] => __GROUP_1_ID__
+            [1] => __GROUP_2_ID__
         )
 
-    [result] => 1
+    [result] => stdClass Object
+        (
+            [__GROUP_1_ID__] => 1
+            [__GROUP_2_ID__] => 1
+        )
+
     [_credits] => 0
     [_credits_left] => 80
 )

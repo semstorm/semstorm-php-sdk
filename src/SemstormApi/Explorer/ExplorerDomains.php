@@ -40,11 +40,7 @@ class ExplorerDomains extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
   

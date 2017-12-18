@@ -1,6 +1,6 @@
 <?php
 /**
- * Example: Monitoring start group.
+ * Example: Monitoring groups list.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -15,8 +15,8 @@ $monitoringGroup = new MonitoringGroup();
 //Set pager params.
 $params = [];
 $params['campaign_id'] = __CAMPAIGN_1_ID__;
-$params['items_per_page'] = 10;
-$params['page'] = 0;
+$params['pager']['items_per_page'] = 10;
+$params['pager']['page'] = 0;
 
 //Start group.
 print_r($monitoringGroup->getList( $params ));
@@ -31,8 +31,11 @@ stdClass Object
     [params] => stdClass Object
         (
             [campaign_id] => __CAMPAIGN_1_ID__
-            [items_per_page] => 10
-            [page] => 0
+            [pager] => stdClass Object
+                (
+                    [items_per_page] => 25
+                    [page] => 0
+                )
         )
 
     [result] => stdClass Object

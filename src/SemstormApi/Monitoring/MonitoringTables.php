@@ -30,11 +30,7 @@ class MonitoringTables extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> get("monitoring/monitoring-tables/{$arr_name}.json", []);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
   

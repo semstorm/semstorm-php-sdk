@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Monitoring services</title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!--  Syntax highlighter (almost not used) -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  
+  <body>
+    <style type="text/css">
+      #apidoc * {
+        word-wrap: break-word;
+      }
+    </style>
+    <div class="container-fluid" id="apidoc">
+
+      <div class="row">
+        <div class="col-md-2">
+          <nav style="position: fixed; top: 20px; max-height: 90%; overflow-y: auto; padding-bottom: 20px;">
+            <ul>
+              <li>
+                <a href="#introduction">Introduction</a>
+                <ul>
+                  <li><a href="#access-token">Get access token</a></li>
+                  <li><a href="#results-structure">API results structure</a></li>
+                  <li><a href="#errors">Errors</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#documentation">Documentation</a>
+              </li>
+              <li>
+                <a href="#campaign">Monitoring Campaign</a>
+                <ul>
+                  <li><a href="#campaign-php-instance">Class instance</a></li>
+                  <li><a href="#campaign-create">Create</a></li>
+                  <li><a href="#campaign-retrieve">Retrieve</a></li>
+                  <li><a href="#campaign-update">Update</a></li>
+                  <li><a href="#campaign-start">Start</a></li>
+                  <li><a href="#campaign-stop">Stop</a></li>
+                  <li><a href="#campaign-delete">Delete</a></li>
+                  <li><a href="#campaign-restore">Restore</a></li>
+                  <li><a href="#campaign-get-list">Get list</a></li>
+                  <li><a href="#campaign-get-data">Get data</a></li>
+                  <li><a href="#campaign-get-access">Get access</a></li>
+                  <li><a href="#campaign-set-access">Set access</a></li>
+                </ul>
+              </li>
+              
+              <li>
+                <a href="#group">Monitoring Group</a>
+                <ul>
+                  <li><a href="#group-create">Create</a></li>
+                  <li><a href="#group-retrieve">Retrieve</a></li>
+                  <li><a href="#group-update">Update</a></li>
+                  <li><a href="#group-start">Start</a></li>
+                  <li><a href="#group-stop">Stop</a></li>
+                  <li><a href="#group-delete">Delete</a></li>
+                  <li><a href="#group-restore">Restore</a></li>
+                  <li><a href="#group-get-list">Get list</a></li>
+                  <li><a href="#group-create-multiple">Create multiple</a></li>
+                  <li><a href="#group-update-multiple">Update multiple</a></li>
+                </ul>
+              </li>
+              
+              <li>
+                <a href="#keyword">Monitoring Keyword</a>
+                <ul>
+                  <li><a href="#keyword-create">Create</a></li>
+                  <li><a href="#keyword-retrieve">Retrieve</a></li>
+                  <li><a href="#keyword-start">Start</a></li>
+                  <li><a href="#keyword-stop">Stop</a></li>
+                  <li><a href="#keyword-delete">Delete</a></li>
+                  <li><a href="#keyword-restore">Restore</a></li>
+                  <li><a href="#keyword-change-group">Change group</a></li>
+                  <li><a href="#keyword-get-list">Get list</a></li>
+                  <li><a href="#keyword-get-data">Get data</a></li>
+                  <li><a href="#keyword-get-details">Get details</a></li>
+                </ul>
+              </li>
+              
+              <li>
+                <a href="#tables">Monitoring Tables</a>
+                <ul>
+                  <li><a href="#table-engines">Table of engines</a></li>
+                  <li><a href="#table-devices">Table of devices</a></li>
+                </ul>
+              </li>
+              
+              <li>
+                <a href="#errors">API errors</a>
+                <ul>
+                  <li><a href="#errors-authentication">Authentication errors</a></li>
+                  <li><a href="#errors-messages">Errors messages</a></li>
+                  <li><a href="#errors-bulk">Bulk operations errors</a></li>
+                  <li><a href="#errors-solr">Solr errors</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-8">
+          
+          <h2 id="introduction" class="text-center" style="margin:20px;">Introduction</h2>
+          
+          <div class="row">
+            <div class="col-md-12">
+              <h4 id="access-token" class="text-center" style="margin:20px;">Get access token</h4>
+              <p>
+                <strong>Access token</strong> is unique set of characters which identifies you, and allow you to use API.
+              </p>
+              <p>
+                If you are registered user, you can go to <a target="_blank" href="https://app.semstorm.com/user/api/token">"Services token" tab</a> in SEMSTORM system while logged in, and simply generate new token for yourself.
+              </p>
+              <p>
+                <strong>Access token allow to benefit from all API functionallity in the name of user who generated it</strong>, so dont share it with any third party! It should be handled with caution like passwords. 
+              </p>
+              <p>
+                <strong>If you feel unsafe with your token</strong> - eg. you suspect that token could be obtained by unauthorised persons, you can regenerate your token, and get new one in same page you get your first. Just remember that previous token will be expired in moment you generate new one, so you have to replace it in all your scipts and functions which was using old one. 
+              </p>
+            </div>
+            
+            <div class="col-md-12">
+              <h4 id=results-structure class="text-center" style="margin:20px;">API results structure</h4>
+              <p><strong>Results have uniform structure.</strong> After calling API (in any way) client will receive response, if call was made using SEMSTORM PHP SDK API it will be php object, if calling directly by curl with .json prefix it will be encoded JSON string, eventhou every response will have structure which allows it's easy itnerpretation and data retrieve. Response object/array may contain:</p>
+              <p><strong>"params":</strong> variable (object/assoc array) containing request aprameters - it will be params set by client and send to server, or -if optional- added by server automatically.</p>
+              <p><strong>"result":</strong> variable (object/assoc array) containing request result(s) if no error occured.</p>
+              <p><strong>"error":</strong> variable (object/assoc array) containing request info about any errors which occured, it dont exist if request was succesful. It have "message" field which holds information about reason of failure.</p>
+              <p><strong>"_credits":</strong> variable (string/int) appears for most of results, showing how much request costs, it can be zero.</p>
+              <p><strong>"_credits_left":</strong> variable (string/int) appears for most of results, showing how many credits left for current account.</p>
+            </div>
+            
+            <div class="col-md-12">
+              <h4 id="errors" class="text-center" style="margin:20px;">Error message</h4>
+              <p><strong>If error occurs</strong> response will be send with proper http code (all success responses have code 200), and carry error information in body. Encoded body will contain variable keyed as "error" in which will be placed (at least this one) "message" string. This string have error code, and information text. See below possible error codes:</p>
+              <p><strong>(400) Wrong input.</strong> Invalid or missing input data. Mostly additional info about requirements is displayed alongside error message.</p>
+              <p><strong>(403) Access denied.</strong> Action you want to perform is impossible due to protection level.</p>
+              <p><strong>(404) No entry for given id.</strong> Id dont exist - or is unavailable for current user.</p>
+              <p><strong>(404) Undefined action.</strong> Callback was called but cannot determine which action to take.</p>
+              <p><strong>(404) Not found.</strong> mostly followed by "Cound not find the controller.". You are calling wrong endpoint or wrong method - eg. using GET request in "monitoring-campaign/get-access" endpoint.</p>
+              <p><strong>(409) Other transaction in progress. Access to data temporary denied.</strong> Something else is in critical section for this part of data. Try again later.</p>
+              <p><strong>(500) Program exception catched.</strong> System exception occured. Exception message is display alongside error message.</p>
+              <p><strong>(503) Service unavailable.</strong> Connection was disturbed. It can be whole system/connection temporary failure, or solr problem (<a href="#errors-solr">see below</a>)</p>
+              <p><strong>(520) Something went wrong.</strong> Cant determine what, but something brokes on the way.</p>
+            </div>
+            
+            <div class="col-md-12">
+              <h4 class="text-center" style="margin:20px;">Misc. info</h4>
+              <p><strong>Changes in API</strong> are <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/CHANGELOG.md">listed here</a> and all apply to version 3 of SEMSTORM API.</p>
+              <p><strong>Tags are obsolete.</strong> Eventhou tags placeholders ("tags" array in keywords, campaigns) still exists, tags functionallity is disabled, and is impossible to use. Well, small lost.</p>
+              <p><strong>Problem with curl:</strong> If you get message "Unsupported request content type..." means you are using invalid content type. Curl examples below use JSON input/output format and we <strong>encourage to use this solution</strong>, if you want to communicate by JSON as well add <code>-H "Content-Type: application/json"</code> in your curl request <a href="https://curl.haxx.se/docs/manpage.html#-H" target="_blank">(see here)</a>.</p>
+              <p>
+                <strong>Variables types:</strong>
+                Services backend is implemented in PHP, which does not require explicit type definition (<a href="http://php.net/manual/pl/language.types.type-juggling.php" target="_blank">see here</a>), that is why in examples below all variables described as "int" can also be passed as string, and also returned types can differ from described below depend on content-type, and client environment.<br>
+                If your software requires explicit variable type definition remember to cast results into proper variables.
+              </p>
+            </div>
+          </div>
+          
+          
+          <h2 id="documentation" class="text-center" style="margin: 20px;">Documentation</h2>
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                Below documentation describes SEMSTORM API part used for Monitoring functionallity. It is divided into sections describing each part of Monitoring.
+              </p>
+              <p>
+                Every functionallity caontains examples in curl and PHP. In PHP case, it is assumed that user have properly installed SEMSTORM PHP SDK library which can be fount <a href="https://github.com/semstorm/semstorm-php-sdk" target="_blank">here</a>. For curl -as any other than prepared sdk library- remember that SEMSTORM API guarantee compatibility only for JSON formatted data. 
+              </p>
+            </div>
+            <div class="col-md-12">
+            
+              <!-- ############################# CAMPAIGNS ############################# -->
+              
+              <h3 id="campaign" class="text-center" style="margin: 20px;">Monitoring Campaign</h3>
+              
+              <h4 id="campaign-php-instance" style="margin-top: 35px;">MonitoringCampaign class instance</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <strong>MonitoringCampaign</strong> class is used to perform operations on SEMSTORM Campaigns, which includes creating, retrieving, and modification of campaigns.<br>
+                </div>
+                <div class="col-md-6">
+                  <strong>PHP example code:</strong><br>
+                  <pre><code class="php">include_once __DIR__ . '/autoload.php';<br>use SemstormApi\Semstorm;<br>use SemstormApi\Monitoring\MonitoringCampaign;<br>Semstorm::init( __ACCESS_TOKEN__ );<br>$monitoringCampaign = new MonitoringCampaign();</code></pre>
+                </div>
+              </div>
+          
+              <h4 id="campaign-create" style="margin-top: 35px;">Create campaign</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["domain"] string domain
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Creates new campaign.<br>
+                    Can create only "seo" type campaigns.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object ["id"] string campaign id
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: domain field is empty.<br>
+                    Limit: creating campaign require at least one free campaign limit.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p>
+                  <p><strong>Curl input:</strong>
+                  <div class="well">
+                    curl -X POST -d '{ "domain": "example.com" }' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign.json?services_token=__ACCESS_TOKEN__
+                  </div></p>
+                  <p><strong>Curl output "result":</strong>
+                  <div class="well">{"id": "_ID_"}</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-retrieve" style="margin-top: 35px;">Retrieve campaign data</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign [GET]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> string campaign id
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Get data about campaign.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object ["id"] string campaign id<br>
+                    object ["title"] string campaign title<br>
+                    object ["domain"] string campaign domain<br>
+                    object ["status"] string campaign status<br>
+                    object ["access_type"] string campaign access type for current user<br>
+                    object ["created_time"] string campaign create timestamp<br>
+                    object ["changed_time"] string campaign last modification timestamp<br>
+                    object ["tags"] array campaign tags ids<br>
+                    object ["groups"] array campaign groups ids
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignRetrieve.php" target="_blank"> examples/Monitoring/CampaignRetrieve.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/_ID_.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Curl output "result":</strong><div class="well">{"id":"_ID_","domain":"example.com","status":"active","access_type":"administer monitoring","created_time":"1460375898","changed_time":"1460375898","tags":[_TAGID_,_TAGID_ (...) ],"groups":[_GROUPID_,_GROUPID_ (...) ]}</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-update" style="margin-top: 35px;">Update campaign data</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign [PUT]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> string campaign id<br>
+                    array ["domain"] string campaign domain
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change data of campaign. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignUpdate.php" target="_blank"> examples/Monitoring/CampaignUpdate.php</a></p>
+                  <p><strong>Curl:</strong><div class="well"> curl -X PUT -d '{ "domain": "example.com" }' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/_ID_.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well"> [ true ]</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-start" style="margin-top: 35px;">Start campaign</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/start [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array with campaign ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of campaign to active. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user.<br>
+                    Limit: activating campaign require at least one free campaign limit, and that much keywords as it have.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignStart.php" target="_blank"> examples/Monitoring/CampaignStart.php</a></p>
+                  <p><strong>Curl:</strong><div class="well"> curl -X POST -d '[__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/start.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well"> { __CAMPAIGN_1_ID__: 1, __CAMPAIGN_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+                
+              <h4 id="campaign-stop" style="margin-top: 35px;">Stop campaign</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/stop [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array with campaign ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of campaign to stop. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignStop.php" target="_blank"> examples/Monitoring/CampaignStop.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/stop.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __CAMPAIGN_1_ID__: 1, __CAMPAIGN_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-delete" style="margin-top: 35px;">Delete campaign</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/delete [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array with campaign ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of campaign to delete. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br> Campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignDelete.php" target="_blank"> examples/Monitoring/CampaignDelete.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/delete.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __CAMPAIGN_1_ID__: 1, __CAMPAIGN_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-restore" style="margin-top: 35px;">Restore campaign</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/restore [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array with campaign ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of campaign from delete to stop. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br> Campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignRestore.php" target="_blank"> examples/Monitoring/CampaignRestore.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/restore.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __CAMPAIGN_1_ID__: 1, __CAMPAIGN_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-get-list" style="margin-top: 35px;">Get list of campaigns</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/get-list [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ["type"] string type of campaigns, proper values are "seo" (default), "ads", "trash".<br>
+                    array ["pager"]["items_per_page"] int page size (how many campaigns are in one page).<br>
+                    array ["pager"]["page"] int page number, starting from 0.<br>
+                    array ["filters"] array of additional filters<br>
+                    array ["filters"]["engine"] int engine id (default "All").<br>
+                    array ["filters"]["status"] array of statuses: "active", "stop" (default both).<br>
+                    array ["filters"]["bookmark"] int engine id (default "All").<br>
+                    array ["filters"]["title"] int engine id (default none).
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Get campaigns set selected by pager.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    array["count"] int number of all campaigns (for pagination).<br>
+                    array["campaigns"] array campaigns<br>
+                    array["campaigns"]["id"] string campaign id<br>
+                    array["campaigns"]["access"] string campaign access type<br>
+                    array["campaigns"]["status"] string campaign status<br>
+                    array["campaigns"]["domain"] string campaign domain<br>
+                    array["campaigns"]["type"] string campaign type - "seo", "ads"
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Throttling: Solr throttling error.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignList.php" target="_blank"> examples/Monitoring/CampaignList.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "pager": { "items_per_page":10, "page":1 } }' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/get-list.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "campaigns"[ (...) ], "count":27 }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-get-data" style="margin-top: 35px;">Get detailed data about campaigns</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/get-data [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array["id"] string campaign id.<br>
+                    array["domains"] mixed array of domains or string with one domain or nothing then domain from campaign will be taken.<br>
+                    array["params"] assocc array with additional params.<br>
+                    array["params"]["type"] string type of data to retrieve, valid values are "organic", "paid" and "maps".<br>
+                    array["params"]["datemin"] string start date in format Ymd eg. 20160901.<br>
+                    array["params"]["datemax"] string end date in format Ymd eg. 20170530.<br>
+                    array["params"]["gap"] string date gap to aggregate data by, possible values are "daily", "weekly", "monthly".<br>
+                    array["params"]["filters"] array with filters.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Get details about campaign keywords. It is data from "Daily rank tracking" tab in Monitoring/Keywords page in system.<br>
+                    In filters array you (optionally) specify your filters. It should be exact filters which are set in url when browsing monitoring page. Try this in system to see proper syntax.<br> 
+                    For <strong>PHP library users</strong>: filters in input can be set using SemstormFilters class, which makes it a lot simplier. For details about SemstormFilters class see <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Explorer/FiltersExplain.php" target="_blank">examples/Explorer/FiltersExplain.php</a> and <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Explorer/FiltersUsage.php" target="_blank">examples/Explorer/FiltersUsage.php</a> files.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    object["result"] array with query results divided by groups.<br>
+                    object["result"][_GROUP_ID_] object with group data divided by domains.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_] object with domain data divided by keywords.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_] object with keyword data.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"] object with keyword info.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["title"] string keyword name.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["volume"] int keyword search volume.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["keyword"]["cpc"] int keyword CPC value.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"] object with keyword data split by date (date format depends on date gap).<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_] object with keyword data split by date.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_] object with keyword data split by date.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_][_DEVICE_] object with keyword data split by date.<br>
+                    object["result"][_GROUP_ID_][_DOMAIN_][_KEYWORD_ID_]["data"][_DATE_][_ENGINE_][_DEVICE_] object with keyword data split by date.<br>
+                    
+                    object["params"] object with used params.<br>
+                    object["params"]["cid"] string campaign id.<br>
+                    object["params"]["domains"] array with domains.<br>
+                    object["params"]["datemin"] string start date (Ymd format).<br>
+                    object["params"]["datemax"] string end date (Ymd format).<br>
+                    object["params"]["gap"] string date gap, one of "daily", "weekly" or "monthly".<br>
+                    object["params"]["filters"] array with used filters.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Throttling: Solr throttling error.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignData.php" target="_blank"> examples/Monitoring/CampaignData.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{"id": _ID_, "params": {"datemin": "20170901", "datemax": "20171127", "gap": "monthly"}, "domains": ["example.com", "example2.pl"] }'
+                  http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/get-data.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "result": { (see php example for example result) } }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-get-access" style="margin-top: 35px;">Get campaigns access</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/get-access [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> none, you will receive information about all campaigns you have access to.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Returns information about campaigns you have access to, with type of access and infrmation about owner (e-mail address).<br>
+                    Existing permissions are:<br>
+                    "owner" - this account can modify everything in campaign, add and remove roles. Its reserved for account which created campaign, and is persistent.<br>
+                    "manager" - this account can do everything as "owner" but this role can be removed.<br>
+                    "readonly" - account with that permission can only see campaign and its statistics, and cannot do any changes.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object [__CAMPAIGN_ID__] object with "access" where is your access level, and "owner" where is owner e-mail<br>
+                    object [__CAMPAIGN_ID__]["access"] string your access level<br>
+                    object [__CAMPAIGN_ID__]["owner"] string owner e-mail
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    none.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignGetAccess.php" target="_blank"> examples/Monitoring/CampaignGetAccess.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/get-access.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "result": { (see php example for example result) } }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="campaign-set-access" style="margin-top: 35px;">Set campaigns access</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-campaign/set-access [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array [__CAMPAIGN_ID__] array<br>
+                     array [__CAMPAIGN_ID__]["set"] array keyed by campaign id which access are to be altered<br>
+                     array [__CAMPAIGN_ID__]["set"][]['mail'] string user mail<br>
+                     array [__CAMPAIGN_ID__]["set"][]['permission'] string permission level to set<br>
+                     array [__CAMPAIGN_ID__]["remove"] array of accounts to be removed from certain campaign<br>
+                     array [__CAMPAIGN_ID__]["remove"][]["mail"] string user mail
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Set access to campaigns, you need to have proper access level to modify permissions in campaigns.<br>
+                    This api endpoint is limited to <strong>one request per 10 seconds</strong>.<br>
+                    By this api call you can alter <strong>maximum 3 accounts at once</strong>. That means "set" array shouldn't have more than 3 records. There is no limit in removing access.<br>
+                    Proper permissions to give and take are "readonly" and "manager". One more permission named "owner" is reserved for account which created campaign and cannot be modified.<br>
+                    If you will try to grant permission by entering e-mail on which there is no registered account in SEMSTORM system, then the invitation e-mail to craete account will be send.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    object [__CAMPAIGN_ID__]["set"][__USER_MAIL__] bool true if change was successful<br>
+                    object [__CAMPAIGN_ID__]["remove"][__USER_MAIL__] bool true if removal was successful
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: too fast requesting, if any campaign id invalid (user might not have permissions) or if access updating failed. Access updating will fail if: you try to modify permissions in campaign you have "readonly" access, you try to remove or change permission level of the owner of campaign, one or more e-mail address is invalid.<br>
+                    Throttling: this request is specially limited to one per 10 seconds.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignSetAccess.php" target="_blank"> examples/Monitoring/CampaignSetAccess.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "__CAMPAIGN_ID__": { "set": [ (...) ], "remove": [ (...) ] }}'
+                  http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/set-access.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "result": { "__CAMPAIGN_ID__": { "set": [ (...) ], "remove": [ (...) ] } } }</div></p>
+                </div>
+              </div>
+              
+              <!-- ############################# GROUPS ############################# --> 
+              <h3 id="group" class="text-center" style="margin: 20px;">Monitoring Group</h3>
+              
+              <h4 id="group-create" style="margin-top: 35px;">Create group</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["campaign_id"] int campaign id in which create group.<br>
+                     array ["title"] string group name.<br>
+                     array ["engine"] int engine id.<br>
+                     array ["country"] int country id.<br>
+                     array ["location"] string (optional) location name.<br>
+                     array ["devices"] array with at least one device (strings).
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Create new group in specified campaign.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object ["id"] string group id
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: any of required fields missing, campaign id invalid (user might not have permissions), engine-country invalid combination, devices array invalid.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupCreate.php" target="_blank"> examples/Monitoring/GroupCreate.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "campaign_id":__ID__, "title":"New group", "engine": 2, "country": 168, "location": "warszawa", "devices": ["mobile"] }' http://api.semstorm.com/api-v3/monitoring/monitoring-group.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "id": "12345" }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-retrieve" style="margin-top: 35px;">Retrieve group data</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group [GET]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> string group id
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Get data about group.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object["id"] string group id<br>
+                    object["title"] string group name<br>
+                    object["status"] string group status<br>
+                    object["created_time"] string group created timestamp<br>
+                    object["changed_time"] string group last change timestamp<br>
+                    object["keywords"] array with keywords ids<br>
+                    object["engines"] array with engine id keyed by "engine", and country id keyed by "country"
+                    object["locations"] array with string containing location
+                    object["devices"] array with devices as strings
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group id invalid (user might not have permissions).
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupRetrieve.php" target="_blank"> examples/Monitoring/GroupRetrieve.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curlhttp://api.semstorm.com/api-v3/monitoring/monitoring-group/_ID_.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{"id": _ID_, "title": "Group title", "status": "active", "created_time": "1415794727", "changed_time": "1415794727", "keywords": [ _KEYWORD1_ID_, _KEYWORD2_ID_, _KEYWORD3_ID_, (...) ], "engines": [ { "engine": "2", "country": "168"} ],"locations": ["warszawa"],"devices": ["desktop"]}</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-update" style="margin-top: 35px;">Update group data</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group [PUT]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> string group id<br>
+                    array["title"] string group title<br>
+                    array["location"] string location<br>
+                    array["engine"] string engine id<br>
+                    array["country"] string country id<br>
+                    array["devices"] array devices (strings)
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change data of group (critical section).<br>
+                    To set "location" parameter to empty pass there empty string. This will be interpreted as no location specified.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user, engine-country invalid combination, devices array invalid.<br>
+                    Limit: updating group can change keywords usage. Eg. when changing from one device to both all keywords in group will be counted twice.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupUpdate.php" target="_blank"> examples/Monitoring/GroupUpdate.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X PUT -d '{"title": "new name", "engine": 2, "country": 168, "location": "łódź", "devices": ["mobile", "desktop"]}' http://api.semstorm.com/api-v3/monitoring/monitoring-group/_ID_.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">[ true ]</div></p>
+                </div>
+              </div>
+                
+              <h4 id="group-start" style="margin-top: 35px;">Start group</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/start [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["id"] array with group ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of group to active. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user.<br>
+                    Limit: activating group require that much keywords as it have.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupStart.php" target="_blank"> examples/Monitoring/GroupStart.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __GROUP_1_ID__, __GROUP_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-group/start.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __GROUP_1_ID__: 1, __GROUP_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-stop" style="margin-top: 35px;">Stop group</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/stop [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["id"] array with group ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of group to stop. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupStop.php" target="_blank"> examples/Monitoring/GroupStop.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __GROUP_1_ID__, __GROUP_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-group/stop.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __GROUP_1_ID__: 1, __GROUP_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-delete" style="margin-top: 35px;">Delete group</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/delete [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["id"] array with group ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of group to delete. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupDelete.php" target="_blank"> examples/Monitoring/GroupDelete.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __GROUP_1_ID__, __GROUP_2_ID__, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-group/delete.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __GROUP_1_ID__: 1, __GROUP_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-restore" style="margin-top: 35px;">Restore group</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/restore [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["id"] array with group ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of group to stop. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupRestore.php" target="_blank"> examples/Monitoring/GroupRestore.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[_GROUP1_ID_, _GROUP2_ID_, (...)]' http://api.semstorm.com/api-v3/monitoring/monitoring-group/restore.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __GROUP_1_ID__: 1, __GROUP_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-get-list" style="margin-top: 35px;">Get list of groups</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/get-list [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ["campaign_id"] int campaign id<br>
+                    array ["pager"]["items_per_page"] int number of groups in one page<br>
+                    array ["pager"]["page"] int page number (starting from 0)
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Gets list of campaign groups.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    array["count"] int number of all groups (for pagination).<br>
+                    array["groups"] array of string ids
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupList.php" target="_blank"> examples/Monitoring/GroupList.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "campaign_id": 7189, "pager": { "items_per_page": 10, "page": 1 } }' http://api.semstorm.com/api-v3/monitoring/monitoring-group/get-list.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "count": 72, "groups": [ __GROUP_1_ID__, __GROUP_2_ID__, __GROUP_3_ID__, (...)] }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-create-multiple" style="margin-top: 35px;">Create multiple</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/create-multiple [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ['campaign_id'] int campaign id in which create groups<br>
+                    array ['groups'] array/object with groups data<br>
+                    array ['groups'][]['title'] string group title<br>
+                    array ['groups'][]['engine'] string engine id, check monitoring-tables to see possible variants with country.<br>
+                    array ['groups'][]['country'] country id, check monitoring-tables to see possible variants with engine.<br>
+                    array ['groups'][]['location'] string (optional) location.<br>
+                    array ['groups'][]['devices'] array devices.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Create multiple groups in campaign. Its behavior is very similar to creating one group, except it takes array with groups params to create multiple groups.<br>
+                    "Groups" variable can be object/assoc array, instead of normal array - in that case returning information about each group creation will preserve keys so you can easily determine which output is for which group.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    array["id"] array/object with information about creating each group, indexed same way as input.<br>
+                    array["id"][] mixed true if there was no errors, otherwise there will be error message.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user, any groups data invalid.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupCreateMultiple.php" target="_blank"> examples/Monitoring/GroupCreateMultiple.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "campaign_id": 1234, "groups": { "new group 1": (...), "new group 2": (...) } }' http://api.semstorm.com/api-v3/monitoring/monitoring-group/create-multiple.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "id":{ "new group 1": 123456, "new group 2": 123457 } }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="group-update-multiple" style="margin-top: 35px;">Update multiple</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-group/update-multiple [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ['groups'] assocc array/object with groups data<br>
+                    array ['groups'][__GROUP_ID__]['title'] string group title<br>
+                    array ['groups'][__GROUP_ID__]['engine'] string engine id, check monitoring-tables to see possible variants with country.<br>
+                    array ['groups'][__GROUP_ID__]['country'] country id, check monitoring-tables to see possible variants with engine.<br>
+                    array ['groups'][__GROUP_ID__]['location'] string location.<br>
+                    array ['groups'][__GROUP_ID__]['devices'] array devices.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Update multiple groups in campaign. Its behavior is very similar to updating one group, except it takes array with groups params to update multiple groups.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    array["id"] array/object with information about creating each group, indexed same way as input.<br>
+                    array["id"][__GROUP_ID__] mixed true if there was no errors, otherwise there will be error message.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user, any group data invalid.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/GroupUpdateMultiple.php" target="_blank"> examples/Monitoring/GroupUpdateMultiple.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "groups": { "__GROUP_1_ID__": {(...)}, "__GROUP_2_ID__": {(...)} } }' http://api.semstorm.com/api-v3/monitoring/monitoring-group/update-multiple.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "id":{ __GROUP_1_ID__: true, __GROUP_2_ID__: true } }</div></p>
+                </div>
+              </div>
+              
+              <!-- ############################# KEYWORDS ############################# -->
+              <h3 id="keyword" class="text-center" style="margin: 20px;">Monitoring Keyword</h3>
+                        
+              <h4 id="keyword-create" style="margin-top: 35px;">Create keyword</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array ["group_id"] int group id<br>
+                    array ["keywords"] array of strings - keywords to add
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Create new keywords in group.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array["id"] array of keywords ids (string)
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordCreate.php" target="_blank"> examples/Monitoring/KeywordCreate.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "group_id": _ID_, "keywords": [ "keyword 1", "keyword 2", "keyword 3", (...)] }' http://api.semstorm.com/api-v3/monitoring/monitoring-keyword.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "id": [ "12345", "12346", "12347", (...) ] }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-retrieve" style="margin-top: 35px;">Retrieve keyword data</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword [GET]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> string keyword id
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Get data about keyword.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object["id"] string keyword id<br>
+                    object["title"] string keyword name<br>
+                    object["status"] string keyword status<br>
+                    object["group_id"] string group id<br>
+                    object["tags"] array of tags marking this keyword (unsupported, this functionallity is obsolete)
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: keyword with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordCreate.php" target="_blank"> examples/Monitoring/KeywordCreate.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curlhttp://api.semstorm.com/api-v3/monitoring/monitoring-keyword/_ID_.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "id": "_ID_", "title": "keyword 1", "status": "active", "group_id": "_GROUP_ID_", "tags": [] }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-start" style="margin-top: 35px;">Start keyword</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/start [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array["id"] array with keywords ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of keywords to active. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: keyword with given id not exist for current user.<br>
+                    Limit: activating keyword require at least one free keyword limit.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordCreate.php" target="_blank"> examples/Monitoring/KeywordCreate.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __KEYWORD_1_ID__, __KEYWORD_2_ID__, (...)]'  http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/start.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __KEYWORD_1_ID__: 1, __KEYWORD_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-stop" style="margin-top: 35px;">Stop keyword</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/stop [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array["id"] array with keywords ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of keywords to stop. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: keyword with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordStop.php" target="_blank"> examples/Monitoring/KeywordStop.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __KEYWORD_1_ID__, __KEYWORD_2_ID__, (...)]'  http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/stop.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __KEYWORD_1_ID__: 1, __KEYWORD_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-delete" style="margin-top: 35px;">Delete keyword</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/delete [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array["id"] array with keywords ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of keywords to delete. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: keyword with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordDelete.php" target="_blank"> examples/Monitoring/KeywordDelete.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __KEYWORD_1_ID__, __KEYWORD_2_ID__, (...)]'  http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/delete.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __KEYWORD_1_ID__: 1, __KEYWORD_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+                
+              <h4 id="keyword-restore" style="margin-top: 35px;">Restore keyword</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/restore [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> array["id"] array with keywords ids. Works also for one id instead of array of ids.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Change status of keywords from deleted to stoped. (critical section)
+                  </p>
+                  <p>
+                    <strong>Output: </strong> array[] bool flag indicating whether call ended succesfully.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: keyword with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordRestore.php" target="_blank"> examples/Monitoring/KeywordRestore.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '[ __KEYWORD_1_ID__, __KEYWORD_2_ID__, (...)]'  http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/restore.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ __KEYWORD_1_ID__: 1, __KEYWORD_2_ID__: 1, (...) }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-change-group" style="margin-top: 35px;">Change group of keywords</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/change-group [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ["group_id"] int group id<br>
+                    array ["id"] array keywords ids which will be moved to selected group
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Takes keywords and move them to specified group. Each keyword can be from different group/campaign as long as you have access to edit those.<br>
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    array[__KEYWORD_ID__] mixed true on success, error message if fail.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: group with given id not exist for current user. Any of keyword id is invalid. Limits exceeded - this is possible eg. if you move keywords from group with one device to other with two.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                </div>
+              </div>
+              
+              <h4 id="keyword-get-list" style="margin-top: 35px;">Get list of keywords</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/get-list [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ["campaign_id"] int campaign id<br>
+                    array ["pager"]["items_per_page"] int number of keywords in one page<br>
+                    array ["pager"]["page"] int page number (starting from 0)<br>
+                    array ["filters"]array of filters<br>
+                    array ["filters"]["keyword"]string part of keyword title<br>
+                    array ['filters']['group_name'] string part of group name<br>
+                    array ['filters']['status'] array of statuses: "active", "stop", "delete"
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Gets list of campaign keywords.<br>
+                    <strong>Important!</strong> If you put "delete" into status filter, you will see only deleted keywords, and other statuses will be ignored.<br>
+                    Use "active" and "stop" separately from "delete" filter.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    array["count"] int number of all keywords (for pagination).<br>
+                    array["keywords"] array of keywords<br>
+                    array["keywords"]["id"] int keyword id<br>
+                    array["keywords"]["title"] string keyword title<br>
+                    array["keywords"]["status"] string keyword status<br>
+                    array["keywords"]["group_status"] string group status
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Request: campaign with given id not exist for current user.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordList.php" target="_blank"> examples/Monitoring/KeywordList.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "campaign_id": _ID_, "pager": { "items_per_page": 25, "page": 1 } }' http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/get-list.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "count": 123, "keywords": [ (...)] }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-get-data" style="margin-top: 35px;">Get keyword data</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/get-data [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array ["id"] int keyword id<br>
+                    array ["filters"]array of filters<br>
+                    array ["domains"] mixed array of domains or string with one domain or nothing then domain from campaign will be taken.<br>
+                    array ["params"] assocc array with additional params.<br>
+                    array ["params"]["datemin"] string start date in format Ymd eg. 20160901.<br>
+                    array ["params"]["datemax"] string end date in format Ymd eg. 20170530.<br>
+                    array ["params"]["gap"] string date gap to aggregate data by, possible values are "daily", "weekly", "monthly".<br>
+                    array ["params"]["filters"] array with filters.
+                  </p>
+                  <p>
+                    <strong>Description: </strong><br>
+                    Get data about keyword. It is data from "Daily rank tracking" tab in Monitoring/Keywords page in system.<br>
+                    This endpoint returns same data as <a href="#campaign-get-data">Campaign: Get data</a>, but only for one keyword.
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    See php example for example result.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Throttling: Solr throttling error.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordData.php" target="_blank"> examples/Monitoring/KeywordData.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "kid": __KEYWORD_1_ID__, "params": { "type": "competitors", (...) } }' http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/get-data.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "result": { (see php example for example result) } }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="keyword-get-details" style="margin-top: 35px;">Get keyword details</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-keyword/get-details [POST]
+                  </p>
+                  <p>
+                    <strong>Input: </strong><br>
+                    array $data['kid'] array/int keyword id or array of keyword ids<br>
+                    array $data['params']['datemin'] string start date in format Ymd<br>
+                    array $data['params']['datemax'] string end date in format Ymd<br>
+                    array $data['params']['gap'] string date gap, possible values are: "daily" / "weekly" / "monthly"<br>
+                    array $data['params']['type'] string details type, possible values are: "heatmap" / "competitors" / "top50"
+                  </p>
+                  <p>
+                    <strong>Description:</strong> Retrieve details about keywords. Each of keyword (idetified by keyword id) can have few results, depending on group device count it is in.<br>
+                    Output differs depends on chosen "type".
+                  </p>
+                  <p>
+                    <strong>Output: </strong><br>
+                    object[__KEYWORD_ID__] object keyed by keyword id, contains nested objects.<br>
+                    object[__KEYWORD_ID__][__DEVICE__] object keyed by device name, contains nested objects.<br>
+                    object[__KEYWORD_ID__][__DEVICE__][__DOMAIN__] object keyed by domain name, contains nested objects.<br>
+                    object[__KEYWORD_ID__][__DEVICE__][__DOMAIN__][__DATE__] mixed desired data keyed by date.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    Throttling: Solr throttling error.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/KeywordList.php" target="_blank"> examples/Monitoring/KeywordList.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "kid": [ __KEYWORD_1_ID__, (...) ], "params": { "type": "competitors", (...) } }' http://api.semstorm.com/api-v3/monitoring/monitoring-keyword/get-details.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{ "result": { (see php example for example result) } }</div></p>
+                </div>
+              </div>
+              
+              <!-- ############################# TABLES ############################# -->
+              <h3 id="tables" class="text-center" style="margin: 20px;">Monitoring Tables</h3>
+              
+              <h4 id="table-engines" style="margin-top: 35px;">Table of engines</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-tables/engines [GET]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> None, "engines" in url is table name.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Return table containing all possible engines and countries variations
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object[engines] array of objects - engines.<br>
+                    object[engines][]["name"] string engine name.<br>
+                    object[engines][]["id"] string engine id.<br>
+                    object[engines][]["countries"] array of objects - countries for given engine.<br>
+                    object[engines][]["countries"][]["name"] string country name.<br>
+                    object[engines][]["countries"][]["id"] string country id.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    None.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/TablesEngines.php" target="_blank"> examples/Monitoring/TablesEngines.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl http://api.semstorm.com/api-v3/monitoring/monitoring-tables/engines.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">(see php example for example result)</div></p>
+                </div>
+              </div>
+              
+              <h4 id="table-devices" style="margin-top: 35px;">Table of devices</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Endpoint: </strong> /monitoring/monitoring-tables/devices [GET]
+                  </p>
+                  <p>
+                    <strong>Input: </strong> None, "devices" in url is table name.
+                  </p>
+                  <p>
+                    <strong>Description: </strong> Return table containing proper devices names.
+                  </p>
+                  <p>
+                    <strong>Output: </strong> object[devices] array of strings - devices names.
+                  </p>
+                  <p>
+                    <strong>Error: </strong><br>
+                    None.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/TablesDevices.php" target="_blank"> examples/Monitoring/TablesDevices.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl http://api.semstorm.com/api-v3/monitoring/monitoring-tables/devices.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{"devices": [ "mobile", "desktop" ]}</div></p>
+                </div>
+              </div>
+              
+              <!-- ############################# ERRORS ############################# -->
+              <h3 id="errors" class="text-center" style="margin: 20px;">API errors</h3>
+              
+              <h4 id="errors-authentication" style="margin-top: 35px;">Authorization errors</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Passing invalid token</strong> (or not passing at all) in request will result in authorization error.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/ErrorAuthorization.php" target="_blank"> examples/Monitoring/ErrorAuthorization.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/_ID_.json?services_token=this-is-wrong-access-token</div></p>
+                  <p><strong>Output:</strong><div class="well">[ "Unauthorised access." ]</div></p>
+                </div>
+              </div>
+              
+              <h4 id="errors-messages" style="margin-top: 35px;">Errors messages</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>When error occurs</strong> you can check "message" in "error" variable returned from server.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/ErrorSimple.php" target="_blank"> examples/Monitoring/ErrorSimple.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/123456.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">{"error": { "message": "(404) No entry for given id." }</div></p>
+                </div>
+              </div>
+              
+              <h4 id="errors-bulk" style="margin-top: 35px;">Bulk operations errors</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>In some requests errors returns more information.</strong> For example bulk operations returns array with information which operations succeded and which failed.
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/ErrorBulk.php" target="_blank"> examples/Monitoring/ErrorBulk.php</a></p>
+                  <p><strong>Curl:</strong><div class="well">curl -X POST -d '{ "id": [_CAMPAIGN1_ID_, _CAMPAIGN2_ID_, (...)] }' http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/start.json?services_token=__ACCESS_TOKEN__</div></p>
+                  <p><strong>Output:</strong><div class="well">(see php example for example result)</div></p>
+                </div>
+              </div>
+              
+              <h4 id="errors-solr" style="margin-top: 35px;">Solr errors</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Error with code 503 in most cases will concern solr connection.</strong> If error message will contain "Solr error. Data may be incomplete(...)" that means solr was overloaded and refused to sustain connection.<br>
+                    This is temporary problem, you can retry your request after few secons - just remember that very large request will require more time to wait. 
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>PHP example code:</strong></p><p>There is no example of this error, as it happens occasionaly for big set of data.</p>
+                  <p><strong>Curl:</strong></p><p>There is no example of this error, as it happens occasionaly for big set of data.</p>
+                  <p><strong>Output:</strong><div class="well">
+                  {
+                    "params": {(...)},
+                    "error": {
+                      "message": "(503) Service unavailable. Solr error. Data may be incomplete. Try again later.",
+                      "result": {(...)}
+                    }
+                  }
+                  </div></p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+  </body>
+</html>

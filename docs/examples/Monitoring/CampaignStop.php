@@ -22,17 +22,18 @@ Example output
 
 stdClass Object
 (
-    [params] => stdClass Object
+    [params] => Array
         (
-            [id] => Array
-                (
-                    [0] => __CAMPAIGN_1_ID__
-                    [1] => __CAMPAIGN_2_ID__
-                )
-
+            [0] => __CAMPAIGN_1_ID__
+            [1] => __CAMPAIGN_2_ID__
         )
 
-    [result] => 1
+    [result] => stdClass Object
+        (
+            [__CAMPAIGN_1_ID__] => 1
+            [__CAMPAIGN_2_ID__] => 1
+        )
+
     [_credits] => 0
     [_credits_left] => 80
 )

@@ -7,17 +7,17 @@
  * 
  * For example with filters usage see FiltersUsage.php.
  *
- * To make possible intuitive usage of filters exist helper class SemstormApi\Explorer\ExplorerFilters
+ * To make possible intuitive usage of filters exist helper class SemstormApi\SemstormFilters
  * which translates human readable condition into proper filter paramters.
  * 
- * Below are listed some of possible filters which can be created using ExplorerFilters.
+ * Below are listed some of possible filters which can be created using SemstormFilters.
  */
 
 use SemstormApi\Semstorm;
-use SemstormApi\Explorer\ExplorerFilters;
+use SemstormApi\SemstormFilters;
 Semstorm::init( __ACCESS_TOKEN__ );
 
-$filters = new ExplorerFilters();
+$filters = new SemstormFilters();
 
 //Keywords filters.
 //Only one keyword: 'kredyt'.

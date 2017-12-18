@@ -33,11 +33,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -51,11 +47,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> get("monitoring/monitoring-campaign/{$cid}.json", []);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -74,11 +66,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -94,11 +82,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -114,11 +98,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -134,11 +114,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -154,11 +130,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -176,16 +148,12 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
   /**
-   * Get detals about campaign.
+   * Get details about campaign.
    * 
    * @param array $data 
    * @param array $data['id'] string campaign id
@@ -200,11 +168,42 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
+   * Get information about campaigns your have access to and your access level.
+   * 
+   */
+  public function getAccess() {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-access.json", []);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
+   * Set access to campaigns, you need to have proper access level to modify permissions in campaigns.
+   * 
+   * @param array $data 
+   * @param array $data[__ID__] array keyed by campaign id which access are to be altered
+   * @param array $data[__ID__]['set'] array of accounts to be added/modified for certain campaign with
+   * @param array $data[__ID__]['set'][]['mail'] string user mail
+   * @param array $data[__ID__]['set'][]['permission'] string permission level to set
+   * @param array $data[__ID__]['remove'] array of accounts to be removed from certain campaign
+   * @param array $data[__ID__]['remove'][]['mail'] string user mail
+   */
+  public function setAccess($data) {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/set-access.json", [
+              'json' => $data, 
+    ]);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
     }
   }
   

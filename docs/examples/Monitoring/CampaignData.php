@@ -20,6 +20,8 @@ $params['params']['datemin'] = "20170914";
 $params['params']['datemax'] = "20171127";
 $params['params']['gap'] = "monthly";
 //$params['domains'] = ["example.com", "example2.com"];
+//You can set $params['params']['filters'] array to filter campaign keywords. Especially useful for customization reports in big campaigns.
+//For details about filters see examples/Explorer/FiltersExplain.php and examples/Explorer/FiltersUsage.php files.
 
 //Retrieve data.
 printf("Campaign data:\n");
@@ -32,6 +34,21 @@ Example output
 Campaign data:
 stdClass Object
 (
+    [params] => stdClass Object
+        (
+            [cid] => _ID_
+            [domains] => Array
+                (
+                    [0] => example.com
+                    [1] => example2.com
+                )
+
+            [type] => organic
+            [datemin] => 20170914
+            [datemax] => 20171127
+            [gap] => monthly
+        )
+
     [result] => stdClass Object
         (
             [_GROUP_ID_] => stdClass Object
@@ -100,21 +117,7 @@ stdClass Object
                 )
 
         )
-
-    [params] => stdClass Object
-        (
-            [cid] => _ID_
-            [domains] => Array
-                (
-                    [0] => example.com
-                    [1] => example2.com
-                )
-
-            [datemin] => 20170914
-            [datemax] => 20171127
-            [gap] => monthly
-        )
-
+        
     [_credits] => 0
     [_credits_left] => 1500
 )

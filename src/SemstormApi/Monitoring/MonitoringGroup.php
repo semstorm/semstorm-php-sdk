@@ -38,11 +38,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -56,11 +52,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
       $response = $this -> httpClient -> get("monitoring/monitoring-group/{$gid}.json", []);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -83,11 +75,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -103,11 +91,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -123,11 +107,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -143,11 +123,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -163,45 +139,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
-    }
-  }
-    
-  /**
-   * 
-   * 
-   */
-  public function addFields() {
-    try{
-      $response = $this -> httpClient -> post("monitoring/monitoring-group/add-fields.json", []);
-      return json_decode($response -> getBody());
-    }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
-    }
-  }
-    
-  /**
-   * 
-   * 
-   */
-  public function removeFields() {
-    try{
-      $response = $this -> httpClient -> post("monitoring/monitoring-group/remove-fields.json", []);
-      return json_decode($response -> getBody());
-    }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
     }
   }
     
@@ -220,11 +158,52 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
     ]);
       return json_decode($response -> getBody());
     }catch( \Exception $e){
-      $errorString = $e->getResponse()->getBody()->getContents();
-      if($error = json_decode($errorString)){
-        return $error;
-      }
-      return [ 'error' => [ 'message' => 'Undefined message from server.'] ];
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
+   * Create multiple groups.
+   * 
+   * @param array $data groups data to create.
+   * @param array $data['campaign_id'] int campaign id in which create groups
+   * @param array $data['groups'] array with groups data
+   * @param array $data['groups'][]['title'] string group title
+   * @param array $data['groups'][]['engine'] string engine id, check monitoring-tables to see possible variants with country.
+   * @param array $data['groups'][]['country'] country id, check monitoring-tables to see possible variants with engine.
+   * @param array $data['groups'][]['location'] string (optional) location.
+   * @param array $data['groups'][]['devices'] array devices.
+   */
+  public function createMultiple($data) {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/create-multiple.json", [
+              'json' => $data, 
+    ]);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
+   * Update multiple groups.
+   * 
+   * @param array $data groups data to update.
+   * @param array $data['groups'] array of groups data to update keyed by group id
+   * @param array $data['groups'][__ID__]['title'] string group title
+   * @param array $data['groups'][__ID__]['engine'] string engine id, check monitoring-tables to see possible variants with country.
+   * @param array $data['groups'][__ID__]['country'] country id, check monitoring-tables to see possible variants with engine.
+   * @param array $data['groups'][__ID__]['location'] string (optional) location.
+   * @param array $data['groups'][__ID__]['devices'] array devices.
+   */
+  public function updateMultiple($data) {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-group/update-multiple.json", [
+              'json' => $data, 
+    ]);
+      return json_decode($response -> getBody());
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
     }
   }
   

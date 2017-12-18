@@ -2,19 +2,19 @@
 /**
  * Example: Using filters.
  * 
- * To make possible intuitive usage of filters exist helper class SemstormApi\Explorer\ExplorerFilters
+ * To make possible intuitive usage of filters exist helper class SemstormApi\SemstormFilters
  * which translates human readable condition into proper filter paramters.
  * 
  * Below are examples with explanation, what kind of results are retrieved.
  */
 
 use SemstormApi\Semstorm;
+use SemstormApi\SemstormFilters;
 use SemstormApi\Explorer\ExplorerKeywords;
-use SemstormApi\Explorer\ExplorerFilters;
 Semstorm::init( __ACCESS_TOKEN__ );
 
 $explorerKeywords = new ExplorerKeywords();
-$filters = new ExplorerFilters();
+$filters = new SemstormFilters();
 
 /**
  * Retrieve keywords on which domains example.com and another-example.com are visible,

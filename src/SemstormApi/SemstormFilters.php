@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace SemstormApi\Explorer;
+namespace SemstormApi;
 
-class ExplorerFilters {
+class SemstormFilters {
   private $filtersArray = [];
 
   /**

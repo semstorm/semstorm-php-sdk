@@ -1,6 +1,6 @@
 <?php
 /**
- * Example: Monitoring start campaign.
+ * Example: Monitoring get campaigns access.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -12,8 +12,8 @@ use SemstormApi\Monitoring\MonitoringCampaign;
 //New monitoring campaign object to manage campaigns.
 $monitoringCampaign = new MonitoringCampaign();
 
-//Start campaign.
-print_r($monitoringCampaign->start( [__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__] ));
+//Delete campaign.
+print_r($monitoringCampaign->getAccess());
 
 
 /*
@@ -22,16 +22,23 @@ Example output
 
 stdClass Object
 (
-    [params] => Array
-        (
-            [0] => __CAMPAIGN_1_ID__
-            [1] => __CAMPAIGN_2_ID__
-        )
-
+    [params] => []
     [result] => stdClass Object
         (
-            [__CAMPAIGN_1_ID__] => 1
-            [__CAMPAIGN_2_ID__] => 1
+            [1234] => stdClass Object
+                (
+                    [access] => owner
+                    [owner] => person@domain.com
+                )
+
+            [1235] => stdClass Object
+                (
+                    [access] => owner
+                    [owner] => person@domain.com
+                )
+                
+                (...)
+
         )
 
     [_credits] => 0
