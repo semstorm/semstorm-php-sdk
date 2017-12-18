@@ -102,7 +102,7 @@
                   <li><a href="#errors-authentication">Authentication errors</a></li>
                   <li><a href="#errors-messages">Errors messages</a></li>
                   <li><a href="#errors-bulk">Bulk operations errors</a></li>
-                  <li><a href="#errors-solr">Solr errors</a></li>
+                  <li><a href="#errors-throttle">Throttle prevention errors</a></li>
                 </ul>
               </li>
             </ul>
@@ -149,7 +149,7 @@
               <p><strong>(404) Not found.</strong> mostly followed by "Cound not find the controller.". You are calling wrong endpoint or wrong method - eg. using GET request in "monitoring-campaign/get-access" endpoint.</p>
               <p><strong>(409) Other transaction in progress. Access to data temporary denied.</strong> Something else is in critical section for this part of data. Try again later.</p>
               <p><strong>(500) Program exception catched.</strong> System exception occured. Exception message is display alongside error message.</p>
-              <p><strong>(503) Service unavailable.</strong> Connection was disturbed. It can be whole system/connection temporary failure, or solr problem (<a href="#errors-solr">see below</a>)</p>
+              <p><strong>(503) Service unavailable.</strong> Connection was disturbed. It can be system/connection temporary failure, or throttle prevention (<a href="#errors-throttle">see below</a>)</p>
               <p><strong>(520) Something went wrong.</strong> Cant determine what, but something brokes on the way.</p>
             </div>
             
@@ -429,7 +429,7 @@
                   </p>
                   <p>
                     <strong>Error: </strong><br>
-                    Throttling: Solr throttling error.
+                    Throttling: Possible throttle prevention.
                   </p>
                 </div>
                 <div class="col-md-6">
@@ -487,7 +487,7 @@
                   </p>
                   <p>
                     <strong>Error: </strong><br>
-                    Throttling: Solr throttling error.
+                    Throttling: Possible throttle prevention.
                   </p>
                 </div>
                 <div class="col-md-6">
@@ -1156,7 +1156,7 @@
                   </p>
                   <p>
                     <strong>Error: </strong><br>
-                    Throttling: Solr throttling error.
+                    Throttling: Possible throttle prevention.
                   </p>
                 </div>
                 <div class="col-md-6">
@@ -1193,7 +1193,7 @@
                   </p>
                   <p>
                     <strong>Error: </strong><br>
-                    Throttling: Solr throttling error.
+                    Throttling: Possible throttle prevention.
                   </p>
                 </div>
                 <div class="col-md-6">
@@ -1310,12 +1310,13 @@
                 </div>
               </div>
               
-              <h4 id="errors-solr" style="margin-top: 35px;">Solr errors</h4>
+              <h4 id="errors-throttle" style="margin-top: 35px;">Throttle prevention errors</h4>
               <div class="row">
                 <div class="col-md-6">
                   <p>
-                    <strong>Error with code 503 in most cases will concern solr connection.</strong> If error message will contain "Solr error. Data may be incomplete(...)" that means solr was overloaded and refused to sustain connection.<br>
-                    This is temporary problem, you can retry your request after few secons - just remember that very large request will require more time to wait. 
+                    <strong>Error with code 503 in most cases will concern throttle prevention.</strong> If error message will contain "Throttle prevention. Data may be incomplete(...)" that means system was overloaded and refused to sustain connection.<br>
+                    This is temporary problem, you can retry your request after few secons - just remember that very large request will require more time to wait.<br>
+                    If problem sustains it propably means you are requesting too big set of data at once. Try split it into few smaller requests.
                   </p>
                 </div>
                 <div class="col-md-6">
@@ -1325,7 +1326,7 @@
                   {
                     "params": {(...)},
                     "error": {
-                      "message": "(503) Service unavailable. Solr error. Data may be incomplete. Try again later.",
+                      "message": "(503) Service unavailable. Throttle prevention. Data may be incomplete. Try again later.",
                       "result": {(...)}
                     }
                   }
