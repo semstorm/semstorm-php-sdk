@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring delete campaign.
+ * 
+ * Set statuses of given campaigns to deleted.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -12,8 +14,11 @@ use SemstormApi\Monitoring\MonitoringCampaign;
 //New monitoring campaign object to manage campaigns.
 $monitoringCampaign = new MonitoringCampaign();
 
+$data = [];
+$data['id'] = [__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__];
+
 //Delete campaign.
-print_r($monitoringCampaign->delete( [__CAMPAIGN_1_ID__, __CAMPAIGN_2_ID__] ));
+print_r($monitoringCampaign->delete( $data ));
 
 
 /*

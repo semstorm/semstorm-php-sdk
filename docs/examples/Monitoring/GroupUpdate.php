@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring update group.
+ * 
+ * Change group data.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

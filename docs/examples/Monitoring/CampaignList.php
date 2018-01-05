@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring list campaigns.
+ * 
+ * Returns list of campaigns ids.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -38,14 +40,13 @@ Array
                 (
                     [items_per_page] => 25
                     [page] => 1
-                    
                 )
-                
+
             [filters] => Array
                 (
                     [engine] => 2
-                    
                 )
+
         )
 
     [result] => Array
@@ -53,16 +54,24 @@ Array
             [count] => 76
             [campaigns] => Array
                 (
-                    [0] => 1234
-                    [1] => 1235
-                    [2] => 1236
-                    [3] => 1237
-                    [4] => 1238
-                    [5] => 1239
-                    [6] => 1240
-                    [7] => 1241
-                    [8] => 1242
-                    [9] => 1243
+                    [0] => Array
+                        (
+                            [id] => 1234
+                            [access] => owner
+                            [status] => active
+                            [domain] => example.com
+                            [type] => seo
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 1235
+                            [access] => manager
+                            [status] => active
+                            [domain] => example.pl
+                            [type] => seo
+                        )
+                        
                     (...)
                 )
 

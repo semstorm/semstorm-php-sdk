@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring retrieve campaign.
+ * 
+ * Returns information about given campaign.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

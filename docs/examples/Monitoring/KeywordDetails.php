@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring retrieve keyword data.
+ * 
+ * Returns detailed data about single keyword scanned.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -15,12 +17,11 @@ $monitoringKeyword = new MonitoringKeyword();
 //Set proper params (only ID is required).
 $params = [];
 //This can be array of keywords ids.
-$params['kid'] = __KEYWORD_1_ID__;
-$params['params'] = [];
-$params['params']['datemin'] = "20170914";
-$params['params']['datemax'] = "20171127";
-$params['params']['gap'] = "monthly";
-$params['params']['type'] = "competitors";
+$params['id'] = __KEYWORD_1_ID__;
+$params['datemin'] = "20170914";
+$params['datemax'] = "20171127";
+$params['gap'] = "monthly";
+$params['type'] = "competitors";
 
 //Retrieve data.
 printf("Keyword details:\n");
@@ -36,18 +37,14 @@ Array
 (
     [params] => Array
         (
-            [kid] => Array
+            [id] => Array
                 (
                     [0] => __KEYWORD_1_ID__
                 )
-
-            [params] => Array
-                (
-                    [datemin] => 20170914
-                    [datemax] => 20171127
-                    [gap] => monthly
-                    [type] => competitors
-                )
+            [datemin] => 20170914
+            [datemax] => 20171127
+            [gap] => monthly
+            [type] => competitors
 
             [keywords] => Array
                 (
@@ -69,9 +66,27 @@ Array
                         (
                             [example.com] => Array
                                 (
-                                    [2017-09-01] => 9.76
-                                    [2017-10-01] => 12.52
-                                    [2017-11-01] => 13.07
+                                    [2017-09-01] => Array
+                                        (
+                                            [position] => 1
+                                            [position change] => 3
+                                            [url] => example.com/site
+                                        )
+
+                                    [2017-10-01] => Array
+                                        (
+                                            [position] => 1
+                                            [position change] => 0
+                                            [url] => example.com/site
+                                        )
+
+                                    [2017-11-01] => Array
+                                        (
+                                            [position] => 3
+                                            [position change] => -2
+                                            [url] => example.com/new-site
+                                        )
+
                                 )
 
                                 (...)

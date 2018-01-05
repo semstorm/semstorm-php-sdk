@@ -1,6 +1,6 @@
 <?php
 /**
- * Example: Error while retrieve non existing campaign.
+ * Example: Error while try to stop existing campaign.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

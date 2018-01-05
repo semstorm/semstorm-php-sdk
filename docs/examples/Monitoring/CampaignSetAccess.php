@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring set campaigns access.
+ * 
+ * Allow to manipulate campaigns accesses which you own or manage.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

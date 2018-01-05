@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring get campaigns access.
+ * 
+ * Return list of all accessible campaigns with access type and their owners.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

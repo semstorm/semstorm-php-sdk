@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring create multiple group.
+ * 
+ * Create new empty groups.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

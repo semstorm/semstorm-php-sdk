@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring update campaign.
+ * 
+ * Change campaign domain.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

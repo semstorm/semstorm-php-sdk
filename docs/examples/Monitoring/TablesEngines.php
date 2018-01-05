@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring tables engines.
+ * 
+ * Return information about all possible engines and countries variations.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

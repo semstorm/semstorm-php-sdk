@@ -151,7 +151,7 @@ class MonitoringGroup extends \SemstormApi\Semstorm{
    * @param array $data['items_per_page'] number of items per page.
    * @param array $data['page'] page number (starting from 0).
    */
-  public function getList($data) {
+  public function getList($data = []) {
     try{
       $response = $this -> httpClient -> post("monitoring/monitoring-group/get-list.json", [
               'json' => $data, 

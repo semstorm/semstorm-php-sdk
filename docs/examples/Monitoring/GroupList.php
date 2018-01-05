@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring groups list.
+ * 
+ * Returns list of campaign groups ids.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -40,19 +42,43 @@ Array
 
     [result] => Array
         (
-            [count] => 72
+            [count] => 12
             [groups] => Array
                 (
-                    [0] => 1234
-                    [1] => 1235
-                    [2] => 1236
-                    [3] => 1237
-                    [4] => 1238
-                    [5] => 1239
-                    [6] => 1240
-                    [7] => 1241
-                    [8] => 1242
-                    [9] => 1243
+                    [0] => Array
+                        (
+                            [id] => 123456
+                            [title] => Group title
+                            [keywords_count] => 21
+                            [status] => active
+                            [engine] => 2
+                            [country] => 168
+                            [location] => empty
+                            [devices] => Array
+                                (
+                                    [0] => desktop
+                                )
+
+                        )
+                    [1] => Array
+                        (
+                            [id] => 123457
+                            [title] => Another group title
+                            [keywords_count] => 6
+                            [status] => active
+                            [engine] => 2
+                            [country] => 168
+                            [location] => empty
+                            [devices] => Array
+                                (
+                                    [0] => desktop
+                                    [1] => mobile
+                                )
+
+                        )
+                        
+                        (...)
+
                 )
 
         )

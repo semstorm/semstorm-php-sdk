@@ -141,7 +141,7 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
    * @param array $settings['items_per_page'] number of items per page
    * @param array $settings['page'] page number (starting from 0)
    */
-  public function getList($settings) {
+  public function getList($settings = []) {
     try{
       $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-list.json", [
               'json' => $settings, 

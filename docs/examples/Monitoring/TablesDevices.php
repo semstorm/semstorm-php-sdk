@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring tables engines.
+ * 
+ * Return information about proper devices names.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

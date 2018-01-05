@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring keywords list.
+ * 
+ * Returns list of campaign keywords ids.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -48,6 +50,7 @@ Array
                             [id] => 123456
                             [title] => keyword 1
                             [status] => active
+                            [group_id] => 54647
                             [group_status] => active
                         )
 
@@ -56,6 +59,7 @@ Array
                             [id] => 123457
                             [title] => keyword 2
                             [status] => active
+                            [group_id] => 54648
                             [group_status] => stop
                         )
                     

@@ -143,30 +143,9 @@ class MonitoringKeyword extends \SemstormApi\Semstorm{
    * @param array $data['pager']['items_per_page'] number of items per page.
    * @param array $data['pager']['page'] page number (starting from 0).
    */
-  public function getList($data) {
+  public function getList($data = []) {
     try{
       $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-list.json", [
-              'json' => $data, 
-    ]);
-      return json_decode($response -> getBody(), true);
-    }catch( \Exception $e){
-      return $this->handleRequestException($e);
-    }
-  }
-    
-  /**
-   * Get keyword data.
-   * 
-   * @param array $data 
-   * @param array $data['id'] string keyword id
-   * @param array $data['domain'] string optional; competitor if not set it will take domain from campaign
-   * @param array $data['params'] array optional  with additional params
-   * 
-   * @return array of data
-   */
-  public function getData($data) {
-    try{
-      $response = $this -> httpClient -> post("monitoring/monitoring-keyword/get-data.json", [
               'json' => $data, 
     ]);
       return json_decode($response -> getBody(), true);

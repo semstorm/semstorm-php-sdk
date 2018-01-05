@@ -1,8 +1,8 @@
 <?php
 /**
- * Example: Monitoring retrieve keyword data.
+ * Example: Monitoring retrieve group data.
  *
- * Returns data about keyword.
+ * Returns data about group.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -22,19 +22,19 @@ $params['datemin'] = "20170914";
 $params['datemax'] = "20171127";
 $params['gap'] = "monthly";
 
-//Only keywords which contains word 'kredyt'.
+//Use filters to set desired group id.
 $filters = [];
-$filters[] = [
-  'field' => 'keyword',
-  'value' => 'answear',
-  'operand' => 'contains'
+$filters[] = [ 
+  "field" => "group",
+  "operand" => "equal",
+  "value" => __GROUP_1_ID__
 ];
 //Put filters into parameters.
 $params['filters'] = $filters;
 
 
 //Retrieve data.
-printf("Keyword 'kredyt' data:\n");
+printf("Group data:\n");
 print_r($monitoringCampaign->getData( $params ));
 
 

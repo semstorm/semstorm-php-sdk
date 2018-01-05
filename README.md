@@ -9,7 +9,6 @@ composer require semstorm/semstorm-php-sdk
 
 ### Via composer.json file
 
-
 ```json
 {
     "require": {
@@ -29,7 +28,6 @@ composer update
 ### Basic example
 
 ```php
-
 include_once 'vendor/autoload.php';
 
 use SemstormApi\Semstorm;
@@ -42,7 +40,7 @@ print_r($monitoringCampaign->retrieve(12345));
 
 ### Monitoring examples
 
-In docs/examples/Monitoring directory you can find examples with description and possible output.
+In `docs/examples/Monitoring` directory you can find examples with description and possible output.
 
 Furthermore you can use MonitoringExamples.php file which will run multiple scripts and return its results. Just open `docs/examples/MonitoringExamples.php` file, fill config data and run script to see how API works.
 

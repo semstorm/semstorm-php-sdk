@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring retrieve keyword.
+ * 
+ * Returns information about given keyword.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.

@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring delete keywords.
+ * 
+ * Set statuses of given keywords to deleted.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -12,8 +14,11 @@ use SemstormApi\Monitoring\MonitoringKeyword;
 //New monitoring keyword object to manage keywords.
 $monitoringKeyword = new MonitoringKeyword();
 
+$data = [];
+$data['id'] = [__KEYWORD_1_ID__, __KEYWORD_2_ID__];
+
 //Start keywords.
-print_r($monitoringKeyword->delete([__KEYWORD_1_ID__, __KEYWORD_2_ID__]));
+print_r($monitoringKeyword->delete( $data ));
 
 
 /*

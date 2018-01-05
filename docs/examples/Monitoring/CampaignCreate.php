@@ -1,6 +1,8 @@
 <?php
 /**
  * Example: Monitoring create campaign.
+ * 
+ * Create new empty campaign.
  */
 
 //If you are not using MonitoringExamples.php script uncomment two lines below and put your services access token.
@@ -15,6 +17,7 @@ $monitoringCampaign = new MonitoringCampaign();
 //Create campaign.
 $data = [];
 $data['domain'] = 'example.com';
+$data['type'] = 'seo';
 print_r($monitoringCampaign->create($data));
 
 
@@ -27,6 +30,11 @@ Array
     [params] => Array
         (
             [domain] => example.com
+            [title] => example.com
+            [type] => seo
+            [data] => Array
+                (
+                )
         )
 
     [result] => Array
