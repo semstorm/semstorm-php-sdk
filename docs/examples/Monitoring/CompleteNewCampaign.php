@@ -50,6 +50,7 @@ class CompleteNewCampaign {
       // Create new empty campaign.
       $data = [ ];
       $data['domain'] = "example.com";
+      $data['type'] = "seo";
       $result = $this -> getApiResults( $monitoringCampaign -> create( $data ) );
       // Save campaign id.
       $campaignId = $result['id'];
