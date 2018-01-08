@@ -18,10 +18,10 @@ $monitoringKeyword = new MonitoringKeyword();
 $params = [];
 //This can be array of keywords ids.
 $params['id'] = __KEYWORD_1_ID__;
-$params['datemin'] = "20170914";
-$params['datemax'] = "20171127";
-$params['gap'] = "monthly";
-$params['type'] = "competitors";
+$params['datemin'] = "20171214";
+$params['datemax'] = "2018015";
+$params['gap'] = "weekly";
+$params['type'] = "heatmap";
 
 //Retrieve data.
 printf("Keyword details:\n");

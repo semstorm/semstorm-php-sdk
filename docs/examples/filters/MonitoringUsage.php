@@ -42,7 +42,7 @@ print_r( $response );
  * and only keywords which points to example.com sites with word 'forum' in its url.
  */
 
-/*
+
 // Domain filters.
 $domain = 'example.com';
 // Only keywords with posistion change 1 or more (equals to "up") for given domain.
@@ -53,27 +53,22 @@ $filters[] = [
   'operand' => 'more',
   'domain' => $domain,
 ];
-//Only urls which contain 'forum'.
-$filters[] = [
-  'field' => 'url',
-  'value' => 'forum',
-  'operand' => 'contains',
-  'domain' => $domain,
-];
 
 // Parameters array.
 $params = [ ];
 $params['domains'] = [
   'example.com',
-  'another-example.com'
+  'second-example.com'
 ];
 // Put set of filters into parameters.
+$params = [];
+$params['id'] = __CAMPAIGN_1_ID__;
 $params['filters'] = $filters;
 
 // Make API call with filters appended.
-$response = $explorerKeywords -> getData( $params );
+$response = $monitoringCampaign -> getData( $params );
 
 //See whole response.
 print_r( $response );
-*/
+
 

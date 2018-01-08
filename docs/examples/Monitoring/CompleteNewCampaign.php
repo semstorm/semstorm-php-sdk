@@ -47,9 +47,9 @@ class CompleteNewCampaign {
       $monitoringKeyword = new MonitoringKeyword();
       
       // Setp 1 - create empty campaign.
-      // Create campaign with domain from configuration.
+      // Create new empty campaign.
       $data = [ ];
-      $data['domain'] = "wp.pl";
+      $data['domain'] = "example.com";
       $result = $this -> getApiResults( $monitoringCampaign -> create( $data ) );
       // Save campaign id.
       $campaignId = $result['id'];
