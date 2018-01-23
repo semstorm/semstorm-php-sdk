@@ -4,7 +4,7 @@
   "keywords": ["semstorm", "api", "php", "sdk"],
   "type": "library",
   "homepage": "https://github.com/semstorm/semstorm-php-sdk",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-only",
   "require": {
     "guzzlehttp/guzzle": "~6.0"
   },
