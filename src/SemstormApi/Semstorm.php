@@ -17,33 +17,44 @@
 namespace SemstormApi;
 
 class Semstorm{
-
+  const _API_ENDPOINT_ = 'http://api.semstorm.com/api-v3/';
   protected $httpClient;
   protected static $token;
-  protected static $base_uri;
+  protected static $baseUri;
   protected static $debug;
 
   /**
    * Constructor.
    *
-   * @param string access token
+   * @param string access token, API access token, if ommited used token from init() function.
    *
-   * @param string endpoint url
+   * @param string endpoint url, not to override.
+   * 
+   * @param bool debug mode, set to true to enable guzzle debug info, if ommited used token from init() function.
    */
-  public function __construct($_token = null, \GuzzleHttp\Client $httpClient = null) {
-    if($_token == null){
+  public function __construct($token = null, $baseUri = null, $debug = null) {
+    if($token == null){
       if(empty(self::$token)){
         throw new \SemstormApi\SemstormException('No access token provided.', 401 );
       }
-      $_token = self::$token;
+      $token = self::$token;
     }
 
     if ($httpClient === null) {
+      if($baseUri == null){
+        if(empty(self::$baseUri)){
+          self::init($token);
+        }
+        $baseUri = self::$baseUri;
+      }
+      if($debug === null){
+        $debug = empty(self::$debug) ? false : true;
+      }
       $options = [
-        'base_uri' => self::$base_uri,
-        'query' => ['services_token' => $_token],
+        'base_uri' => $baseUri,
+        'query' => ['services_token' => $token],
         'headers' => ['Content-Type' => 'application/json','Accept'=>'application/json'],
-        'debug' => self::$debug
+        'debug' => $debug
       ];
       if(isset($this->requestOptions)){
         $options = array_merge($options, $this->requestOptions);
@@ -54,21 +65,42 @@ class Semstorm{
       $this -> httpClient = $httpClient;
     }
   }
-
+  
   /**
-   * Initialize API for future use by settings access token.
+   * Initialize API for future use by settings access token, optional url and guzzle debug mode.
    *
-   * @param string $token
+   * @param string access token, API access token.
+   *
+   * @param string endpoint url, not to override.
+   * 
+   * @param bool debug mode, set to true to enable guzzle debug info.
    */
-  static function init($token, $base_uri = null, $debug = false){
+  static function init($token, $baseUri = null, $debug = false){
     self::$token = $token;
     self::$debug = $debug;
-    if($base_uri){
-      self::$base_uri = $base_uri;
+    if($baseUri){
+      self::$baseUri = $baseUri;
     }
     else{
-      self::$base_uri = 'http://api.semstorm.com/api-v3/';
+      self::$baseUri = self::_API_ENDPOINT_;
     }
+  }
+  /**
+   * Returns guzzle client.
+   * 
+   * @return \GuzzleHttp\Client guzzle http client used by this instance.
+   */
+  function getHttpClient(){
+    return $this->httpClient;
+  }
+
+  /**
+   * Sets guzzle client.
+   *
+   * @param \GuzzleHttp\Client guzzle http client to be used by this instance.
+   */
+  function setHttpClient( \GuzzleHttp\Client $httpClient){
+    $this->httpClient = $httpClient;
   }
   
   /**
