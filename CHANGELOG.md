@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ## 0.x
+- 0.0.6 (2018-04-10)
+  - Disable endpoints explorer-urls and tools as they will be refactored.
+  - Make simple filters and sorting available in explorer.
+  - Create basic explorer documentation.
 - 0.0.5 (2018-01-05)
   - Simplify filter usage. Remove SemstormFilters class, all filters are send as simple parameters.
   - Add more examples.
