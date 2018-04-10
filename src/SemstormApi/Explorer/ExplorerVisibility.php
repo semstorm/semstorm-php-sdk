@@ -17,11 +17,11 @@
 namespace SemstormApi\Explorer;
 
 
-class ExplorerDomains extends \SemstormApi\Semstorm{
+class ExplorerVisibility extends \SemstormApi\Semstorm{
   
     
   /**
-   * Retrieve domains historical traffic and keywords count.
+   * Retrieve domains visibility, traffic and keywords count.
    * 
    * @param array $params settings for api call, only 'domains' is required = [
    *   'domains' = [ strings ]
@@ -33,9 +33,9 @@ class ExplorerDomains extends \SemstormApi\Semstorm{
    *   'filters' = [] - filters dont work for 'monthly' gap
    * ]
    */
-  public function visibility($params) {
+  public function getData($params) {
     try{
-      $response = $this -> httpClient -> post("explorer/explorer-domains/visibility.json", [
+      $response = $this -> httpClient -> post("explorer/explorer-visibility/get-data.json", [
               'json' => $params, 
     ]);
       return json_decode($response -> getBody(), true);
