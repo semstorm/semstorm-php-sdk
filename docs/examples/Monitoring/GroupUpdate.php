@@ -47,7 +47,7 @@ Array
             [id] => __GROUP_1_ID__
         )
 
-    [result] => 1
+    [results] => 1
     [_credits] => 0
     [_credits_left] => 80
 )

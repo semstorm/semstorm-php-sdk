@@ -31,7 +31,7 @@ Array
             [table] => devices
         )
 
-    [result] => Array
+    [results] => Array
         (
             [devices] => Array
                 (

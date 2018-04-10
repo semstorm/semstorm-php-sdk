@@ -31,7 +31,7 @@ Array
             [id] => __KEYWORD_1_ID__
         )
 
-    [result] => Array
+    [results] => Array
         (
             [id] => __KEYWORD_1_ID__
             [title] => Keyword name

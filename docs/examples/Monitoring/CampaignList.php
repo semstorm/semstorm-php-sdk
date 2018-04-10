@@ -49,7 +49,7 @@ Array
 
         )
 
-    [result] => Array
+    [results] => Array
         (
             [count] => 76
             [campaigns] => Array

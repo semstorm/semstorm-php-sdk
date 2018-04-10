@@ -33,7 +33,7 @@ Array
             [1] => __GROUP_2_ID__
         )
 
-    [result] => Array
+    [results] => Array
         (
             [__GROUP_1_ID__] => 1
             [__GROUP_2_ID__] => 1

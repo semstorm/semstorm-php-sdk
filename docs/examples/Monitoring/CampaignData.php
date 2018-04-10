@@ -53,7 +53,7 @@ Array
 
         )
 
-    [result] => Array
+    [results] => Array
         (
             [__GROUP_ID__] => Array
                 (

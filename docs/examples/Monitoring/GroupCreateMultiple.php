@@ -74,7 +74,7 @@ Array
 
         )
 
-    [result] => Array
+    [results] => Array
         (
             [id] => Array
                 (

@@ -58,7 +58,7 @@ Array
 
         )
 
-    [result] => Array
+    [results] => Array
         (
             [__CAMPAIGN_1_ID__] => Array
                 (

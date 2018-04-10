@@ -40,7 +40,7 @@ Array
                 )
         )
 
-    [result] => Array
+    [results] => Array
         (
             [count] => 12
             [groups] => Array

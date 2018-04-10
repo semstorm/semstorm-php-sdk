@@ -40,7 +40,7 @@ Array
                 )
         )
 
-    [result] => Array
+    [results] => Array
         (
             [count] => 56
             [keywords] => Array

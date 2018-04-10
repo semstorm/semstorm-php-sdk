@@ -33,7 +33,7 @@ Array
             [1] => __CAMPAIGN_2_ID__
         )
 
-    [result] => Array
+    [results] => Array
         (
             [__CAMPAIGN_1_ID__] => 1
             [__CAMPAIGN_2_ID__] => 1

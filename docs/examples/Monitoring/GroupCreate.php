@@ -50,7 +50,7 @@ Array
 
         )
 
-    [result] => Array
+    [results] => Array
         (
             [id] => 12345
         )

@@ -37,7 +37,7 @@ Array
                 )
         )
 
-    [result] => Array
+    [results] => Array
         (
             [id] => 123456
         )

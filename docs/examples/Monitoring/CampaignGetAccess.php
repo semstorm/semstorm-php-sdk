@@ -25,7 +25,7 @@ Example output
 Array
 (
     [params] => []
-    [result] => Array
+    [results] => Array
         (
             [1234] => Array
                 (

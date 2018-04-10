@@ -32,14 +32,35 @@
         background-size: auto, auto;
         background-attachment: fixed, fixed;
       }
+      .bs-docs-sidebar.affix {
+        margin-top: 20px;
+      }
+      .nav > ul > li.active > a,
+      .nav li.active li.active a {
+        font-weight: 600;
+      }
+      .nav > ul > li:not(.active) ul {
+        display: none;
+      }
+      .nav > ul > li.active ul {
+        display: block;
+      }
+      p.well {
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        padding: 9px 14px;
+        margin-bottom: 14px;
+        background-color: #f7f7f9;
+        border: 1px solid #e1e1e8;
+        border-radius: 4px;
+      }
     </style>
   </head>
   
-  <body>
+  <body data-spy="scroll" data-target=".spy">
     <div class="container-fluid" id="apidoc">
       <div class="row">
-        <div class="col-md-2 col-xs-2">
-          <div  style="position: fixed; top: 20px; bottom: 0px; overflow-y: auto; margin-bottom: 20px;">
+        <div class="col-lg-2" role="complementary">
+          <div  class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix">
             <div class="panel panel-default">
               <div class="panel-body">
                 <nav>
@@ -58,8 +79,8 @@
               </div>
             </div>
             <div class="panel panel-default">
-              <div class="panel-body">
-                <nav>
+              <div class="panel-body spy">
+                <nav class="nav">
                   <ul>
                     <li>
                       <a href="#introduction">Introduction</a>
@@ -78,8 +99,11 @@
                         <li><a href="#filters-array">Filters array</a></li>
                         <li><a href="#throttle-prevention">Throttle prevention</a></li>
                         <li><a href="#keyword-regexp">Keyword regexp</a></li>
-                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#filters-examples">Examples</a></li>
                       </ul>
+                    </li>
+                    <li>
+                      <a href="#sorting">Sorting</a>
                     </li>
                   </ul>
                 </nav>
@@ -89,7 +113,7 @@
           </div>
         <!--  end of col-2 -->
         </div>
-        <div class="col-md-8 col-sm-10">
+        <div class="col-lg-10 col-sm-12">
         <div class="panel panel-default" style="margin:20px 10px;">
         <div class="panel-body">
           
@@ -98,11 +122,11 @@
           <div class="row">
             <div class="col-md-12">
               <p>
-                Below documentation contain basic information about using SEMSTORM API v3.
+                This document contains basic information how to use SEMSTORM API v3.
               </p>
               <p>
-                We encourage to use <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk">SEMSTORM PHP SDK library</a> which delivers simple and ready-to-use functionallity for SEMSTORM API.<br>
-                Take into consideration that SEMSTORM PHP SDK library is under <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk/blob/master/LICENSE">Apache License 2.0</a>, it is distributed without any warranties, and support is not included. If you encounter any problems please leave a ticket to  <a href="https://github.com/semstorm/semstorm-php-sdk/issues/new" target="_blank">let us know</a>. 
+                We encourage using <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk">SEMSTORM PHP SDK library</a> which delivers simple and ready-to-use functionality for SEMSTORM API.<br>
+                SEMSTORM PHP SDK library is under <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk/blob/master/LICENSE">Apache License 2.0</a>, This means that library is distributed without any warranties. What is more, support is not included. If you encounter any problems, please <a href="https://github.com/semstorm/semstorm-php-sdk/issues/new" target="_blank">leave us a ticket</a>. 
               </p>
             </div>
           </div>
@@ -113,65 +137,65 @@
             <div class="col-md-12">
               <h4 id="access-token" class="text-center" style="margin:20px;">Get access token</h4>
               <p>
-                <strong>Access token</strong> is unique set of characters which identifies you, and allow you to use API.
+                The <strong>access token</strong> is the unique string that authorizes your API access.
               </p>
               <p>
-                If you are registered user, you can go to <a target="_blank" href="https://app.semstorm.com/user/api/token">"Services token" tab</a> in SEMSTORM system while logged in, and simply generate new token for yourself.
+               To get your access token you need to log in and go to <a target="_blank" href="https://app.semstorm.com/user/api/token">"Services token"</a> section where you can generate a new token.
               </p>
               <p>
-                <strong>Access token allow to benefit from all API functionallity in the name of user who generated it</strong>, so dont share it with any third party! It should be handled with caution like passwords. 
+                <strong>Do not share your access token with any third party individuals.</strong> Access token allows to obtain any information regarding your campaigns and gives access to all API functionality. It should be handled with caution like passwords. 
               </p>
               <p>
-                <strong>If you feel unsafe with your token</strong> - eg. you suspect that token could be obtained by unauthorised persons, you can regenerate your token, and get new one in same page you get your first. Just remember that previous token will be expired in moment you generate new one, so you have to replace it in all your scipts and functions which was using old one. 
+                <strong>If you suspect someone else is using your token you should revoke it</strong> and get a new one. You can regenerate your token in <a target="_blank" href="https://app.semstorm.com/user/api/token">Services token</a> section. Attention! After you regenerate your token it will immediately stop working, so you will have to replace it in your application right away.
               </p>
             </div>
             
             <div class="col-md-12">
               <h4 id="results-structure" class="text-center" style="margin:20px;">API results structure</h4>
-              <p><strong>Results have uniform structure.</strong> After calling API (in any way) client will receive response, if call was made using SEMSTORM PHP SDK API it will be php array, if calling directly by curl with .json prefix it will be encoded JSON string, eventhou every response will have structure which allows it's easy itnerpretation and data retrieve. Response array may contain:</p>
-              <p><strong>"params":</strong> array containing request aprameters - it will be params set by client and send to server, or -if optional- added by server automatically.</p>
-              <p><strong>"result":</strong> array containing request result(s) if no error occured.</p>
-              <p><strong>"error":</strong> array containing request info about any errors which occured, it dont exist if request was succesful. It have "message" field which holds information about reason of failure.</p>
-              <p><strong>"_credits":</strong> integer appears for most of results, showing how much request costs, it can be zero.</p>
-              <p><strong>"_credits_left":</strong> integer appears for most of results, showing how many credits left for current account.</p>
+              <p><strong>Each API call gives a response.</strong> Response structure while using SEMSTORM PHP DSK API will be a PHP array. While using cURL with <code>.json</code> prefix, you will receive encoded JSON string.</p>
+              <p>Every response has easy to interpret structure. A response may contain following keys:</p>
+              <p><strong>"params":</strong> an associative array/object containing all request parameters.</p>
+              <p><strong>"result":</strong> an associative array/object with result set (considering no errors occurred).</p>
+              <p><strong>"error":</strong> ": an associative array/object that exists only if a request was unsuccessful; it contains information about causes of failure.</p>
+              <p><strong>"_credits":</strong> an integer showing how much each request costs; can be zero.</p>
+              <p><strong>"_credits_left":</strong> an integer showing how many credits are left; can be zero.</p>
             </div>
             
             <div class="col-md-12">
               <h4 id="api-restrictions" class="text-center" style="margin:20px;">API restrictions</h4>
               <p>
-                <strong>API have multiple limitations</strong> to maximize efficiency and data credibility.
+                <strong>API has multiple limitations</strong> to maximize efficiency and data credibility.
               </p>
               <p>
                 <strong>Requests per second.</strong>
-                Each account (access token) have limit in number of requests.
-                This is represented by number of request per short time frame.
-                It return error with code 503 and mesasge "You are requesting too fast." (<a href="#errors">see below</a>).
+                Each account (access token) has a limited number of requests.
+                When access token generates more than allowed number of requests per second, error code 503 and message "You are requesting too fast." is returned. (<a href="#errors">see below</a>).
               </p>
               <p>
                 <strong>API throttle prevention.</strong>
-                Retrieving big sets of data, and/or setting date range long into past highly increase chance to get "Prevent throttling" error.
-                In that case you can try again after some time, or try to divide request to few less and retrieve it piece by piece.
-                It return error with code 503 and mesasge "Throttle prevention." (<a href="#errors-throttle">see below</a>).
+                Retrieving big sets of data, and/or setting long date range highly increase a chance to get "Prevent throttling" error.
+                In that case, you can try to divide request to few less and retrieve it piece by piece or wait before repeating your request.
+                It returns error code 503 and mesasge "Throttle prevention." (<a href="#errors-throttle">see below</a>).
               </p>
               <p>
                 <strong>Single request limits.</strong>
-                Those limits are set from above in some requests to prevent large calculations and data transfering.
-                Mostly it applies to request like creation multiple objects, retireve sets of data.
-                To prevent those errors reduce amount of data in request.
-                It return error with code 400 and mesasge "Request limit.".
+                Those limits are set to prevent large and complicated calculations as well as big data transferring, hence making it difficult for others to use API simultaneously.
+                Mostly it applies to request like creating multiple objects, retrieve sets of data.
+                To prevent those errors reduce the amount of data in one request.
+                It returns error code 400 and message "Request limit.".
               </p>
             </div>
             
             <div class="col-md-12">
               <h4 id="errors" class="text-center" style="margin:20px;">Error message</h4>
-              <p><strong>If error occurs</strong> response will be send with proper http code (all success responses have code 200), and carry error information in body. Encoded body will contain variable keyed as "error" in which will be placed (at least this one) "message" string. This string have error code, and information text.</p>
+              <p><strong>If an error occurs</strong> response will be sent with proper HTTP code and carry error information in its body.</p>
               <p>If you encounter any <strong>error which is not listed</strong> as standard API error <a href="https://github.com/semstorm/semstorm-php-sdk/issues/new" target="_blank">let us know</a>.</p>
-              <p> See below possible error codes:</p>
+              <p> Possible error codes:</p>
               <div class="table-responsive">
                 <table class="table table-condensed table-bordered">
                   <thead>
                     <tr>
-                      <th>Http&nbsp;code</th>
+                      <th>HTTP&nbsp;code</th>
                       <th>Message</th>
                     </tr>
                   </thead>
@@ -186,7 +210,7 @@
                     </tr>
                     <tr>
                       <td>404</td>
-                      <td><strong>(404) No entry for given id.</strong> Id dont exist - or is unavailable for current user.</td>
+                      <td><strong>(404) No entry for given id.</strong> ID do not exists or is unavailable.</td>
                     </tr>
                     <tr>
                       <td>404</td>
@@ -223,12 +247,12 @@
             
             <div class="col-md-12">
               <h4 id="other-info" class="text-center" style="margin:20px;">Other info</h4>
-              <p><strong>Changes in API</strong> are <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/CHANGELOG.md">listed here</a> and all apply to version 3 of SEMSTORM API.</p>
-              <p><strong>Problem with curl.</strong> If you get message "Unsupported request content type..." means you are using invalid content type. Curl examples below use JSON input/output format and we <strong>encourage to use this solution</strong>, if you want to communicate by JSON as well add <code>-H "Content-Type: application/json"</code> in your curl request <a href="https://curl.haxx.se/docs/manpage.html#-H" target="_blank">(see here)</a>.</p>
+              <p><strong>Changes in API v3</strong> are <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/CHANGELOG.md">listed here</a>.</p>
+              <p><strong>Resolving problems with cURL.</strong> If you get message "Unsupported request content type..." then it means you are using invalid content type. cURL examples below use JSON input/output format and we <strong>strongly encourage using this solution</strong>, if you want to communicate by JSON as well add <code>-H "Content-Type: application/json"</code> in your cURL request <a href="https://curl.haxx.se/docs/manpage.html#-H" target="_blank">(see here)</a>.</p>
               <p>
                 <strong>Variables types:</strong>
-                Services backend is implemented in PHP, which does not require explicit type definition (<a href="http://php.net/manual/pl/language.types.type-juggling.php" target="_blank">see here</a>), that is why in examples below all variables described as "int" can also be passed as string, and also returned types can differ from described below depend on content-type, and client environment.<br>
-                For example remember that -eventhou every input and output described below using "array" nomenclature- when returning data in JSON you will get objects in place of assoc arrays.<br> 
+                Services backend is implemented in PHP, which does not require explicit type definition (<a href="http://php.net/manual/pl/language.types.type-juggling.php" target="_blank">see here</a>), that is why in examples below all variables described as "int" can also be passed as a string, and also returned types can differ from described below depend on content-type, and client environment.<br>
+                For example, remember that even thou every input and output described below using "array" nomenclature- when returning data in JSON you will get objects in place of assoc arrays.<br> 
                 If your software requires explicit variable type definition remember to cast results into proper variables.
               </p>
             </div>
@@ -245,12 +269,12 @@
             
             <div class="col-md-12">
               <h4 id="filters-structure" class="text-center" style="margin:20px;">Filters structure</h4>
-              <p>Basically creating filter is just defining proper array. This array constain up to 4 properties, which are:</p>
-              <p><strong>field (string)</strong>:  name of field which filter applies to</p>
-              <p><strong>value (mixed)</strong>:  filter value, it can be eg. regex string to filter by, array of numbers to set range between them etc.</p>
-              <p><strong>operand (string)</strong>:  operand determine how interpret filter condition, eg. "equal" will require results to have exact value, while "less" will search everything smaller than given value. Default value is "equal" which is proper value for all fields except cpc.</p>
-              <p><strong>domain (string)</strong>:  domain which filter applies to, it is used only in some types of filters</p>
-              <p>Depends on filtered field some values can be optional, some not used, and some required.</p>
+              <p>Basically creating a filter is just defining a proper array. This array constain up to 4 properties, which are:</p>
+              <p><strong>field (string)</strong>:  name of a field which a filter applies to</p>
+              <p><strong>value (mixed)</strong>:  filter value, it can be eg. regex string to filter by, an array of numbers to set range between them etc.</p>
+              <p><strong>operand (string)</strong>:  operand determine how to interpret filter condition, eg. "equal" will require results to have an exact value, while "less" will search everything smaller than given value. The default value is "equal" which is a proper value for all fields except cpc.</p>
+              <p><strong>domain (string)</strong>:  domain which a filter applies to, it is used only in some types of filters</p>
+              <p>Depends on the filtered field some values can be optional, some not used, and some required.</p>
             </div>
             
             <div class="col-md-12">
@@ -275,10 +299,10 @@
                       <td>string</td>
                       <td>
                         Filters by keyword name (title).<br>
-                        For <strong>operand</strong> <code>equal</code> it finds only keyword which is exact as given value.<br>
-                        For <strong>operand</strong> <code>contains</code> it finds all keywords which have given value in its name.<br>
-                        For <strong>operand</strong> <code>synonym</code> it finds all keywords which have given value or its synonyms in its name. This option is for <strong>explorer only</strong>.<br>
-                        For <strong>operand</strong> <code>regexp</code> it uses regular expression to filter keyword name.
+                        For <strong>operand</strong> <code>equal</code>, it finds only keyword which is exact as given value.<br>
+                        For <strong>operand</strong> <code>contains</code>, it finds all keywords which have given value in its name.<br>
+                        For <strong>operand</strong> <code>synonym</code>, it finds all keywords which have given value or its synonyms in its name. This option is for <strong>explorer only</strong>.<br>
+                        For <strong>operand</strong> <code>regexp</code>, it uses a regular expression to filter keyword name.
                       </td>
                     </tr>
                     <tr>
@@ -286,7 +310,7 @@
                       <td><code>equal</code></td>
                       <td>no</td>
                       <td>integer</td>
-                      <td>This filter is for <strong>monitoring only</strong>. Filter keywords from particular group. Value must be proper group id.</td>
+                      <td>This filter is for <strong>monitoring only</strong>. Filter keywords from this particular group. A value must be proper group id.</td>
                     </tr>
                     <tr>
                       <td><code>cp</code></td>
@@ -306,7 +330,7 @@
                       <td>no</td>
                       <td>mixed (see&nbsp;description)</td>
                       <td>
-                        Filters by keyword search volume. Search volume is positive integer.<br>
+                        Filters by keyword search volume. Search volume is a positive integer.<br>
                         For <strong>operand</strong> <code>equal</code> it finds only keywords which have search volume equals to given value. Value must be int.<br>
                         For <strong>operand</strong> <code>between</code> it finds all keywords which have search volume between two given values. Value must be array with two itnegers, first one must be lower limit and second upper limit.<br>
                         For <strong>operand</strong> <code>less</code> it finds only keywords which have search volume less then given value. Value must be int.<br>
@@ -387,7 +411,7 @@
                       <td>no</td>
                       <td>mixed (see&nbsp;description)</td>
                       <td>
-                        Filters by keyword CPC. CPC is positive integer.<br>
+                        Filters by keyword CPC. CPC is a positive integer.<br>
                         For <strong>operand</strong> <code>between</code> it finds all keywords which have CPC between two given values. Value must be array with two itnegers, first one must be lower limit and second upper limit.<br>
                         For <strong>operand</strong> <code>less</code> it finds only keywords which have CPC less then given value. Value must be int.<br>
                         For <strong>operand</strong> <code>more</code> it finds only keywords which have CPC more then given value. Value must be int.
@@ -423,7 +447,7 @@
                       <td>yes</td>
                       <td>mixed (see&nbsp;description)</td>
                       <td>
-                        Filters by domain traffic. Traffic is positive integer. Remember that traffic is estimated value and it should be used as comparision between keywords/domains inside system, not as exact real value.<br>
+                        Filters by domain traffic. Traffic is a positive integer. Remember that traffic is estimated value and it should be used as comparision between keywords/domains inside system, not as exact real value.<br>
                         For <strong>operand</strong> <code>equal</code> it finds only keywords which traffic for domain equals to given value. Value must be int.<br>
                         For <strong>operand</strong> <code>between</code> it finds all keywords which have traffic for domain between two given values. Value must be array with two itnegers, first one must be lower limit and second upper limit.<br>
                         For <strong>operand</strong> <code>less</code> it finds only keywords which have traffic for domain less then given value. Value must be int.<br>
@@ -470,7 +494,7 @@
               <h4 id="keyword-regexp" class="text-center" style="margin:20px;">Keyword regular expression</h4>
               <p>
                 For keyword field there is possible operand "regexp" which allows you to create regular expression to filter by keywords names.<br>
-                This funcionallity is designed for advanced users - more information about regular expression you can find <a target="_blank" href="https://www.regular-expressions.info/">here</a>.<br>
+                This funcionality is designed for advanced users - more information about regular expression you can find <a target="_blank" href="https://www.regular-expressions.info/">here</a>.<br>
                 In this filter you <strong>can</strong> use:
                 <ul>
                   <li>brackets <code>[a-z]{4,5}</code> <code>(shoe|sock)</code></li>
@@ -489,16 +513,63 @@
                 <strong>Examples:</strong>
                 <ul>
                   <li><code>[a-z]{4-5} .*</code> keyword with at least two words and first word 4-5 letter long</li>
-                  <li><code>.* .* .*</code> keyword with at least 3 words</li>
+                  <li><code>.* .* .*</code> keyword with at least 2 spaces (3 words)</li>
                   <li><code>(shoe|sock).*</code> keyword starting with shoe or sock</li>
                   <li><code>.*shoe.*</code> keyword containing shoe</li>
                 </ul>
               </p>
             </div>
             <div class="col-md-12">
-              <h4 id="examples" class="text-center" style="margin:20px;">Examples</h4>
+              <h4 id="filters-examples" class="text-center" style="margin:20px;">Examples</h4>
               <p>Many examples about how to build filters can be found in <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/filters/FiltersExplain.php" target="_blank">/examples/filters/FiltersExplain.php</a></p>
               <p>Practical usage of filters can be found in <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/filters/MonitoringUsage.php" target="_blank">/examples/filters/MonitoringUsage.php</a> and <a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/filters/ExplorerUsage.php" target="_blank">/examples/filters/ExplorerUsage.php</a></p>
+            </div>
+          </div>
+          
+          <h2 id="sorting" class="text-center" style="margin:20px;">Sorting</h2>
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                Use sorting to retrieve desired set of results. Where possible sorting is passed along with other params as array keyed "sorting". It requires two fields inside: "field" and "sort".
+              </p>
+              <div class="table-responsive">
+                <table class="table table-condensed table-bordered">
+                  <thead>
+                    <tr>
+                      <th class="info" colspan="6">Sorting array</th>
+                    </tr>
+                    <tr>
+                      <th>parameter</th>
+                      <th>type</th>
+                      <th>description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>field</td>
+                      <td>string</td>
+                      <td>Field to sort by.</td>
+                    </tr>
+                    <tr>
+                      <td>sort</td>
+                      <td>string</td>
+                      <td>Direction of sorting. Value "desc" stands for descending order, and "asc" for ascending order. Possible values are "desc", "asc".</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <h4 id="" class="text-center" style="margin:20px;">Possible sorting options</h4>
+              <p>Sort order is always "asc" or "desc" as written above.</p>
+              <p>Sorting fields depends on endpoint, in every place where sorting is possible fields list will be provided.</p>
+            </div>
+            <div class="col-md-12">
+              <h4 id="" class="text-center" style="margin:20px;">Sorting with dynamic indexes</h4>
+              <p>
+                Some fields with names will have suffix ":X" which means they requires index in field name.
+                Index points to specific criteria on sorting, when one column may occurs multiple times. Eg. "position:2" in <a href="./explorer.html#explorer-keywords">Explorer keywords</a> means that results will be sorted by position of third passed domain.
+              </p>
             </div>
           </div>
           

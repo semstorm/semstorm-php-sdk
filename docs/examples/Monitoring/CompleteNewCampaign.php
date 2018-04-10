@@ -152,8 +152,8 @@ class CompleteNewCampaign {
     if (isset( $callReturn['error'] )) {
       throw new Exception( $callReturn['error']['message'] );
     }
-    if (isset( $callReturn['result'] )) {
-      return $callReturn['result'];
+    if (isset( $callReturn['results'] )) {
+      return $callReturn['results'];
     }
     return false;
   }

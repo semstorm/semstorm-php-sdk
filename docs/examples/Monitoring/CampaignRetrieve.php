@@ -31,7 +31,7 @@ Array
             [id] => __CAMPAIGN_1_ID__
         )
 
-    [result] => Array
+    [results] => Array
         (
             [id] => __CAMPAIGN_1_ID__
             [title] => example.com

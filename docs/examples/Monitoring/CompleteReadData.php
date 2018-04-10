@@ -31,31 +31,33 @@ $accessToken = "123456789abdefghi987654321qwertyABCDEFGH";
 $campaignId = "123";
 $keywordId = "45678";
 
+$dateMin = date('Ymd', strtotime(' -14 day'));
+$dateMax = date('Ymd', strtotime(' -1 day'));
 
 // ####
 // Script start.
 // ####
 echo "start: " . date("Y-m-d H:i:s");
 try {
-  $completeReadData = new CompleteReadData( $accessToken );
+  $completeReadData = new CompleteReadData( $accessToken, $campaignId, $keywordId, $dateMin, $dateMax );
   
    echo "\n\nGet list of keywords from campaign {$campaignId}:\n";
-   print_r($completeReadData->getCampaignKeywords($campaignId));
+   print_r($completeReadData->getCampaignKeywords());
   
-   echo "\n\nData for campaign {$campaignId} from July:\n";
-   print_r($completeReadData->getCampaignDailyDataFromJuly($campaignId));
+   echo "\n\nData for campaign {$campaignId}:\n";
+   print_r($completeReadData->getCampaignDailyData());
    
-   echo "\n\nData for campaign {$campaignId} from first half of year, granulated monthly:\n";
-   print_r($completeReadData->getCampaignMontlyDataFromFirstHalfOfYear($campaignId));
+   echo "\n\nData for campaign {$campaignId} from last half of year, granulated monthly:\n";
+   print_r($completeReadData->getCampaignMontlyDataFromFirstHalfOfYear());
   
-   echo "\n\nData for campaign {$campaignId} from July, including only high volume keywords:\n";
-   print_r($completeReadData->getCampaignHighVolumeData($campaignId));
+   echo "\n\nData for campaign {$campaignId}, including only high volume keywords:\n";
+   print_r($completeReadData->getCampaignHighVolumeData());
   
-  echo "\n\nData for keyword {$keywordId} from July, format competitors:\n";
-  print_r($completeReadData->getKeywordDetailsFromJuly($keywordId, "competitors"));
+  echo "\n\nData for keyword {$keywordId}, format competitors:\n";
+  print_r($completeReadData->getKeywordDetails("competitors"));
 
-  echo "\n\nData for keyword {$keywordId} from July, format top50:\n";
-  print_r($completeReadData->getKeywordDetailsFromJuly($keywordId, "top50"));
+  echo "\n\nData for keyword {$keywordId}, format top50:\n";
+  print_r($completeReadData->getKeywordDetails("top50"));
 }
 catch ( Exception $e ) {
   echo "\n\nError: " . $e -> getMessage();
@@ -63,14 +65,19 @@ catch ( Exception $e ) {
 echo "\n\nend: " . date("Y-m-d H:i:s");
 
 class CompleteReadData {
-
+  
+  private $campaignId, $keywordId, $dateMin, $dateMax;
   private $monitoringCampaign;
   private $monitoringKeyword;
   private $filters;
 
-  function __construct($token) {
+  function __construct($token, $campaignId, $keywordId, $dateMin, $dateMax) {
     try {
       // Step 0 - initialize.
+      $this->campaignId = $campaignId;
+      $this->keywordId = $keywordId;
+      $this->dateMin = $dateMin;
+      $this->dateMax = $dateMax;
       // Initialize api.
       Semstorm::init( $token );
       // New monitoring campaign object to handle all campaign requests.
@@ -82,10 +89,10 @@ class CompleteReadData {
     }
   }
 
-  function getCampaignKeywords( $campaignId ){
+  function getCampaignKeywords(){
     try {
       $params = [ ];
-      $params['campaign_id'] = $campaignId;
+      $params['campaign_id'] = $this->campaignId;
       $params['pager'] = [];
       $params['pager']['items_per_page'] = 100;
       $params['pager']['page'] = 0;
@@ -104,13 +111,13 @@ class CompleteReadData {
     }
   }
 
-  function getKeywordDetailsFromJuly($id, $type) {
+  function getKeywordDetails($type) {
     try {
       $params = [ ];
-      $params['id'] = $id;
-      // Set date range to July and date gap to "daily".
-      $params['datemin'] = "20170701";
-      $params['datemax'] = "20170731";
+      $params['id'] = $this->keywordId;
+      // Set date range and gap to "daily".
+      $params['datemin'] = $this->dateMin;
+      $params['datemax'] = $this->dateMax;
       $params['gap'] = "daily";
       // Set data type.
       $params['type'] = $type;
@@ -120,13 +127,13 @@ class CompleteReadData {
     }
   }
 
-  function getCampaignDailyDataFromJuly($id) {
+  function getCampaignDailyData() {
     try {
       $params = [ ];
-      $params['id'] = $id;
-      // Set date range to July and date gap to "daily".
-      $params['datemin'] = "20170701";
-      $params['datemax'] = "20170731";
+      $params['id'] = $this->campaignId;
+      // Set date range and date gap to "daily".
+      $params['datemin'] = $this->dateMin;
+      $params['datemax'] = $this->dateMax;
       $params['gap'] = "daily";
       return $this -> getApiResults( $this -> monitoringCampaign -> getData( $params ) );
     } catch ( Exception $e ) {
@@ -134,13 +141,13 @@ class CompleteReadData {
     }
   }
 
-  function getCampaignMontlyDataFromFirstHalfOfYear($id) {
+  function getCampaignMontlyDataFromFirstHalfOfYear() {
     try {
       $params = [ ];
-      $params['id'] = $id;
+      $params['id'] = $this->campaignId;
       // Set date range to half a year and date gap to "monthly".
-      $params['datemin'] = "20170101";
-      $params['datemax'] = "20170630";
+      $params['datemin'] = date('Ymd', strtotime(' -6 month'));
+      $params['datemax'] = date('Ymd', strtotime(' -1 day'));
       $params['gap'] = "monthly";
       // Request call and return results.
       return $this -> getApiResults( $this -> monitoringCampaign -> getData( $params ) );
@@ -149,14 +156,14 @@ class CompleteReadData {
     }
   }
 
-  function getCampaignHighVolumeData($id) {
+  function getCampaignHighVolumeData() {
     try {
       $params = [ ];
-      $params['id'] = $id;
+      $params['id'] = $this->campaignId;
       $params['params'] = [ ];
       // Set date range and date gap.
-      $params['datemin'] = "20170701";
-      $params['datemax'] = "20170731";
+      $params['datemin'] = $this->dateMin;
+      $params['datemax'] = $this->dateMax;
       $params['gap'] = "daily";
       // Add filter "Only keywords with search volume more than 6000".
       $params["filters"] = [];

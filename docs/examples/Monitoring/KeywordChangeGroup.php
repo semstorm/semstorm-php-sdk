@@ -42,7 +42,7 @@ Array
                 )
         )
 
-    [result] => Array
+    [results] => Array
         (
             [__KEYWORD_1_ID__] => 1
             [__KEYWORD_2_ID__] => 1

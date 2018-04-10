@@ -32,15 +32,59 @@
         background-size: auto, auto;
         background-attachment: fixed, fixed;
       }
+      .bs-docs-sidebar.affix {
+        margin-top: 20px;
+      }
+      .nav > ul > li.active > a,
+      .nav li.active li.active a {
+        font-weight: 600;
+      }
+      .nav > ul > li:not(.active) ul {
+        display: none;
+      }
+      .nav > ul > li.active ul {
+        display: block;
+      }
+      .bs-callout {
+          margin: 20px 0;
+          padding: 20px;
+          border-left: 3px solid #eee;
+      }
+      .bs-callout h4 {
+          margin-top: 0;
+          margin-bottom: 5px;
+      }
+      .bs-callout-danger {
+          background-color: #fdf7f7;
+          border-color: #eed3d7;
+      }
+      .bs-callout-warning {
+          background-color: #faf8f0;
+          border-color: #faebcc;
+      }
+      .bs-callout-warning h4 {
+          color: #8a6d3b;
+      }
+      .bs-callout-danger h4 {
+          color: #b94a48;
+      }
+      p.well {
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        padding: 9px 14px;
+        margin-bottom: 14px;
+        background-color: #f7f7f9;
+        border: 1px solid #e1e1e8;
+        border-radius: 4px;
+      }
     </style>
   </head>
   
-  <body>
+  <body data-spy="scroll" data-target=".spy">
     <div class="container-fluid" id="apidoc">
 
       <div class="row">
-        <div class="col-md-2 col-xs-2">
-          <div  style="position: fixed; top: 20px; bottom: 0px; overflow-y: auto; margin-bottom: 20px;">
+        <div class="col-lg-2" role="complementary">
+          <div  class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix">
             <div class="panel panel-default">
               <div class="panel-body">
                 <nav>
@@ -53,14 +97,13 @@
                     </li>
                     <li>
                       <a href="./explorer.html">Explorer API</a>
-                    </li>
                   </ul>
                 </nav>
               </div>
             </div>
           <div class="panel panel-default">
-          <div class="panel-body">
-          <nav>
+          <div class="panel-body spy">
+          <nav class="nav">
             <ul>
               <li>
                 <a href="#introduction">Introduction</a>
@@ -143,7 +186,7 @@
           </div>
         <!--  end of col-2 -->
         </div>
-        <div class="col-md-8 col-sm-10">
+        <div class="col-lg-10 col-sm-12">
         <div class="panel panel-default" style="margin:20px 10px;">
         <div class="panel-body">
         
@@ -152,11 +195,10 @@
           <div class="row">
             <div class="col-md-12">
               <p>
-                Below documentation describes Monitoring functionallity in SEMSTORM API v3. It is divided into sections describing each part of Monitoring.
+                This document contains basic information how to use SEMSTORM Monitoring API v3.
               </p>
               <p>
-                We encourage to use <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk">SEMSTORM PHP SDK library</a> which delivers simple and ready-to-use functionallity for SEMSTORM API.<br>
-                Take into consideration that SEMSTORM PHP SDK library is under <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk/blob/master/LICENSE">Apache License 2.0</a>, it is distributed without any warranties, and support is not included. If you encounter any problems please leave a ticket to  <a href="https://github.com/semstorm/semstorm-php-sdk/issues/new" target="_blank">let us know</a>. 
+                SEMSTORM PHP SDK library is under <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk/blob/master/LICENSE">Apache License 2.0</a>, This means that library is distributed without any warranties. What is more, support is not included. If you encounter any problems, please <a href="https://github.com/semstorm/semstorm-php-sdk/issues/new" target="_blank">leave us a ticket</a>. 
               </p>
             </div>
           </div>
@@ -165,8 +207,8 @@
           
           <div class="row">
             <div class="col-md-12">
-              <p><strong>Tags are obsolete.</strong> Tags functionallity is disabled, their endpoint is closed and any usage of them is impossible.</p>
-              <p><strong>Advanced filters.</strong> Some of requests have optional "advanced filters" parameter. Those filters allows user to create advanced and precise reports/queries. Those filters are sent in request as simple array, but which must be build properly. For details about usage of filters see <a href="./index.html#filters">this documentation</a>. Currently requests using advanced filters are: <a href="#campaign-get-data">Campaign get data</a>.</p>
+              <p><strong>Tags are obsolete.</strong> Tags functionality is disabled, their endpoint is closed and any usage of them is impossible.</p>
+              <p><strong>Advanced filters.</strong> Some of the requests have optional "advanced filters" parameter. Those filters allow users to create advanced and precise reports/queries. Those filters are sent in a request as a simple array, which must be build properly. For details about usage of filters see <a href="./index.html#filters">this documentation</a>. Currently requests using advanced filters are: <a href="#campaign-get-data">Campaign get data</a>.</p>
             </div>
           </div>
           
@@ -175,7 +217,7 @@
           <div class="row">
             <div class="col-md-12">
               <p>
-                Every functionallity contains examples in curl and PHP. In PHP case, it is assumed that user have properly installed SEMSTORM PHP SDK library which can be fount <a href="https://github.com/semstorm/semstorm-php-sdk" target="_blank">here</a>. For curl -as any other than prepared sdk library- remember that SEMSTORM API guarantee compatibility only for JSON formatted data. 
+                Every functionality contains examples in curl and PHP. In PHP case, it is assumed that user have properly installed SEMSTORM PHP SDK library which can be fount <a href="https://github.com/semstorm/semstorm-php-sdk" target="_blank">here</a>. For curl -as any other than prepared sdk library- remember that SEMSTORM API guarantee compatibility only for JSON formatted data. 
               </p>
             </div>
             <div class="col-md-12">
@@ -297,6 +339,13 @@
                               <td>no</td>
                               <td></td>
                               <td>Trademarks list (strings). Default: no parameter. * - this value is available only for "ads" type.</td>
+                            </tr>
+                            <tr>
+                              <td>include_subdomains</td>
+                              <td>array</td>
+                              <td>no</td>
+                              <td></td>
+                              <td>Whether include subdomains or not. Default: not included.</td>
                             </tr>
                           </tbody>
                         </table>
@@ -2500,7 +2549,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="alert alert-warning" role="alert"><strong>Warning!</strong> This is not separate API endpoint, but just information how to retrieve group data using endpoint <a href="#campaign-get-data">monitoring-campaign/get-data</a>.</div>
+                      <div class="bs-callout bs-callout-warning" role="alert"><h4>Warning!</h4> This is not separate API endpoint, but just information how to retrieve group data using endpoint <a href="#campaign-get-data">monitoring-campaign/get-data</a>.</div>
                       <p>
                         <strong>Endpoint: </strong><br>
                         http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/get-data [POST]
@@ -3695,7 +3744,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="alert alert-warning" role="alert"><strong>Warning!</strong> This is not separate API endpoint, but just information how to retrieve keyword data using endpoint <a href="#campaign-get-data">monitoring-campaign/get-data</a>.</div>
+                      <div class="bs-callout bs-callout-warning" role="alert"><h4>Warning!</h4> This is not separate API endpoint, but just information how to retrieve keyword data using endpoint <a href="#campaign-get-data">monitoring-campaign/get-data</a>.</div>
                       <p>
                         <strong>Endpoint: </strong><br>
                         http://api.semstorm.com/api-v3/monitoring/monitoring-campaign/get-data [POST]
