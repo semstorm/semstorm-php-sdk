@@ -39,7 +39,8 @@ class Semstorm{
       }
       $token = self::$token;
     }
-
+    
+    $httpClient = $this->getHttpClient();
     if ($httpClient === null) {
       if($baseUri == null){
         if(empty(self::$baseUri)){

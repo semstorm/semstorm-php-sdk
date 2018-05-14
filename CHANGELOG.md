@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## 0.x
+- 0.0.6 (2018-05-14)
+  - Add examples for explorer.
+  - Add audits documentation.
 - 0.0.6 (2018-04-10)
   - Disable endpoints explorer-urls and tools as they will be refactored.
   - Make simple filters and sorting available in explorer.

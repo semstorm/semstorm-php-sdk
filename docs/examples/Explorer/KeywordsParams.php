@@ -63,8 +63,8 @@ $params['domains'] = ['example.com', 'another-example.com'];
 
 //API call.
 $response = $explorerKeywords->getData($params);
-$responseParams = $response->params;
-$keywordsCount = $response->results_count;
+$responseParams = $response['params'];
+$keywordsCount = $response['results_count'];
 
 //Print call params.
 printf("Call API with default parameters:\n");
@@ -78,9 +78,8 @@ print_r($keywordsCount);
 foreach ($params['domains'] as $domain){
   printf( "\n\nMostly searched keyword on which domain %s is visible is '%s'.\nIt points to url: %s,\nand gives traffic to this site equals to %s.",
     $domain,
-    $response->results[0]->keyword,
-    $response->results[0]->url->$domain,
-    $response->results[0]->traffic->$domain
+    $response['results'][0]['keyword'],
+    $response['results'][0]['url'][$domain],
+    $response['results'][0]['traffic'][$domain]
   );
 }
-

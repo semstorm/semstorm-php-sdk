@@ -42,9 +42,9 @@ $params['keyword_filter'] = 'lost';
 $response = $explorerKeywords->getData($params);
 
 printf( "Keyword '%s' have %s montly search volume!\nSite example.com was visible on this keyword on %s posistion, and now its gone.\n",
-  $response->results[0]->keyword,
-  $response->results[0]->volume,
-  $response->results[0]->position->{'example.com'}
+  $response['results'][0]['keyword'],
+  $response['results'][0]['volume'],
+  $response['results'][0]['position']['example.com']
 );
 
 
