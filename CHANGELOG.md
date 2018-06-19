@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.x
+- 3.0.0 (2018-06-19)
+  - Update files, tags, and descriptions to version 3.0.0.
+
 ## 0.0.x
 - 0.0.7 (2018-06-19)
   - Add Technology API beta with documentation.
