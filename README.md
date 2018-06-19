@@ -49,6 +49,10 @@ Furthermore you can use MonitoringExamples.php file which will run multiple scri
 
 For more examples see docs/examples directory, where are many samples with exhaustive comment.
 
+### Documentation
+
+Documentation can be found in [SEMSTORM API documentation pages](http://api.semstorm.com/).
+
 # SEMSTORM API
 
 ## Access

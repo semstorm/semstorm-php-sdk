@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Keywords API | SEMSTORM</title>
+    <!-- For tooltip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!--  Syntax highlighter (almost not used) -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <style type="text/css">
+      #apidoc * {
+        word-wrap: break-word;
+      }
+      ul {
+        padding-left: 25px;
+      }
+      body {
+        background-color: #ecf0f5;
+        background-image: url('https://app.semstorm.com/sites/all/themes/semstorm/img/bare-triangles-left.png'), url('https://app.semstorm.com/sites/all/themes/semstorm/img/bare-triangles-right.png');
+        background-size: contain, contain;
+        background-repeat: no-repeat, no-repeat;
+        background-position: left bottom, right center;
+        background-size: auto, auto;
+        background-attachment: fixed, fixed;
+      }
+      .bs-docs-sidebar.affix {
+        margin-top: 20px;
+      }
+      .nav > ul > li.active > a,
+      .nav li.active li.active a {
+        font-weight: 600;
+      }
+      .nav > ul > li:not(.active) ul {
+        display: none;
+      }
+      .nav > ul > li.active ul {
+        display: block;
+      }
+      p.well {
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        padding: 9px 14px;
+        margin-bottom: 14px;
+        background-color: #f7f7f9;
+        border: 1px solid #e1e1e8;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  
+  <body data-spy="scroll" data-target=".spy">
+    <div class="container-fluid" id="apidoc">
+      <div class="row">
+        <div class="col-lg-2" role="complementary">
+          <div  class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <nav>
+                  <ul>
+                    <li>
+                      <a href="./index.html">Overview</a>
+                    </li>
+                    <li>
+                      <a href="./monitoring.html">Monitoring API</a>
+                    </li>
+                    <li>
+                      <a href="./explorer.html">Explorer API</a>
+                    </li>
+                    <li>
+                      <a href="./audits.html">Audits API</a>
+                    </li>
+                    <li>
+                      <strong><a href="#documentation">Keywords API</a></strong>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          <div class="panel panel-default">
+          <div class="panel-body spy">
+          <nav class="nav">
+            <ul>
+              <li>
+                <a href="#documentation">Documentation</a>
+              </li>
+              
+              <li>
+                <a href="#keywords">Keywords</a>
+                <ul>
+                  <li><a href="#retrieve-report">Retrieve report</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#keywords-tables">Keywords tables</a>
+                <ul>
+                  <li><a href="#table-types">Types</a></li>
+                  <li><a href="#table-countries">Countries</a></li>
+                  <li><a href="#table-languages">Langauges</a></li>
+                  <li><a href="#table-currencies">Currencies</a></li>
+                  <li><a href="#table-engines">Engines</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          </div></div>
+          <!--  end of fixed div -->
+          </div>
+        <!--  end of col-2 -->
+        </div>
+        <div class="col-lg-10 col-sm-12">
+        <div class="panel panel-default" style="margin:20px 10px;">
+        <div class="panel-body">
+        
+          <h2 id="audits" class="text-center" style="margin:20px;"><img src="https://app.semstorm.com/sites/all/themes/semstorm/img/logo-xs.png"> Keywords API</h2>
+          
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                This document contains basic information how to use SEMSTORM Keywords API v3.
+              </p>
+              <p>
+                SEMSTORM PHP SDK library is under <a target="_blank" href="https://github.com/semstorm/semstorm-php-sdk/blob/master/LICENSE">Apache License 2.0</a>, This means that library is distributed without any warranties. What is more, support is not included. If you encounter any problems, please <a href="https://github.com/semstorm/semstorm-php-sdk/issues/new" target="_blank">leave us a ticket</a>. 
+              </p>
+            </div>
+          </div>
+          
+          <h2 id="documentation" class="text-center" style="margin:20px;">Documentation</h2>
+          
+          <div class="row">
+            <div class="col-md-12">
+            
+              <h3 id="keywords" class="text-center" style="margin: 20px;">Keywords</h3>
+              
+              <!-- ############################# retrieve-report ############################# -->
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="retrieve-report" class="panel-title">Retrieve report</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords/get-data [POST]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>parameter</th>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>keywords</td>
+                              <td>POST</td>
+                              <td>array</td>
+                              <td>yes</td>
+                              <td>-</td>
+                              <td>Array of strings. Those are base keywords input.</td>
+                            </tr>
+                            <tr>
+                              <td>engines</td>
+                              <td>POST</td>
+                              <td>array</td>
+                              <td>yes</td>
+                              <td>-</td>
+                              <td>Array of strings. Those are engines to search in. See <a href="#table-engines">keywords-tables/engines</a> endpoint to know how to retrieve engines with their proper country and language.</td>
+                            </tr>
+                            <tr>
+                              <td>type</td>
+                              <td>POST</td>
+                              <td>string</td>
+                              <td>yes</td>
+                              <td>-</td>
+                              <td>Report type. See <a href="#table-types">keywords-tables/types</a> endpoint to know how to retrieve possible types.</td>
+                            </tr>
+                            
+                            <tr>
+                              <td>modifiers</td>
+                              <td>POST</td>
+                              <td>array</td>
+                              <td>no*</td>
+                              <td></td>
+                              <td>Array of strings. Those are modifiers which will be concatenate with keywords to build phrases. * - This array is required for report type "custom".</td>
+                            </tr>
+                            <tr>
+                              <td>country</td>
+                              <td>POST</td>
+                              <td>string</td>
+                              <td>no</td>
+                              <td><code>pl</code></td>
+                              <td>Country code which should be used in search. Remember that most engines supports only particular countries so you must set one which is possible for all engines selected. See <a href="#table-countries">keywords-tables/countries</a> endpoint to know how to retrieve possible countries.</td>
+                            </tr>
+                            <tr>
+                              <td>language</td>
+                              <td>POST</td>
+                              <td>string</td>
+                              <td>no</td>
+                              <td><code>pl</code></td>
+                              <td>Language code which should be used in search. Remember that most engines supports only particular languages so you must set one which is possible for all engines selected. See <a href="#table-languages">keywords-tables/languages</a> endpoint to know how to retrieve possible languages.</td>
+                            </tr>
+                            <tr>
+                              <td>location</td>
+                              <td>POST</td>
+                              <td>string</td>
+                              <td>no</td>
+                              <td></td>
+                              <td>Location coordinates in "lat|lon" format, eg. "50.0861158|14.4137924," for Prague, Czech near Charles bridge <a href="https://www.google.com/maps/@50.0861158,14.4137924,18.25z" target="_blank">see it on google maps</a>.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results["gathering_failures"]</td>
+                              <td>integer</td>
+                              <td>Number of requests errors while gathering results. Number of all requests vary between settings. Whenever this number is not zero best practice is to wait few minutes and try again. It is possible to receive constant number of errors in certain configurations.</td>
+                            </tr>
+                            <tr>
+                              <td>results["keywords"]</td>
+                              <td>array</td>
+                              <td>Array with keywords.</td>
+                            </tr>
+                            <tr>
+                              <td>results["keywords"][_KEYWORD_]["value"]</td>
+                              <td>string</td>
+                              <td>Keyword, same as key _KEYWORD_.</td>
+                            </tr>
+                            <tr>
+                              <td>results["keywords"][_KEYWORD_]["engines"]</td>
+                              <td>array</td>
+                              <td>Array of string. This is engine list in which this keyword was found.</td>
+                            </tr>
+                            <tr>
+                              <td>results["keywords"][_KEYWORD_]["base"]</td>
+                              <td>string</td>
+                              <td>Base keyword. This is one of keywords from input parameters.</td>
+                            </tr>
+                            <tr>
+                              <td>results["keywords"][_KEYWORD_]["search"]</td>
+                              <td>string</td>
+                              <td>Search phrase. Created from "base" and "modifier".</td>
+                            </tr>
+                            <tr>
+                              <td>results["keywords"][_KEYWORD_]["modifier"]</td>
+                              <td>string</td>
+                              <td>Modifier, this is addition to base keyword. Used modifiers depending on chosen type or passed modifiers array.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          Retrieve report data.
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          Request: "keywords" is not array.<br>
+                          Request: "keywords" is empty.<br>
+                          Request: "engines" is not array.<br>
+                          Request: "engines" is empty.<br>
+                          Request: "type" is not string.<br>
+                          Request: "type" is empty.<br>
+                          Request: "country" is not string.<br>
+                          Request: "language" is not string.<br>
+                          Request: "location" is not string.<br>
+                          Exception: Invalid collation  of "country" and "engine".<br>
+                          Exception: Invalid collation  of "language" and "engine".<br>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5><strong>PHP example code:</strong></h5>
+                        <!-- <p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p> -->
+                        <h5><strong>Curl:</strong></h5><p class="well">
+                          -X POST -d '{ "keywords": [ "pizza", (...) ], "engines": [ "google" ], "type": "simple" }'  http://api.semstorm.com/api-v3/keywords/keywords/get-data.json?services_token=__ACCESS_TOKEN__
+                        </p>
+                          <h5><strong>Output:</strong></h5><p class="well">
+                          "gathering_failures": 0, "keywords": { "pizza nocą": { "value": "pizza nocą", "engines": [ "google" ], "base": "pizza", "search": "pizza", "modifier": "" }, (...) }
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- ############################# keywords-tables ############################# -->
+              
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="keywords-tables" class="panel-title">Keywords tables</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords-tables/{_TABLE_NAME_} [GET]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>GET</td>
+                              <td>string</td>
+                              <td>yes</td>
+                              <td>-</td>
+                              <td>Name of table to retrieve.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results[_TABLE_NAME_]</td>
+                              <td>array</td>
+                              <td>Content of given table.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          This endpoint is used to retrieve information about current API params.<br>
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          Request: Wrong table name.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- ############################# table-types ############################# -->
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="table-types" class="panel-title">Table of types</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords-tables/types [GET]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>parameter</th>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results["types"]</td>
+                              <td>array</td>
+                              <td>Array of strings which are proper type value.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          Return table of possible report types.
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          None.<br>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5><strong>PHP example code:</strong></h5>
+                        <!-- <p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p> -->
+                        <h5><strong>Curl:</strong></h5><p class="well">
+                          curl http://api.semstorm.com/api-v3/keywords/keywords-tables/types.json?services_token=__ACCESS_TOKEN__
+                        </p>
+                          <h5><strong>Output:</strong></h5><p class="well">
+                          (see php example for example result)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- ############################# table-countries ############################# -->
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="table-countries" class="panel-title">Table of countries</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords-tables/countries [GET]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>parameter</th>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results["countries"]</td>
+                              <td>array</td>
+                              <td>Array of countries.</td>
+                            </tr>
+                            <tr>
+                              <td>results["countries"][_COUNTRY_CODE_]</td>
+                              <td>string</td>
+                              <td>Country name.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          Return table of possible countries. Remember to use _COUNTRY_CODE_ not country name when passing parameter via API.
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          None.<br>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5><strong>PHP example code:</strong></h5>
+                        <!-- <p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p> -->
+                        <h5><strong>Curl:</strong></h5><p class="well">
+                          curl http://api.semstorm.com/api-v3/keywords/keywords-tables/countries.json?services_token=__ACCESS_TOKEN__
+                        </p>
+                          <h5><strong>Output:</strong></h5><p class="well">
+                          (see php example for example result)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- ############################# table-languages ############################# -->
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="table-languages" class="panel-title">Table of languages</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords-tables/languages [GET]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>parameter</th>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results["languages"]</td>
+                              <td>array</td>
+                              <td>Array of languages.</td>
+                            </tr>
+                            <tr>
+                              <td>results["languages"][_LANGUAGE_CODE_]</td>
+                              <td>string</td>
+                              <td>Language name.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          Return table of possible languages. Remember to use _LANGUAGE_CODE_ not language name when passing parameter via API.
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          None.<br>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5><strong>PHP example code:</strong></h5>
+                        <!-- <p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p> -->
+                        <h5><strong>Curl:</strong></h5><p class="well">
+                          curl http://api.semstorm.com/api-v3/keywords/keywords-tables/languages.json?services_token=__ACCESS_TOKEN__
+                        </p>
+                          <h5><strong>Output:</strong></h5><p class="well">
+                          (see php example for example result)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- ############################# table-currencies ############################# -->
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="table-currencies" class="panel-title">Table of currencies</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords-tables/currencies [GET]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>parameter</th>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results["currencies"]</td>
+                              <td>array</td>
+                              <td>Array of currencies.</td>
+                            </tr>
+                            <tr>
+                              <td>results["currencies"][_CURRENCY_CODE_]</td>
+                              <td>string</td>
+                              <td>Currency name.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          Return table of possible currencies. Remember to use _CURRENCY_CODE_ not currency name when passing parameter via API.<br>
+                          <span class="label label-info">Info:</span> for now there is no currency parameter usage anywhere in API. This endpoint is for future developing.
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          None.<br>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5><strong>PHP example code:</strong></h5>
+                        <!-- <p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p> -->
+                        <h5><strong>Curl:</strong></h5><p class="well">
+                          curl http://api.semstorm.com/api-v3/keywords/keywords-tables/currencies.json?services_token=__ACCESS_TOKEN__
+                        </p>
+                          <h5><strong>Output:</strong></h5><p class="well">
+                          (see php example for example result)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- ############################# table-engines ############################# -->
+              
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 id="table-engines" class="panel-title">Table of engines</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Endpoint: </strong><br> http://api.semstorm.com/api-v3/keywords/keywords-tables/engines [GET]
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="6">Parameters &nbsp; <small><span class="label label-primary" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass array with parameters specified below to function from SDK library (see PHP example below).">PHP&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span>&nbsp;<span class="label label-info" data-toggle="tooltip" data-html="true" data-placement="top" title="Pass JSON with parameters specified below in -d / --data in CURL (see Curl below).">CURL&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>parameter</th>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>required</th>
+                              <th>default&nbsp;<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" data-placement="top" title="Default values in <code>code</code> style are literal values, other are description."></span></th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-condensed table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="info" colspan="3">Output &nbsp; <small><span class="label label-success" data-toggle="tooltip" data-html="true" data-placement="top" title="If no error occured output presented below is content of response 'result' array.">RESULT&nbsp;<span class="glyphicon glyphicon-info-sign"></span></span></small></th>
+                            </tr>
+                            <tr>
+                              <th>method</th>
+                              <th>type</th>
+                              <th>description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>results["engines"]</td>
+                              <td>array</td>
+                              <td>Array of languages.</td>
+                            </tr>
+                            <tr>
+                              <td>results["engines"][_ENGINE_CODE_]</td>
+                              <td>array</td>
+                              <td>Array of engine params.</td>
+                            </tr>
+                            <tr>
+                              <td>results["engines"][_ENGINE_CODE_]["language"]</td>
+                              <td>array</td>
+                              <td>Array of languages possible for this engine.</td>
+                            </tr>
+                            <tr>
+                              <td>results["engines"][_ENGINE_CODE_]["country"]</td>
+                              <td>array</td>
+                              <td>Array of countries possible for this engine.</td>
+                            </tr>
+                            <tr>
+                              <td>results["engines"][_ENGINE_CODE_]["category"]</td>
+                              <td>string</td>
+                              <td>Engine category, informational only.</td>
+                            </tr>
+                          </tbody> 
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <strong>Description: </strong><br>
+                          Return table of possible languages. Remember to use _LANGUAGE_CODE_ not language name when passing parameter via API.
+                        </p>
+                        <p>
+                          <strong>Errors: </strong><br>
+                          None.<br>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5><strong>PHP example code:</strong></h5>
+                        <!-- <p><a href="https://github.com/semstorm/semstorm-php-sdk/blob/master/docs/examples/Monitoring/CampaignCreate.php" target="_blank"> examples/Monitoring/CampaignCreate.php</a></p> -->
+                        <h5><strong>Curl:</strong></h5><p class="well">
+                          curl http://api.semstorm.com/api-v3/keywords/keywords-tables/languages.json?services_token=__ACCESS_TOKEN__
+                        </p>
+                          <h5><strong>Output:</strong></h5><p class="well">
+                          (see php example for example result)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+              
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
