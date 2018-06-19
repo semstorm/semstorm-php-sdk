@@ -1,4 +1,4 @@
-# SEMSTORM PHP SDK
+# SEMSTORM PHP SDK v3
 
 ## Installing using composer:
 
@@ -12,7 +12,7 @@ composer require semstorm/semstorm-php-sdk
 ```json
 {
     "require": {
-        "semstorm/semstorm-php-sdk": ">=0.1"
+        "semstorm/semstorm-php-sdk": ">=3.0"
     }
 }
 ```
