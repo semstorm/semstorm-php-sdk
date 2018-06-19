@@ -69,4 +69,4 @@ Official API endpoint is `http://api.semstorm.com/api-v3/`. All requests goes th
 
 ### Throttling
 
-API have request limits. They are refreshed in short time frames (up to one minute). If you make too many requests at once you might get error stating '503 Service Temporarily Unavailable. You are requesting too fast,(...)', this means you have to optimize your script to prevent further blocking.
+API have request limits. It is 1 request per second. If you make too many requests at once you will get error stating '503 Service Temporarily Unavailable. You are requesting too fast,(...)', this means you have to optimize your script to prevent further blocking.
