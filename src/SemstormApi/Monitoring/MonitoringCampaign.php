@@ -173,6 +173,24 @@ class MonitoringCampaign extends \SemstormApi\Semstorm{
   }
     
   /**
+   * Get overall information about campaigns.
+   * 
+   * @param array $data 
+   * @param array $data['ids'] array of campaign ids
+   * @param array $data['params']['filters'] array with filters
+   */
+  public function getOverviewData($data) {
+    try{
+      $response = $this -> httpClient -> post("monitoring/monitoring-campaign/get-overview-data.json", [
+              'json' => $data, 
+    ]);
+      return json_decode($response -> getBody(), true);
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
    * Get information about campaigns your have access to and your access level.
    * 
    */

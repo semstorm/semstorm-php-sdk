@@ -48,5 +48,42 @@ class ExplorerKeywords extends \SemstormApi\Semstorm{
       return $this->handleRequestException($e);
     }
   }
+    
+  /**
+   * Retrieve explorer basic stats.
+   * 
+   * @param array $params 
+   * @param array $data['domains'] array of campaign ids
+   * @param array $data['logic_conjunction'] string possible values: "and", "or"
+   * @param array $data['filters'] array with filters
+   */
+  public function basicStats($params) {
+    try{
+      $response = $this -> httpClient -> post("explorer/explorer-keywords/basic-stats.json", [
+              'json' => $params, 
+    ]);
+      return json_decode($response -> getBody(), true);
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
+    }
+  }
+    
+  /**
+   * Get data about position distribution.
+   * 
+   * @param array $data 
+   * @param array $data['domains'] array of campaign ids
+   * @param array $data['filters'] array with filters
+   */
+  public function positionDistribution($data) {
+    try{
+      $response = $this -> httpClient -> post("explorer/explorer-keywords/position-distribution.json", [
+              'json' => $data, 
+    ]);
+      return json_decode($response -> getBody(), true);
+    }catch( \Exception $e){
+      return $this->handleRequestException($e);
+    }
+  }
   
 }

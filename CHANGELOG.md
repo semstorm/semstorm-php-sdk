@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## 3.0.x
+- 3.0.1 (2018-08-14)
+  - New endpoints for Explorer and Monitoring.
+  - Create ExplorerDomains->visibility endpoint - copy of ExplorerVisiblity->getData for backwards compability.
 - 3.0.0 (2018-06-19)
   - Update files, tags, and descriptions to version 3.0.0.
 
