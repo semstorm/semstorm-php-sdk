@@ -17,7 +17,7 @@
 namespace SemstormApi;
 
 class Semstorm{
-  const _API_ENDPOINT_ = 'http://api.semstorm.com/api-v3/';
+  const _API_ENDPOINT_ = 'https://api.semstorm.com/api-v3/';
   protected $httpClient;
   protected static $token;
   protected static $baseUri;
