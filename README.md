@@ -51,7 +51,7 @@ For more examples see docs/examples directory, where are many samples with exhau
 
 ### Documentation
 
-Documentation can be found in [SEMSTORM API documentation pages](http://api.semstorm.com/).
+Documentation can be found in [SEMSTORM API documentation pages](https://api.semstorm.com/).
 
 # SEMSTORM API
 
@@ -65,7 +65,7 @@ When you have your access token you are ready to use SEMSTORM API.
 ## API
 ### API endpoint
 
-Official API endpoint is `http://api.semstorm.com/api-v3/`. All requests goes through this endpoint, and all of them must be authenticated by including 'services_token' parameter.
+Official API endpoint is `https://api.semstorm.com/api-v3/`. All requests goes through this endpoint, and all of them must be authenticated by including 'services_token' parameter.
 
 ### Throttling
 
